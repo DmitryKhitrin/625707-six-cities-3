@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
-* Студент: [Дмитрий Хитрин](https://up.htmlacademy.ru/react/3/user/625707).
-* Наставник: `Неизвестно`.
+- Студент: [Дмитрий Хитрин](https://up.htmlacademy.ru/react/3/user/625707).
+- Наставник: [Богдан Волик](https://htmlacademy.ru/profile/id997699).
 
 ---
 
