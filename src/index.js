@@ -47,7 +47,9 @@ const placeCardsList = [
   }
 ];
 
+const onHeaderClick = () => {};
+
 ReactDOM.render(
-    <App rentCount={rentCount} placeCardsList={placeCardsList}/>,
+    <App rentCount={rentCount} placeCardsList={placeCardsList} onHeaderClick={onHeaderClick}/>,
     document.getElementById(`root`)
 );

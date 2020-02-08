@@ -2,10 +2,12 @@ import React from 'react';
 import {PropTypes} from 'prop-types';
 import {PlaceCard} from '../place-card/place-card.jsx';
 
-export const Main = ({rentCount, placeCardsList}) => {
+export const Main = ({rentCount, placeCardsList, onHeaderClick}) => {
   return (
     <main className="page__main page__main--index">
-      <h1 className="visually-hidden">Cities</h1>
+      <h1 onClick={onHeaderClick} className="visually-hidden">
+        Cities
+      </h1>
       <div className="cities tabs">
         <section className="locations container">
           <ul className="locations__list tabs__list">
@@ -45,7 +47,9 @@ export const Main = ({rentCount, placeCardsList}) => {
       <div className="cities__places-wrapper">
         <div className="cities__places-container container">
           <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
+            <h2 onClick={onHeaderClick} className="visually-hidden">
+              Places
+            </h2>
             <b className="places__found">{`${rentCount} places to stay in Amsterdam`}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
@@ -89,22 +93,32 @@ export const Main = ({rentCount, placeCardsList}) => {
               </select>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {placeCardsList.map(({
-                priceValue,
-                placeCardImage,
-                cardName,
-                starsRating,
-                roomType,
-                isPremium}, i) => {
-                return <PlaceCard
-                  key={i}
-                  isPremium={isPremium}
-                  roomType={roomType}
-                  starsRating={starsRating}
-                  priceValue={priceValue}
-                  placeCardImage={placeCardImage}
-                  cardName={cardName}/>;
-              })}
+              {placeCardsList.map(
+                  (
+                      {
+                        priceValue,
+                        placeCardImage,
+                        cardName,
+                        starsRating,
+                        roomType,
+                        isPremium
+                      },
+                      i
+                  ) => {
+                    return (
+                      <PlaceCard
+                        key={i}
+                        isPremium={isPremium}
+                        roomType={roomType}
+                        starsRating={starsRating}
+                        priceValue={priceValue}
+                        placeCardImage={placeCardImage}
+                        cardName={cardName}
+                        onHeaderClick={onHeaderClick}
+                      />
+                    );
+                  }
+              )}
             </div>
           </section>
           <div className="cities__right-section">
@@ -124,8 +138,9 @@ Main.propTypes = {
         cardName: PropTypes.string,
         starsRating: PropTypes.string,
         roomType: PropTypes.string,
-        isPremium: PropTypes.bool,
+        isPremium: PropTypes.bool
       })
   ).isRequired,
+  onHeaderClick: PropTypes.func.isRequired,
   rentCount: PropTypes.number.isRequired
 };

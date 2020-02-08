@@ -8,6 +8,7 @@ export const PlaceCard = ({
   starsRating,
   roomType,
   isPremium,
+  onHeaderClick,
 }) => {
   const premiumNameplate = isPremium ? (
     <div className="place-card__mark">
@@ -33,19 +34,10 @@ export const PlaceCard = ({
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{priceValue}</b>
-            <span className="place-card__price-text">
-              &#47;&nbsp;night
-            </span>
+            <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button
-            className="place-card__bookmark-button button"
-            type="button"
-          >
-            <svg
-              className="place-card__bookmark-icon"
-              width="18"
-              height="19"
-            >
+          <button className="place-card__bookmark-button button" type="button">
+            <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark" />
             </svg>
             <span className="visually-hidden">To bookmarks</span>
@@ -57,10 +49,8 @@ export const PlaceCard = ({
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name">
-          <a href="#">
-            {cardName}
-          </a>
+        <h2 className="place-card__name" onClick={onHeaderClick}>
+          <a href="#">{cardName}</a>
         </h2>
         <p className="place-card__type">{roomType}</p>
       </div>
@@ -76,4 +66,5 @@ PlaceCard.propTypes = {
   starsRating: PropTypes.string,
   roomType: PropTypes.string,
   isPremium: PropTypes.bool,
+  onHeaderClick: PropTypes.func.isRequired
 };

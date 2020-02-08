@@ -3,9 +3,9 @@ import {Main} from '../main/main.jsx';
 import {PropTypes} from 'prop-types';
 
 
-export const App = ({rentCount, placeCardsList}) => {
+export const App = ({rentCount, placeCardsList, onHeaderClick}) => {
   return (
-    <Main rentCount={rentCount} placeCardsList={placeCardsList}/>
+    <Main rentCount={rentCount} placeCardsList={placeCardsList} onHeaderClick={onHeaderClick}/>
   );
 };
 
@@ -17,8 +17,9 @@ App.propTypes = {
         cardName: PropTypes.string,
         starsRating: PropTypes.string,
         roomType: PropTypes.string,
-        isPremium: PropTypes.bool,
+        isPremium: PropTypes.bool
       })
   ).isRequired,
-  rentCount: PropTypes.number.isRequired
+  rentCount: PropTypes.number.isRequired,
+  onHeaderClick: PropTypes.func.isRequired
 };
