@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {Main} from "./main.jsx";
+import {OffersList} from "./offers-list.jsx";
 
 const mocData = [
   {
@@ -36,10 +36,14 @@ const mocRentCount = 3;
 
 const onHeaderClick = () => {};
 
-it(`<Main /> should render main.`, () => {
+it(`<OffersList /> should render OffersList.`, () => {
   const tree = renderer
     .create(
-        <Main rentCount={mocRentCount} placeCardsList={mocData} onHeaderClick={onHeaderClick}/>
+        <OffersList
+          rentCount={mocRentCount}
+          placeCardsList={mocData}
+          onHeaderClick={onHeaderClick}
+        />
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

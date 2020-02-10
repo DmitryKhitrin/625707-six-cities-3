@@ -1,6 +1,6 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
-import {PlaceCard} from '../place-card/place-card.jsx';
+import {OffersList} from "../offers-list/offers-list.jsx";
 
 export const Main = ({rentCount, placeCardsList, onHeaderClick}) => {
   return (
@@ -92,34 +92,7 @@ export const Main = ({rentCount, placeCardsList, onHeaderClick}) => {
                 </option>
               </select>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              {placeCardsList.map(
-                  (
-                      {
-                        priceValue,
-                        placeCardImage,
-                        cardName,
-                        starsRating,
-                        roomType,
-                        isPremium
-                      },
-                      i
-                  ) => {
-                    return (
-                      <PlaceCard
-                        key={i}
-                        isPremium={isPremium}
-                        roomType={roomType}
-                        starsRating={starsRating}
-                        priceValue={priceValue}
-                        placeCardImage={placeCardImage}
-                        cardName={cardName}
-                        onHeaderClick={onHeaderClick}
-                      />
-                    );
-                  }
-              )}
-            </div>
+            <OffersList placeCardsList={placeCardsList} onHeaderClick={onHeaderClick}/>
           </section>
           <div className="cities__right-section">
             <section className="cities__map map" />
@@ -133,6 +106,7 @@ export const Main = ({rentCount, placeCardsList, onHeaderClick}) => {
 Main.propTypes = {
   placeCardsList: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.string,
         priceValue: PropTypes.number,
         placeCardImage: PropTypes.string,
         cardName: PropTypes.string,
