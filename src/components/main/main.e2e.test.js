@@ -7,30 +7,39 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should <h> click two times`, () => {
-  const onHeaderClick = jest.fn();
+describe(`<Main /> tests.`, () => {
+  it(`Should <h> click two times`, () => {
+    const onHeaderClick = jest.fn();
 
-  const mocData = [
-    {
-      priceValue: 20,
-      placeCardImage: `img/room.jpg`,
-      starsRating: `50%`,
-      roomType: `Just Flat`,
-      isPremium: false,
-      cardName: `Just plane text.`
-    }
-  ];
+    const mocData = [
+      {
+        id: `1`,
+        priceValue: 20,
+        placeCardImage: `img/room.jpg`,
+        starsRating: `50%`,
+        roomType: `Just Flat`,
+        isPremium: false,
+        cardName: `Just plane text.`
+      }
+    ];
 
-  const main = shallow(
-      <Main
-        rentCount={2} placeCardsList={mocData} onHeaderClick={onHeaderClick}
-      />
-  );
+    const main = shallow(
+        <Main
+          rentCount={2}
+          placeCardsList={mocData}
+          onHeaderClick={onHeaderClick}
+        />
+    );
 
-  const mainH1 = main.find(`h1`);
-  const mainH2 = main.find(`h2`);
-  mainH1.props().onClick();
-  mainH2.props().onClick();
+    const mainH1 = main.find(`h1`);
+    const mainH2 = main.find(`h2`);
+    mainH1.props().onClick();
+    mainH2.props().onClick();
 
-  expect(onHeaderClick.mock.calls.length).toBe(2);
+    expect(onHeaderClick.mock.calls.length).toBe(2);
+  });
+
+
 });
+
+

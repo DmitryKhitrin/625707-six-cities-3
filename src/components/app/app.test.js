@@ -4,6 +4,7 @@ import {App} from "./app.jsx";
 
 const mocData = [
   {
+    id: `1`,
     priceValue: 1,
     placeCardImage: `img/apartment-01.jpg`,
     starsRating: `25%`,
@@ -12,6 +13,7 @@ const mocData = [
     cardName: `Just Flat.`
   },
   {
+    id: `2`,
     priceValue: 20,
     placeCardImage: `img/room.jpg`,
     starsRating: `50%`,
@@ -20,6 +22,7 @@ const mocData = [
     cardName: `Just plane text.`
   },
   {
+    id: `3`,
     priceValue: 100,
     placeCardImage: `img/apartment-02.jpg`,
     starsRating: `100%`,

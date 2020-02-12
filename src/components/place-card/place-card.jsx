@@ -9,6 +9,9 @@ export const PlaceCard = ({
   roomType,
   isPremium,
   onHeaderClick,
+  onMouseEnter,
+  onMouseLeave,
+  id,
 }) => {
   const premiumNameplate = isPremium ? (
     <div className="place-card__mark">
@@ -17,7 +20,15 @@ export const PlaceCard = ({
   ) : null;
 
   return (
-    <article className="cities__place-card place-card">
+    <article
+      className="cities__place-card place-card"
+      onMouseLeave={() => {
+        onMouseLeave();
+      }}
+      onMouseEnter={() => {
+        onMouseEnter(id);
+      }}
+    >
       {premiumNameplate}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
@@ -60,11 +71,14 @@ export const PlaceCard = ({
 
 
 PlaceCard.propTypes = {
+  id: PropTypes.string.isRequired,
   priceValue: PropTypes.number,
   placeCardImage: PropTypes.string,
   cardName: PropTypes.string,
   starsRating: PropTypes.string,
   roomType: PropTypes.string,
   isPremium: PropTypes.bool,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
   onHeaderClick: PropTypes.func.isRequired
 };

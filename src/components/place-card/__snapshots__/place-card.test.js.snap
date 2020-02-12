@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Main /> should render main. 1`] = `
+exports[`<PlaceCard /> should render place-card. 1`] = `
 <article
   className="cities__place-card place-card"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="place-card__mark"
