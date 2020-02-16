@@ -1,6 +1,25 @@
 import React from "react";
+import PropTypes from "prop-types";
+import {PropertiesInsideList} from "../properties-inside-list/properties-inside-list.jsx";
 
-export const Property = () => {
+export const OfferPropperty = ({
+  // placePhotosList = [],
+  offerHeader = ``,
+  // descriptions = ``,
+  isPremium,
+  placeType = ``,
+  starsRating = ``,
+  bedroomsCount = ``,
+  maxPeopleCount = 4,
+  price = 120,
+  amenitiesList = [],
+  // hostInformation
+}) => {
+  const premium = isPremium ? (
+    <div className="property__mark">
+      <span>Premium</span>
+    </div>
+  ) : null;
   return (
     <div>
       <meta charSet="utf-8" />
@@ -112,13 +131,9 @@ export const Property = () => {
             </div>
             <div className="property__container container">
               <div className="property__wrapper">
-                <div className="property__mark">
-                  <span>Premium</span>
-                </div>
+                {premium}
                 <div className="property__name-wrapper">
-                  <h1 className="property__name">
-                    Beautiful &amp; luxurious studio at great location
-                  </h1>
+                  <h1 className="property__name">{offerHeader}</h1>
                   <button
                     className="property__bookmark-button button"
                     type="button"
@@ -135,7 +150,7 @@ export const Property = () => {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: `80%`}} />
+                    <span style={{width: starsRating}} />
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">
@@ -144,34 +159,20 @@ export const Property = () => {
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
-                    Apartment
+                    {placeType}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    3 Bedrooms
+                    {bedroomsCount}
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max 4 adults
+                    Max {maxPeopleCount} adults
                   </li>
                 </ul>
                 <div className="property__price">
-                  <b className="property__price-value">€120</b>
+                  <b className="property__price-value">€{price}</b>
                   <span className="property__price-text">&nbsp;night</span>
                 </div>
-                <div className="property__inside">
-                  <h2 className="property__inside-title">What&apos;s inside</h2>
-                  <ul className="property__inside-list">
-                    <li className="property__inside-item">Wi-Fi</li>
-                    <li className="property__inside-item">Washing machine</li>
-                    <li className="property__inside-item">Towels</li>
-                    <li className="property__inside-item">Heating</li>
-                    <li className="property__inside-item">Coffee machine</li>
-                    <li className="property__inside-item">Baby seat</li>
-                    <li className="property__inside-item">Kitchen</li>
-                    <li className="property__inside-item">Dishwasher</li>
-                    <li className="property__inside-item">Cabel TV</li>
-                    <li className="property__inside-item">Fridge</li>
-                  </ul>
-                </div>
+                <PropertiesInsideList propertyInside={amenitiesList} />
                 <div className="property__host">
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
@@ -524,4 +525,22 @@ export const Property = () => {
       </div>
     </div>
   );
+};
+
+OfferPropperty.propTypes = {
+  placePhotosList: PropTypes.arrayOf(PropTypes.string),
+  offerHeader: PropTypes.string.isRequired,
+  descriptions: PropTypes.arrayOf(PropTypes.string.isRequired),
+  isPremium: PropTypes.bool.isRequired,
+  placeType: PropTypes.string.isRequired,
+  starsRating: PropTypes.string.isRequired,
+  bedroomsCount: PropTypes.string.isRequired,
+  maxPeopleCount: PropTypes.number.isRequired,
+  price: PropTypes.number.isRequired,
+  amenitiesList: PropTypes.arrayOf(PropTypes.string),
+  hostInformation: PropTypes.shape({
+    hostPhoto: PropTypes.string,
+    hostName: PropTypes.string,
+    isSuper: PropTypes.bool
+  })
 };
