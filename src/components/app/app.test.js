@@ -32,11 +32,31 @@ const mocData = [
   }
 ];
 
+const mockedOffer = {
+  placePhotosList: [],
+  offerHeader: `Test header`,
+  descriptions: [`This is kind of nice place.`],
+  isPremium: true,
+  placeType: `Apartment`,
+  starsRating: `90`,
+  bedroomsCount: `10`,
+  maxPeopleCount: 100,
+  price: 500,
+  amenitiesList: []
+};
+
 const mocRentCount = 3;
 const onClick = () => {};
 it(`<App /> should render site.`, () => {
-  const tree = renderer.create(
-      <App rentCount={mocRentCount} placeCardsList={mocData} onHeaderClick={onClick}/>
-  ).toJSON();
+  const tree = renderer
+    .create(
+        <App
+          rentCount={mocRentCount}
+          placeCardsList={mocData}
+          onHeaderClick={onClick}
+          offerPropperties={mockedOffer}
+        />
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
