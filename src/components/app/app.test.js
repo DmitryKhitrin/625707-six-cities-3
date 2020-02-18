@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {App} from "./app.jsx";
+import {Map} from "../map/map.jsx";
 
 const mocData = [
   {
@@ -10,7 +11,8 @@ const mocData = [
     starsRating: `25%`,
     roomType: `Apartment`,
     isPremium: true,
-    cardName: `Just Flat.`
+    cardName: `Just Flat.`,
+    coords: [49, 52]
   },
   {
     id: `2`,
@@ -19,7 +21,8 @@ const mocData = [
     starsRating: `50%`,
     roomType: `Just Flat`,
     isPremium: false,
-    cardName: `Just plane text.`
+    cardName: `Just plane text.`,
+    coords: [49, 52]
   },
   {
     id: `3`,
@@ -28,7 +31,8 @@ const mocData = [
     starsRating: `100%`,
     roomType: `Private room`,
     isPremium: true,
-    cardName: `Best place in the World really.Beautiful luxurious apartment at great location`
+    cardName: `Best place in the World really.Beautiful luxurious apartment at great location`,
+    coords: [49, 52]
   }
 ];
 
@@ -47,6 +51,7 @@ const mockedOffer = {
 
 const mocRentCount = 3;
 const onClick = () => {};
+Map.prototype.componentDidMount = jest.fn();
 it(`<App /> should render site.`, () => {
   const tree = renderer
     .create(

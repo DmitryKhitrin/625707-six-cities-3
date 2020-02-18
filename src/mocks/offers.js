@@ -6,7 +6,8 @@ export const offers = [
     starsRating: `93%`,
     roomType: `Apartment`,
     isPremium: true,
-    cardName: `Beautiful &amp; luxurious apartment at great location`
+    cardName: `Beautiful & luxurious apartment at great location`,
+    coords: [52.3909553943508, 4.85309666406198]
   },
   {
     id: `2`,
@@ -15,7 +16,8 @@ export const offers = [
     starsRating: `80%`,
     roomType: `Private room`,
     isPremium: false,
-    cardName: `Wood and stone place`
+    cardName: `Wood and stone place`,
+    coords: [52.369553943508, 4.85309666406198]
   },
   {
     id: `3`,
@@ -24,7 +26,8 @@ export const offers = [
     starsRating: `80%`,
     roomType: `Apartment`,
     isPremium: false,
-    cardName: `Canal View Prinsengracht`
+    cardName: `Canal View Prinsengracht`,
+    coords: [52.3909553943508, 4.929309666406198]
   },
   {
     id: `4`,
@@ -33,7 +36,8 @@ export const offers = [
     starsRating: `100%`,
     roomType: `Apartment`,
     isPremium: true,
-    cardName: `Nice, cozy, warm big bed apartment`
+    cardName: `Nice, cozy, warm big bed apartment`,
+    coords: [52.3809553943508, 4.939309666406198]
   },
   {
     id: `5`,
@@ -42,6 +46,7 @@ export const offers = [
     starsRating: `80%`,
     roomType: `Apartment`,
     isPremium: true,
-    cardName: `Wood and stone place`
+    cardName: `Wood and stone place`,
+    coords: [52.3809553943508, 4.939309666406198]
   }
 ];
