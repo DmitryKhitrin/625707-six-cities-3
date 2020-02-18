@@ -520,7 +520,16 @@ exports[`<App /> should render site. 1`] = `
       >
         <section
           className="cities__map map"
-        />
+        >
+          <div
+            id="map"
+            style={
+              Object {
+                "height": 1000,
+              }
+            }
+          />
+        </section>
       </div>
     </div>
   </div>

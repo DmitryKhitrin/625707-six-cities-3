@@ -1,6 +1,7 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
 import {OffersList} from "../offers-list/offers-list.jsx";
+import {Map} from "../map/map.jsx";
 
 export const Main = ({rentCount, placeCardsList, onHeaderClick}) => {
   return (
@@ -92,10 +93,15 @@ export const Main = ({rentCount, placeCardsList, onHeaderClick}) => {
                 </option>
               </select>
             </form>
-            <OffersList placeCardsList={placeCardsList} onHeaderClick={onHeaderClick}/>
+            <OffersList
+              placeCardsList={placeCardsList}
+              onHeaderClick={onHeaderClick}
+            />
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map" />
+            <section className="cities__map map">
+              <Map city={[52.38333, 4.9]} placeCardsList={placeCardsList} />
+            </section>
           </div>
         </div>
       </div>
@@ -112,7 +118,8 @@ Main.propTypes = {
         cardName: PropTypes.string,
         starsRating: PropTypes.string,
         roomType: PropTypes.string,
-        isPremium: PropTypes.bool
+        isPremium: PropTypes.bool,
+        coords: PropTypes.arrayOf(PropTypes.number).isRequired
       })
   ).isRequired,
   onHeaderClick: PropTypes.func.isRequired,

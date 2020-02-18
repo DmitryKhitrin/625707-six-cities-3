@@ -1,6 +1,5 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {Main} from "./main.jsx";
 import {Map} from "../map/map.jsx";
 
 const mocData = [
@@ -36,16 +35,11 @@ const mocData = [
   }
 ];
 
-const mocRentCount = 3;
 
-const onHeaderClick = () => {};
-
-it(`<Main /> should render main.`, () => {
+it(`<Map /> should render map.`, () => {
   Map.prototype.componentDidMount = jest.fn();
   const tree = renderer
-    .create(
-        <Main rentCount={mocRentCount} placeCardsList={mocData} onHeaderClick={onHeaderClick}/>
-    )
+    .create(<Map city={[52.38333, 4.9]} placeCardsList={mocData} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

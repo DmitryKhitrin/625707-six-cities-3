@@ -19,7 +19,8 @@ describe(`<Main /> tests.`, () => {
         starsRating: `50%`,
         roomType: `Just Flat`,
         isPremium: false,
-        cardName: `Just plane text.`
+        cardName: `Just plane text.`,
+        coords: [49, 52]
       }
     ];
 
