@@ -1,4 +1,8 @@
-export const offerPropperties = {
+import React from "react";
+import renderer from "react-test-renderer";
+import {ReviewsList} from "./reviews-list.jsx";
+
+export const mocData = {
   placePhotosList: [],
   offerHeader: `Test header`,
   descriptions: [`This is kind of nice place.`],
@@ -52,3 +56,8 @@ export const offerPropperties = {
     }
   ]
 };
+
+it(`<ReviewsList /> should render ReviewsList.`, () => {
+  const tree = renderer.create(<ReviewsList {...mocData} />).toJSON();
+  expect(tree).toMatchSnapshot();
+});

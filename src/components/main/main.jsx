@@ -100,7 +100,7 @@ export const Main = ({rentCount, placeCardsList, onHeaderClick}) => {
           </section>
           <div className="cities__right-section">
             <section className="cities__map map">
-              <Map city={[52.38333, 4.9]} placeCardsList={placeCardsList} />
+              <Map city={[52.38333, 4.9]} placeCardsList={placeCardsList} height={1000}/>
             </section>
           </div>
         </div>
