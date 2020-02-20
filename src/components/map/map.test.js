@@ -39,7 +39,7 @@ const mocData = [
 it(`<Map /> should render map.`, () => {
   Map.prototype.componentDidMount = jest.fn();
   const tree = renderer
-    .create(<Map city={[52.38333, 4.9]} placeCardsList={mocData} />)
+    .create(<Map city={[52.38333, 4.9]} placeCardsList={mocData} height={1000}/>)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

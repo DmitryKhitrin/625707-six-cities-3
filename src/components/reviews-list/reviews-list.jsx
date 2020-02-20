@@ -7,6 +7,7 @@ export const ReviewsList = ({reviews}) => {
     <ul className="reviews__list">
       {reviews
         .sort((a, b) => new Date(b.reviewsDate) - new Date(a.reviewsDate))
+        .slice(0, 10)
         .map(
             ({
               id,
