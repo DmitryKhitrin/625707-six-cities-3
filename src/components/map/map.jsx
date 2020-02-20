@@ -42,7 +42,12 @@ export class Map extends PureComponent {
   }
 
   render() {
-    return <div id="map" style={{height: 1000}} />;
+    return (
+      <div
+        id="map"
+        style={{height: this.props.height}}
+      />
+    );
   }
 }
 
@@ -59,6 +64,7 @@ Map.propTypes = {
         isPremium: PropTypes.bool,
         coords: PropTypes.arrayOf(PropTypes.number).isRequired
       })
-  )
+  ),
+  height: PropTypes.number.isRequired,
 };
 
