@@ -1,5 +1,5 @@
 import {createStore, compose} from "redux";
-import {offersReducer} from "./reducer.js";
+import {offersReducer} from "./offer-reducer.js";
 
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancers = devtools ? devtools : compose;
