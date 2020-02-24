@@ -82,10 +82,10 @@ class Main extends React.Component {
                   </option>
                 </select>
               </form>
-              <OffersList
+              { placeCardsList.length === 0 ? `No places to stay available` : <OffersList
                 placeCardsList={placeCardsList}
                 onHeaderClick={onHeaderClick}
-              />
+              />}
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
