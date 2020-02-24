@@ -19,7 +19,6 @@ class Main extends React.Component {
   render() {
     const {
       onHeaderClick,
-      rentCount,
       placeCardsList,
       locations,
       setCity,
@@ -30,14 +29,18 @@ class Main extends React.Component {
         <h1 onClick={onHeaderClick} className="visually-hidden">
           Cities
         </h1>
-        <CitiesTabsList locations={locations} setCity={setCity} getOffers={getOffers}/>
+        <CitiesTabsList
+          locations={locations}
+          setCity={setCity}
+          getOffers={getOffers}
+        />
         <div className="cities__places-wrapper">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 onClick={onHeaderClick} className="visually-hidden">
                 Places
               </h2>
-              <b className="places__found">{`${rentCount} places to stay in Amsterdam`}</b>
+              <b className="places__found">{`${placeCardsList.length} places to stay in Amsterdam`}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -119,7 +122,6 @@ Main.propTypes = {
   setCity: PropTypes.func,
   city: PropTypes.string,
   onHeaderClick: PropTypes.func.isRequired,
-  rentCount: PropTypes.number.isRequired
 };
 
 export default Main;

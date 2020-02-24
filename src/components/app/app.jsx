@@ -6,7 +6,6 @@ import {PropTypes} from "prop-types";
 
 
 export const App = ({
-  rentCount,
   placeCardsList,
   onHeaderClick,
   offerPropperties
@@ -16,7 +15,6 @@ export const App = ({
       <Switch>
         <Route exact path="/">
           <MainContainer
-            rentCount={rentCount}
             placeCardsList={placeCardsList}
             onHeaderClick={onHeaderClick}
           />
@@ -40,7 +38,6 @@ App.propTypes = {
         isPremium: PropTypes.bool
       })
   ).isRequired,
-  rentCount: PropTypes.number.isRequired,
   onHeaderClick: PropTypes.func.isRequired,
   offerPropperties: PropTypes.shape({
     placePhotosList: PropTypes.arrayOf(PropTypes.string),

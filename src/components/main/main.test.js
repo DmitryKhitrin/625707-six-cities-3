@@ -37,13 +37,11 @@ const mocData = [
 ];
 
 it(`<Main /> should render main.`, () => {
-  const mocRentCount = 3;
   const onHeaderClick = () => {};
   Map.prototype.componentDidMount = jest.fn();
   const tree = renderer
     .create(
         <Main
-          rentCount={mocRentCount}
           placeCardsList={mocData}
           onHeaderClick={onHeaderClick}
           getOffers={jest.fn()}

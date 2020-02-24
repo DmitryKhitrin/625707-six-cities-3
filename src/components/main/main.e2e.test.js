@@ -38,7 +38,6 @@ describe(`<Main /> tests.`, () => {
 
     const main = shallow(
         <Main
-          rentCount={2}
           placeCardsList={mocData}
           onHeaderClick={onHeaderClick}
           locatons={locations}
