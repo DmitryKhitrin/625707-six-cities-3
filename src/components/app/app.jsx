@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {Main} from "../main/main.jsx";
+import {MainContainer} from "../containers/main-container.jsx";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import {PropTypes} from "prop-types";
 
@@ -15,7 +15,7 @@ export const App = ({
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main
+          <MainContainer
             rentCount={rentCount}
             placeCardsList={placeCardsList}
             onHeaderClick={onHeaderClick}

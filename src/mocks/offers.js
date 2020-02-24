@@ -1,6 +1,7 @@
 export const offers = [
   {
     city: `Paris`,
+    location: [],
     offers: [
       {
         id: `1`,
@@ -21,15 +22,16 @@ export const offers = [
         isPremium: false,
         cardName: `Wood and stone place`,
         coords: [52.369553943508, 4.85309666406198]
-      },
+      }
     ]
   },
   {
     city: `Dusseldorf`,
+    location: [],
     offers: [
       {
         id: `1`,
-        priceValue: 120,
+        priceValue: 130,
         placeCardImage: `img/apartment-01.jpg`,
         starsRating: `93%`,
         roomType: `Apartment`,
@@ -39,22 +41,23 @@ export const offers = [
       },
       {
         id: `2`,
-        priceValue: 80,
+        priceValue: 90,
         placeCardImage: `img/room.jpg`,
         starsRating: `80%`,
         roomType: `Private room`,
         isPremium: false,
         cardName: `Wood and stone place`,
         coords: [52.369553943508, 4.85309666406198]
-      },
+      }
     ]
   },
   {
     city: `Cologne`,
+    location: [],
     offers: [
       {
         id: `1`,
-        priceValue: 120,
+        priceValue: 140,
         placeCardImage: `img/apartment-01.jpg`,
         starsRating: `93%`,
         roomType: `Apartment`,
@@ -64,22 +67,23 @@ export const offers = [
       },
       {
         id: `2`,
-        priceValue: 80,
+        priceValue: 100,
         placeCardImage: `img/room.jpg`,
         starsRating: `80%`,
         roomType: `Private room`,
         isPremium: false,
         cardName: `Wood and stone place`,
         coords: [52.369553943508, 4.85309666406198]
-      },
+      }
     ]
   },
   {
     city: `Brussels`,
+    location: [],
     offers: [
       {
         id: `1`,
-        priceValue: 120,
+        priceValue: 150,
         placeCardImage: `img/apartment-01.jpg`,
         starsRating: `93%`,
         roomType: `Apartment`,
@@ -89,22 +93,23 @@ export const offers = [
       },
       {
         id: `2`,
-        priceValue: 80,
+        priceValue: 110,
         placeCardImage: `img/room.jpg`,
         starsRating: `80%`,
         roomType: `Private room`,
         isPremium: false,
         cardName: `Wood and stone place`,
         coords: [52.369553943508, 4.85309666406198]
-      },
+      }
     ]
   },
   {
     city: `Amsterdam`,
+    location: [],
     offers: [
       {
         id: `1`,
-        priceValue: 120,
+        priceValue: 160,
         placeCardImage: `img/apartment-01.jpg`,
         starsRating: `93%`,
         roomType: `Apartment`,
@@ -114,22 +119,23 @@ export const offers = [
       },
       {
         id: `2`,
-        priceValue: 80,
+        priceValue: 120,
         placeCardImage: `img/room.jpg`,
         starsRating: `80%`,
         roomType: `Private room`,
         isPremium: false,
         cardName: `Wood and stone place`,
         coords: [52.369553943508, 4.85309666406198]
-      },
+      }
     ]
   },
   {
     city: `Hamburg`,
+    location: [],
     offers: [
       {
         id: `1`,
-        priceValue: 120,
+        priceValue: 170,
         placeCardImage: `img/apartment-01.jpg`,
         starsRating: `93%`,
         roomType: `Apartment`,
@@ -139,14 +145,14 @@ export const offers = [
       },
       {
         id: `2`,
-        priceValue: 80,
+        priceValue: 130,
         placeCardImage: `img/room.jpg`,
         starsRating: `80%`,
         roomType: `Private room`,
         isPremium: false,
         cardName: `Wood and stone place`,
         coords: [52.369553943508, 4.85309666406198]
-      },
+      }
     ]
   }
 ];

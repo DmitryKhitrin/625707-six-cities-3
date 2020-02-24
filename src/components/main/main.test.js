@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {Main} from "./main.jsx";
+import Main from "./main.jsx";
 import {Map} from "../map/map.jsx";
 
 const mocData = [
@@ -36,15 +36,23 @@ const mocData = [
   }
 ];
 
-const mocRentCount = 3;
-
-const onHeaderClick = () => {};
-
 it(`<Main /> should render main.`, () => {
+  const mocRentCount = 3;
+  const onHeaderClick = () => {};
   Map.prototype.componentDidMount = jest.fn();
   const tree = renderer
     .create(
-        <Main rentCount={mocRentCount} placeCardsList={mocData} onHeaderClick={onHeaderClick}/>
+        <Main
+          rentCount={mocRentCount}
+          placeCardsList={mocData}
+          onHeaderClick={onHeaderClick}
+          getOffers={jest.fn()}
+          getLocations={jest.fn()}
+          setCity={jest.fn()}
+          locatons={[
+            {id: `1`, cityName: `Dusseldorf`, location: [51.22172, 6.77616]}
+          ]}
+        />
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

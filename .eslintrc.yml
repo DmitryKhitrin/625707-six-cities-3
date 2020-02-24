@@ -20,5 +20,4 @@ plugins: ["react"]
 settings:
   react:
     version: "16"
-rules:
-  object-curly-spacing: [1, "always", { "arraysInObjects": false, "objectsInObjects": false }]
+

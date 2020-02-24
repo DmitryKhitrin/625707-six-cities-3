@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CityTab /> should render CityTab. 1`] = `
+<li
+  className="locations__item"
+  onClick={[Function]}
+>
+  <a
+    className="locations__item-link tabs__item"
+    href="#"
+  >
+    <span>
+      Moscow
+    </span>
+  </a>
+</li>
+`;

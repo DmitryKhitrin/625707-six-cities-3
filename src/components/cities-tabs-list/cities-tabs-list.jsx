@@ -1,19 +1,27 @@
 import React, {PureComponent} from "react";
+import {PropTypes} from "prop-types";
 import {CityTab} from "../city-tab/city-tab.jsx";
 
 export class CitiesTabsList extends PureComponent {
   constructor(props) {
     super(props);
   }
-  render(props) {
-    const {citiesList} = props;
+  render() {
+    const {locations = [], setCity, getOffers} = this.props;
     return (
       <div className="cities tabs">
         <section className="locations container">
           <ul className="locations__list tabs__list">
-            {citiesList.map((city) => {
+            {locations.map((city) => {
               const {id, cityName} = city;
-              return <CityTab key={id} cityName={cityName} />;
+              return (
+                <CityTab
+                  key={id}
+                  cityName={cityName}
+                  setCity={setCity}
+                  getOffers={getOffers}
+                />
+              );
             })}
           </ul>
         </section>
@@ -21,3 +29,15 @@ export class CitiesTabsList extends PureComponent {
     );
   }
 }
+
+CitiesTabsList.propTypes = {
+  locations: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        cityName: PropTypes.string,
+        location: PropTypes.any
+      })
+  ).isRequired,
+  setCity: PropTypes.func.isRequired,
+  getOffers: PropTypes.func.isRequired
+};
