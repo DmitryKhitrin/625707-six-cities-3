@@ -22,8 +22,12 @@ class Main extends React.Component {
       placeCardsList,
       locations,
       setCity,
-      getOffers
+      getOffers,
+      city,
     } = this.props;
+
+    const {location = ``} = locations.find((cityInfo) => cityInfo.cityName === city);
+
     return (
       <main className="page__main page__main--index">
         <h1 onClick={onHeaderClick} className="visually-hidden">
@@ -40,7 +44,7 @@ class Main extends React.Component {
               <h2 onClick={onHeaderClick} className="visually-hidden">
                 Places
               </h2>
-              <b className="places__found">{`${placeCardsList.length} places to stay in Amsterdam`}</b>
+              <b className="places__found">{`${placeCardsList.length} places to stay in ${city}`}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -82,18 +86,22 @@ class Main extends React.Component {
                   </option>
                 </select>
               </form>
-              { placeCardsList.length === 0 ? `No places to stay available` : <OffersList
-                placeCardsList={placeCardsList}
-                onHeaderClick={onHeaderClick}
-              />}
+              {placeCardsList.length === 0 ? (
+                `No places to stay available`
+              ) : (
+                <OffersList
+                  placeCardsList={placeCardsList}
+                  onHeaderClick={onHeaderClick}
+                />
+              )}
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map
-                  city={[52.38333, 4.9]}
+                { location ? <Map
+                  city={location}
                   placeCardsList={placeCardsList}
                   height={1000}
-                />
+                /> : null}
               </section>
             </div>
           </div>

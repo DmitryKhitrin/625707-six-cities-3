@@ -14,7 +14,7 @@ const MainContainer = (props) => {
 const mapStateToProps = (state) => ({
   locations: state.locations,
   city: state.city,
-  placeCardsList: state.offers
+  placeCardsList: state.offers,
 });
 
 const mapDispatchToProps = {

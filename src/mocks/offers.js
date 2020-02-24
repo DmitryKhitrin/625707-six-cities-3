@@ -11,7 +11,7 @@ export const offers = [
         roomType: `Apartment`,
         isPremium: true,
         cardName: `Beautiful & luxurious apartment at great location`,
-        coords: [52.3909553943508, 4.85309666406198]
+        coords: [48.887133, 2.281446]
       },
       {
         id: `2`,
@@ -21,7 +21,7 @@ export const offers = [
         roomType: `Private room`,
         isPremium: false,
         cardName: `Wood and stone place`,
-        coords: [52.369553943508, 4.85309666406198]
+        coords: [48.880119, 2.3311]
       }
     ]
   },
@@ -37,7 +37,7 @@ export const offers = [
         roomType: `Apartment`,
         isPremium: true,
         cardName: `Beautiful & luxurious apartment at great location`,
-        coords: [52.3909553943508, 4.85309666406198]
+        coords: [51.243295, 6.785545]
       },
       {
         id: `2`,
@@ -47,7 +47,7 @@ export const offers = [
         roomType: `Private room`,
         isPremium: false,
         cardName: `Wood and stone place`,
-        coords: [52.369553943508, 4.85309666406198]
+        coords: [51.22648, 6.777604]
       }
     ]
   },
@@ -63,7 +63,7 @@ export const offers = [
         roomType: `Apartment`,
         isPremium: true,
         cardName: `Beautiful & luxurious apartment at great location`,
-        coords: [52.3909553943508, 4.85309666406198]
+        coords: [50.966655, 6.917322]
       },
       {
         id: `2`,
@@ -73,7 +73,7 @@ export const offers = [
         roomType: `Private room`,
         isPremium: false,
         cardName: `Wood and stone place`,
-        coords: [52.369553943508, 4.85309666406198]
+        coords: [50.937751, 6.982628]
       }
     ]
   },
@@ -89,7 +89,7 @@ export const offers = [
         roomType: `Apartment`,
         isPremium: true,
         cardName: `Beautiful & luxurious apartment at great location`,
-        coords: [52.3909553943508, 4.85309666406198]
+        coords: [50.855359, 4.35163]
       },
       {
         id: `2`,
@@ -99,7 +99,7 @@ export const offers = [
         roomType: `Private room`,
         isPremium: false,
         cardName: `Wood and stone place`,
-        coords: [52.369553943508, 4.85309666406198]
+        coords: [50.84266, 4.342018]
       }
     ]
   },
@@ -115,7 +115,7 @@ export const offers = [
         roomType: `Apartment`,
         isPremium: true,
         cardName: `Beautiful & luxurious apartment at great location`,
-        coords: [52.3909553943508, 4.85309666406198]
+        coords: [52.404821, 4.91573]
       },
       {
         id: `2`,

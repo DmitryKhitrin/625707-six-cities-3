@@ -2,8 +2,8 @@ import {GET_OFFERS, GET_LOCATIONS, SET_CITY} from "./actions/types.js";
 
 const initialState = {
   locations: [],
-  city: `Amsterdam`,
-  offers: []
+  city: `Paris`,
+  offers: [],
 };
 
 export const offersReducer = (state = initialState, {type, payload}) => {

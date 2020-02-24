@@ -40,10 +40,11 @@ describe(`<Main /> tests.`, () => {
         <Main
           placeCardsList={mocData}
           onHeaderClick={onHeaderClick}
-          locatons={locations}
+          locations={locations}
           getOffers={jest.fn()}
           getLocations={jest.fn()}
           setCity={jest.fn()}
+          city={`Paris`}
         />
     );
 

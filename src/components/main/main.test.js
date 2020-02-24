@@ -48,27 +48,8 @@ describe(`Main`, () => {
             getOffers={jest.fn()}
             getLocations={jest.fn()}
             setCity={jest.fn()}
-            locatons={[
-              { id: `1`, cityName: `Dusseldorf`, location: [51.22172, 6.77616] }
-            ]}
-          />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`<Main /> should render empty main.`, () => {
-    const onHeaderClick = () => {};
-    Map.prototype.componentDidMount = jest.fn();
-    const tree = renderer
-      .create(
-          <Main
-            placeCardsList={[]}
-            onHeaderClick={onHeaderClick}
-            getOffers={jest.fn()}
-            getLocations={jest.fn()}
-            setCity={jest.fn()}
-            locatons={[
+            city={`Dusseldorf`}
+            locations={[
               { id: `1`, cityName: `Dusseldorf`, location: [51.22172, 6.77616] }
             ]}
           />
