@@ -67,6 +67,7 @@ exports[`Main <Main /> should render main. 1`] = `
           </span>
           <span
             className="places__sorting-type"
+            onClick={[Function]}
             tabIndex="0"
           >
             Popular
@@ -81,7 +82,7 @@ exports[`Main <Main /> should render main. 1`] = `
             </svg>
           </span>
           <ul
-            className="places__options places__options--custom places__options--opened"
+            className="places__options places__options--custom "
           >
             <li
               className="places__option places__option--active"
@@ -90,53 +91,27 @@ exports[`Main <Main /> should render main. 1`] = `
               Popular
             </li>
             <li
-              className="places__option"
+              className="places__option "
+              onClick={[Function]}
               tabIndex="0"
             >
               Price: low to high
             </li>
             <li
-              className="places__option"
+              className="places__option "
+              onClick={[Function]}
               tabIndex="0"
             >
               Price: high to low
             </li>
             <li
-              className="places__option"
+              className="places__option "
+              onClick={[Function]}
               tabIndex="0"
             >
               Top rated first
             </li>
           </ul>
-          <select
-            className="places__sorting-type"
-            id="places-sorting"
-          >
-            <option
-              className="places__option"
-              value="popular"
-            >
-              Popular
-            </option>
-            <option
-              className="places__option"
-              value="to-high"
-            >
-              Price: low to high
-            </option>
-            <option
-              className="places__option"
-              value="to-low"
-            >
-              Price: high to low
-            </option>
-            <option
-              className="places__option"
-              value="top-rated"
-            >
-              Top rated first
-            </option>
-          </select>
         </form>
         <div
           className="cities__places-list places__list tabs__content"

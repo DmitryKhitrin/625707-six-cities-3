@@ -3,16 +3,23 @@ import {PropTypes} from 'prop-types';
 import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
 import {CitiesTabsList} from "../cities-tabs-list/cities-tabs-list.jsx";
-import {PlacesSorting} from "../places-sorting/places-sorting.jsx";
+import {PlacesSortingForm} from "../places-sorting-form/places-sorting-form.jsx";
+import {sortTypes} from "../../sortTypes.js";
+import {sortOffers} from "../../utils.js";
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activePlaceCard: null
+      activePlaceCard: null,
+      sortType: sortTypes.POPULAR,
+      isMenuOpen: false
     };
+
     this._setActivePlaceCard = this._setActivePlaceCard.bind(this);
     this._removeActivePlaceCard = this._removeActivePlaceCard.bind(this);
+    this._setSortType = this._setSortType.bind(this);
+    this._toggleSortMenu = this._toggleSortMenu.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +40,23 @@ class Main extends React.Component {
     });
   }
 
+  _closeMenu() {
+    this.setState({
+      isMenuOpen: false
+    });
+  }
+
+  _toggleSortMenu() {
+    this.setState({
+      isMenuOpen: !this.state.isMenuOpen,
+    });
+  }
+
+  _setSortType(evt) {
+    this.setState({sortType: evt.target.textContent});
+    this._closeMenu();
+  }
+
   render() {
     const {
       onHeaderClick,
@@ -42,6 +66,11 @@ class Main extends React.Component {
       getOffers,
       city
     } = this.props;
+
+    const sortedPlaceCardsList = sortOffers(
+        this.state.sortType,
+        placeCardsList
+    );
 
     const place = locations.find((cityInfo) => cityInfo.cityName === city);
     const location = place ? place.location : undefined;
@@ -62,13 +91,18 @@ class Main extends React.Component {
               <h2 onClick={onHeaderClick} className="visually-hidden">
                 Places
               </h2>
-              <b className="places__found">{`${placeCardsList.length} places to stay in ${city}`}</b>
-              <PlacesSorting />
+              <b className="places__found">{`${sortedPlaceCardsList.length} places to stay in ${city}`}</b>
+              <PlacesSortingForm
+                setSortType={this._setSortType}
+                sortType={this.state.sortType}
+                isMenuOpen={this.state.isMenuOpen}
+                toggleSortMenu={this._toggleSortMenu}
+              />
               {placeCardsList.length === 0 ? (
                 `No places to stay available`
               ) : (
                 <OffersList
-                  placeCardsList={placeCardsList}
+                  placeCardsList={sortedPlaceCardsList}
                   onHeaderClick={onHeaderClick}
                   onMouseEnter={this._setActivePlaceCard}
                   onMouseLeave={this._removeActivePlaceCard}
@@ -80,7 +114,7 @@ class Main extends React.Component {
                 {location ? (
                   <Map
                     city={location}
-                    placeCardsList={placeCardsList}
+                    placeCardsList={sortedPlaceCardsList}
                     height={1000}
                     activeCard={this.state.activePlaceCard}
                   />
