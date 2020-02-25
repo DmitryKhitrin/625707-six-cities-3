@@ -47,7 +47,7 @@ describe(`offerReducer`, () => {
         {},
         {type: GET_OFFERS, payload: mocData}
     );
-    expect(state).toEqual({ city: mocData.city, offers: mocData.offers });
+    expect(state).toEqual({city: mocData.city, offers: mocData.offers});
   });
 
   it(`should get loactions.`, () => {
