@@ -1,12 +1,11 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {Main} from "../main/main.jsx";
+import {MainContainer} from "../containers/main-container.jsx";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import {PropTypes} from "prop-types";
 
 
 export const App = ({
-  rentCount,
   placeCardsList,
   onHeaderClick,
   offerPropperties
@@ -15,8 +14,7 @@ export const App = ({
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main
-            rentCount={rentCount}
+          <MainContainer
             placeCardsList={placeCardsList}
             onHeaderClick={onHeaderClick}
           />
@@ -40,7 +38,6 @@ App.propTypes = {
         isPremium: PropTypes.bool
       })
   ).isRequired,
-  rentCount: PropTypes.number.isRequired,
   onHeaderClick: PropTypes.func.isRequired,
   offerPropperties: PropTypes.shape({
     placePhotosList: PropTypes.arrayOf(PropTypes.string),

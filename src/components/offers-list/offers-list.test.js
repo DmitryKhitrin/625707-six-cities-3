@@ -32,15 +32,12 @@ const mocData = [
   }
 ];
 
-const mocRentCount = 3;
-
 const onHeaderClick = () => {};
 
 it(`<OffersList /> should render OffersList.`, () => {
   const tree = renderer
     .create(
         <OffersList
-          rentCount={mocRentCount}
           placeCardsList={mocData}
           onHeaderClick={onHeaderClick}
         />

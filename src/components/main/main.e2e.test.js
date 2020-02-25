@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {Main} from "./main.jsx";
+import Main from "./main.jsx";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -23,12 +23,28 @@ describe(`<Main /> tests.`, () => {
         coords: [49, 52]
       }
     ];
+    const locations = [
+      {
+        id: `1`,
+        cityName: `Paris`,
+        location: [48.864716, 2.349014]
+      },
+      {
+        id: `2`,
+        cityName: `Dusseldorf`,
+        location: [51.22172, 6.77616]
+      }
+    ];
 
     const main = shallow(
         <Main
-          rentCount={2}
           placeCardsList={mocData}
           onHeaderClick={onHeaderClick}
+          locations={locations}
+          getOffers={jest.fn()}
+          getLocations={jest.fn()}
+          setCity={jest.fn()}
+          city={`Paris`}
         />
     );
 

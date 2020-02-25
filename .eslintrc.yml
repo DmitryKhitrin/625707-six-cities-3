@@ -6,6 +6,9 @@ env:
 
 extends: ["htmlacademy/es6", "plugin:react/recommended"]
 
+parser:
+  babel-eslint
+
 parserOptions:
   ecmaFeatures:
     jsx: true
@@ -17,3 +20,4 @@ plugins: ["react"]
 settings:
   react:
     version: "16"
+

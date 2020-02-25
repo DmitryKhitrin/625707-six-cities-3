@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CitiesTabsList /> should render CitiesTabsList. 1`] = `
+<div
+  className="cities tabs"
+>
+  <section
+    className="locations container"
+  >
+    <ul
+      className="locations__list tabs__list"
+    >
+      <li
+        className="locations__item"
+        onClick={[Function]}
+      >
+        <a
+          className="locations__item-link tabs__item"
+          href="#"
+        >
+          <span>
+            Paris
+          </span>
+        </a>
+      </li>
+      <li
+        className="locations__item"
+        onClick={[Function]}
+      >
+        <a
+          className="locations__item-link tabs__item"
+          href="#"
+        >
+          <span>
+            Dusseldorf
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</div>
+`;
