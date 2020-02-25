@@ -30,6 +30,7 @@ export const PlacesSortingForm = ({
             sortType === `Popular` ? `places__option--active` : ``
           }`}
           tabIndex="0"
+          onClick={setSortType}
         >
           Popular
         </li>
