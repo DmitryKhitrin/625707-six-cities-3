@@ -26,7 +26,8 @@ class Main extends React.Component {
       city,
     } = this.props;
 
-    const {location = ``} = locations.find((cityInfo) => cityInfo.cityName === city);
+    const place = locations.find((cityInfo) => cityInfo.cityName === city);
+    const location = place ? place.location : undefined;
 
     return (
       <main className="page__main page__main--index">
@@ -97,11 +98,13 @@ class Main extends React.Component {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                { location ? <Map
-                  city={location}
-                  placeCardsList={placeCardsList}
-                  height={1000}
-                /> : null}
+                {location ? (
+                  <Map
+                    city={location}
+                    placeCardsList={placeCardsList}
+                    height={1000}
+                  />
+                ) : null}
               </section>
             </div>
           </div>
