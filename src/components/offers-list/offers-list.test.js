@@ -40,6 +40,8 @@ it(`<OffersList /> should render OffersList.`, () => {
         <OffersList
           placeCardsList={mocData}
           onHeaderClick={onHeaderClick}
+          onMouseEnter={jest.fn()}
+          onMouseLeave={jest.fn()}
         />
     )
     .toJSON();

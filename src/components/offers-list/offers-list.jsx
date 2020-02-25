@@ -1,64 +1,46 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import {PropTypes} from "prop-types";
 import {PlaceCard} from "../place-card/place-card.jsx";
 
-export class OffersList extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activePlaceCard: null
-    };
-    this._setActivePlaceCard = this._setActivePlaceCard.bind(this);
-    this._removeActivePlaceCard = this._removeActivePlaceCard.bind(this);
-  }
-
-  render() {
-    return (
-      <div className="cities__places-list places__list tabs__content">
-        {this.props.placeCardsList.map(
-            ({
-              id,
-              priceValue,
-              placeCardImage,
-              cardName,
-              starsRating,
-              roomType,
-              isPremium
-            }) => {
-              return (
-                <div key={id}>
-                  <PlaceCard
-                    id={id}
-                    isPremium={isPremium}
-                    roomType={roomType}
-                    starsRating={starsRating}
-                    priceValue={priceValue}
-                    placeCardImage={placeCardImage}
-                    cardName={cardName}
-                    onHeaderClick={this.props.onHeaderClick}
-                    onMouseEnter={this._setActivePlaceCard}
-                    onMouseLeave={this._removeActivePlaceCard}
-                  />
-                </div>
-              );
-            }
-        )}
-      </div>
-    );
-  }
-
-  _setActivePlaceCard(id) {
-    this.setState({
-      activePlaceCard: id
-    });
-  }
-
-  _removeActivePlaceCard() {
-    this.setState({
-      activePlaceCard: null
-    });
-  }
-}
+export const OffersList = ({
+  placeCardsList,
+  onMouseEnter,
+  onMouseLeave,
+  onHeaderClick
+}) => {
+  return (
+    <div className="cities__places-list places__list tabs__content">
+      {placeCardsList.map(
+          ({
+            id,
+            priceValue,
+            placeCardImage,
+            cardName,
+            starsRating,
+            roomType,
+            isPremium
+          }) => {
+            return (
+              <div key={id}>
+                <PlaceCard
+                  id={id}
+                  isPremium={isPremium}
+                  roomType={roomType}
+                  starsRating={starsRating}
+                  priceValue={priceValue}
+                  placeCardImage={placeCardImage}
+                  cardName={cardName}
+                  onHeaderClick={onHeaderClick}
+                  onMouseEnter={onMouseEnter}
+                  onMouseLeave={onMouseLeave}
+                />
+              </div>
+            );
+          }
+      )}
+    </div>
+  );
+};
 
 OffersList.propTypes = {
   placeCardsList: PropTypes.arrayOf(
@@ -72,5 +54,7 @@ OffersList.propTypes = {
         isPremium: PropTypes.bool
       })
   ).isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
   onHeaderClick: PropTypes.func.isRequired
 };

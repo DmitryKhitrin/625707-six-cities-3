@@ -348,7 +348,11 @@ export const OfferPropperty = ({
               </div>
             </div>
             <section className="property__map map">
-              <Map city={[52.38333, 4.9]} placeCardsList={offersList} height={600}/>
+              <Map
+                city={[52.38333, 4.9]}
+                placeCardsList={offersList}
+                height={600}
+              />
             </section>
           </section>
           <div className="container">
@@ -360,6 +364,8 @@ export const OfferPropperty = ({
                 <OffersList
                   placeCardsList={offersList}
                   onHeaderClick={() => {}}
+                  onMouseEnter={jest.fn()}
+                  onMouseLeave={jest.fn()}
                 />
               </div>
             </section>

@@ -11,7 +11,14 @@ export class Map extends PureComponent {
   _getIcon() {
     return leaflet.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: [30, 30],
+    });
+  }
+
+  _getActiveIcon() {
+    return leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30],
     });
   }
 
@@ -37,14 +44,18 @@ export class Map extends PureComponent {
   }
 
   _addMarkers() {
-    const {placeCardsList} = this.props;
-    const icon = this._getIcon();
+    const {placeCardsList, activeCard} = this.props;
+    this._activeCard = activeCard;
     this._markersLayer = leaflet.layerGroup().addTo(this._map);
 
-    placeCardsList.map((card) =>
-      leaflet
+    placeCardsList.map((card) => {
+      const icon =
+        this._activeCard === card.id ? this._getActiveIcon() : this._getIcon();
+      return leaflet
         .marker(card.coords, {icon, title: card.cardName})
-        .addTo(this._markersLayer)
+        .addTo(this._markersLayer);
+    }
+
     );
   }
 
@@ -53,7 +64,10 @@ export class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.city !== prevProps.city) {
+    if (
+      this.props.city !== prevProps.city ||
+      this.props.activeCard !== this._activeCard
+    ) {
       this._markersLayer.clearLayers();
       this._map.setView(this.props.city, this._zoom);
       this._addMarkers();
@@ -80,5 +94,6 @@ Map.propTypes = {
       })
   ),
   height: PropTypes.number.isRequired,
+  activeCard: PropTypes.string,
 };
 
