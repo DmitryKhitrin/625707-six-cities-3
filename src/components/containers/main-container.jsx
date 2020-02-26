@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import Main from "../main/main.jsx";
+import {WrappedMain} from "../main/main.jsx";
 
 import {
   getOffers,
@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions/location.actions.js";
 
 const MainContainer = (props) => {
-  return <Main {...props} />;
+  return <WrappedMain {...props} />;
 };
 const mapStateToProps = (state) => ({
   locations: state.locations,

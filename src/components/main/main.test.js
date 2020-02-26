@@ -49,8 +49,11 @@ describe(`Main`, () => {
             getLocations={jest.fn()}
             setCity={jest.fn()}
             city={`Dusseldorf`}
+            activeItem={``}
+            setActiveItem={jest.fn()}
+            removeActiveItem={jest.fn()}
             locations={[
-              { id: `1`, cityName: `Dusseldorf`, location: [51.22172, 6.77616] }
+              {id: `1`, cityName: `Dusseldorf`, location: [51.22172, 6.77616]}
             ]}
           />
       )

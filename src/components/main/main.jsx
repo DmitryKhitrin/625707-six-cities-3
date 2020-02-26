@@ -6,18 +6,15 @@ import {CitiesTabsList} from "../cities-tabs-list/cities-tabs-list.jsx";
 import {PlacesSortingForm} from "../places-sorting-form/places-sorting-form.jsx";
 import {sortTypes} from "../../sortTypes.js";
 import {sortOffers} from "../../utils.js";
+import {withActiveItem} from "../../hocs/with-active-item.jsx";
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activePlaceCard: null,
       sortType: sortTypes.POPULAR,
       isMenuOpen: false
     };
-
-    this._setActivePlaceCard = this._setActivePlaceCard.bind(this);
-    this._removeActivePlaceCard = this._removeActivePlaceCard.bind(this);
     this._setSortType = this._setSortType.bind(this);
     this._toggleSortMenu = this._toggleSortMenu.bind(this);
   }
@@ -26,18 +23,6 @@ class Main extends React.Component {
     const {city, getOffers, getLocations} = this.props;
     getOffers(city);
     getLocations();
-  }
-
-  _setActivePlaceCard(id) {
-    this.setState({
-      activePlaceCard: id
-    });
-  }
-
-  _removeActivePlaceCard() {
-    this.setState({
-      activePlaceCard: null
-    });
   }
 
   _closeMenu() {
@@ -105,8 +90,8 @@ class Main extends React.Component {
                 <OffersList
                   placeCardsList={sortedPlaceCardsList}
                   onHeaderClick={onHeaderClick}
-                  onMouseEnter={this._setActivePlaceCard}
-                  onMouseLeave={this._removeActivePlaceCard}
+                  onMouseEnter={this.props.setActiveItem}
+                  onMouseLeave={this.props.removeActiveItem}
                 />
               )}
             </section>
@@ -117,7 +102,7 @@ class Main extends React.Component {
                     city={location}
                     placeCardsList={sortedPlaceCardsList}
                     height={1000}
-                    activeCard={this.state.activePlaceCard}
+                    activeCard={this.props.activeItem}
                   />
                 ) : null}
               </section>
@@ -148,6 +133,10 @@ Main.propTypes = {
   setCity: PropTypes.func,
   city: PropTypes.string,
   onHeaderClick: PropTypes.func.isRequired,
+  activeItem: PropTypes.string.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
+  removeActiveItem: PropTypes.func.isRequired,
 };
 
+export const WrappedMain = withActiveItem(Main);
 export default Main;

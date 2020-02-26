@@ -45,6 +45,9 @@ describe(`<Main /> tests.`, () => {
           getLocations={jest.fn()}
           setCity={jest.fn()}
           city={`Paris`}
+          activeItem={``}
+          setActiveItem={jest.fn()}
+          removeActiveItem={jest.fn()}
         />
     );
 
