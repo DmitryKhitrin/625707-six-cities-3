@@ -2,11 +2,11 @@ import React, {PureComponent} from "react";
 import {PropTypes} from "prop-types";
 import leaflet from "leaflet";
 
+const SETTINGS = {
+  zoom: 12,
+};
+
 export class Map extends PureComponent {
-  constructor(props) {
-    super(props);
-    this._zoom = 12;
-  }
 
   _getIcon() {
     return leaflet.icon({
@@ -26,7 +26,7 @@ export class Map extends PureComponent {
     const {city} = this.props;
     this._map = leaflet.map(`map`, {
       center: city,
-      zoom: this._zoom,
+      zoom: SETTINGS.zoom,
       zoomControl: false,
       marker: true
     });
