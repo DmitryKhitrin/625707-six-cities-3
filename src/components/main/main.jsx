@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useMemo, memo} from "react";
 import {PropTypes} from 'prop-types';
 import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
@@ -8,92 +8,92 @@ import {sortOffers} from "../../utils.js";
 import {withActiveItem} from "../../hocs/with-active-item.jsx";
 import {withSortMenu} from "../../hocs/with-sort-menu.jsx";
 
-class Main extends React.Component {
+const Main = ({
+  city,
+  getOffers,
+  getLocations,
+  onHeaderClick,
+  placeCardsList,
+  locations,
+  setCity,
+  isMenuOpen,
+  setSortType,
+  sortType,
+  toggleSortMenu,
+  setActiveItem,
+  removeActiveItem,
+  activeItem,
+}) => {
 
-  componentDidMount() {
-    const {city, getOffers, getLocations} = this.props;
+  useEffect(() => {
     getOffers(city);
     getLocations();
-  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  render() {
-    const {
-      onHeaderClick,
-      placeCardsList,
-      locations,
-      setCity,
-      getOffers,
-      city,
-      isMenuOpen,
-      setSortType,
-      sortType,
-      toggleSortMenu,
-      setActiveItem,
-      removeActiveItem,
-      activeItem,
-    } = this.props;
+  const sortedPlaceCardsList = useMemo(
+      () => sortOffers(sortType, placeCardsList),
+      [sortType, placeCardsList]
+  );
 
-    const sortedPlaceCardsList = sortOffers(
-        sortType,
-        placeCardsList
-    );
+  const place = useMemo(
+      () => locations.find((cityInfo) => cityInfo.cityName === city),
+      [locations, city]
+  );
+  const location = useMemo(() => (place ? place.location : undefined), [place]);
 
-    const place = locations.find((cityInfo) => cityInfo.cityName === city);
-    const location = place ? place.location : undefined;
-
-    return (
-      <main className="page__main page__main--index">
-        <h1 onClick={onHeaderClick} className="visually-hidden">
+  return (
+    <main className="page__main page__main--index">
+      <h1 onClick={onHeaderClick} className="visually-hidden">
           Cities
-        </h1>
-        <CitiesTabsList
-          locations={locations}
-          setCity={setCity}
-          getOffers={getOffers}
-          activeCity={city}
-        />
-        <div className="cities__places-wrapper">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 onClick={onHeaderClick} className="visually-hidden">
+      </h1>
+      <CitiesTabsList
+        locations={locations}
+        setCity={setCity}
+        getOffers={getOffers}
+        activeCity={city}
+      />
+      <div className="cities__places-wrapper">
+        <div className="cities__places-container container">
+          <section className="cities__places places">
+            <h2 onClick={onHeaderClick} className="visually-hidden">
                 Places
-              </h2>
-              <b className="places__found">{`${sortedPlaceCardsList.length} places to stay in ${city}`}</b>
-              <PlacesSortingForm
-                setSortType={setSortType}
-                sortType={sortType}
-                isMenuOpen={isMenuOpen}
-                toggleSortMenu={toggleSortMenu}
+            </h2>
+            <b className="places__found">{`${sortedPlaceCardsList.length} places to stay in ${city}`}</b>
+            <PlacesSortingForm
+              setSortType={setSortType}
+              sortType={sortType}
+              isMenuOpen={isMenuOpen}
+              toggleSortMenu={toggleSortMenu}
+            />
+            {placeCardsList.length === 0 ? (
+              `No places to stay available`
+            ) : (
+              <OffersList
+                placeCardsList={sortedPlaceCardsList}
+                onHeaderClick={onHeaderClick}
+                onMouseEnter={setActiveItem}
+                onMouseLeave={removeActiveItem}
               />
-              {placeCardsList.length === 0 ? (
-                `No places to stay available`
-              ) : (
-                <OffersList
+            )}
+          </section>
+          <div className="cities__right-section">
+            <section className="cities__map map">
+              {location ? (
+                <Map
+                  city={location}
                   placeCardsList={sortedPlaceCardsList}
-                  onHeaderClick={onHeaderClick}
-                  onMouseEnter={setActiveItem}
-                  onMouseLeave={removeActiveItem}
+                  height={1000}
+                  activeCard={activeItem}
                 />
-              )}
+              ) : null}
             </section>
-            <div className="cities__right-section">
-              <section className="cities__map map">
-                {location ? (
-                  <Map
-                    city={location}
-                    placeCardsList={sortedPlaceCardsList}
-                    height={1000}
-                    activeCard={activeItem}
-                  />
-                ) : null}
-              </section>
-            </div>
           </div>
         </div>
-      </main>
-    );
-  }
-}
+      </div>
+    </main>
+  );
+};
 
 Main.propTypes = {
   placeCardsList: PropTypes.arrayOf(
@@ -123,5 +123,5 @@ Main.propTypes = {
   isMenuOpen: PropTypes.bool.isRequired,
 };
 
-export const WrappedMain = withSortMenu(withActiveItem(Main));
+export const WrappedMain = withSortMenu(withActiveItem(memo(Main)));
 export default Main;
