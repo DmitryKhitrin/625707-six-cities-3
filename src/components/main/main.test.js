@@ -52,6 +52,10 @@ describe(`Main`, () => {
             activeItem={``}
             setActiveItem={jest.fn()}
             removeActiveItem={jest.fn()}
+            setSortType={jest.fn()}
+            sortType={``}
+            toggleSortMenu={jest.fn()}
+            isMenuOpen={false}
             locations={[
               {id: `1`, cityName: `Dusseldorf`, location: [51.22172, 6.77616]}
             ]}

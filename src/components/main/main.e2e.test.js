@@ -48,6 +48,10 @@ describe(`<Main /> tests.`, () => {
           activeItem={``}
           setActiveItem={jest.fn()}
           removeActiveItem={jest.fn()}
+          setSortType={jest.fn()}
+          sortType={``}
+          toggleSortMenu={jest.fn()}
+          isMenuOpen={false}
         />
     );
 

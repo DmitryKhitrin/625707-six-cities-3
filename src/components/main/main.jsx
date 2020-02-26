@@ -4,42 +4,16 @@ import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
 import {CitiesTabsList} from "../cities-tabs-list/cities-tabs-list.jsx";
 import {PlacesSortingForm} from "../places-sorting-form/places-sorting-form.jsx";
-import {sortTypes} from "../../sortTypes.js";
 import {sortOffers} from "../../utils.js";
 import {withActiveItem} from "../../hocs/with-active-item.jsx";
+import {withSortMenu} from "../../hocs/with-sort-menu.jsx";
 
 class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sortType: sortTypes.POPULAR,
-      isMenuOpen: false
-    };
-    this._setSortType = this._setSortType.bind(this);
-    this._toggleSortMenu = this._toggleSortMenu.bind(this);
-  }
 
   componentDidMount() {
     const {city, getOffers, getLocations} = this.props;
     getOffers(city);
     getLocations();
-  }
-
-  _closeMenu() {
-    this.setState({
-      isMenuOpen: false
-    });
-  }
-
-  _toggleSortMenu() {
-    this.setState({
-      isMenuOpen: !this.state.isMenuOpen,
-    });
-  }
-
-  _setSortType(evt) {
-    this.setState({sortType: evt.target.textContent});
-    this._closeMenu();
   }
 
   render() {
@@ -49,11 +23,18 @@ class Main extends React.Component {
       locations,
       setCity,
       getOffers,
-      city
+      city,
+      isMenuOpen,
+      setSortType,
+      sortType,
+      toggleSortMenu,
+      setActiveItem,
+      removeActiveItem,
+      activeItem,
     } = this.props;
 
     const sortedPlaceCardsList = sortOffers(
-        this.state.sortType,
+        sortType,
         placeCardsList
     );
 
@@ -79,10 +60,10 @@ class Main extends React.Component {
               </h2>
               <b className="places__found">{`${sortedPlaceCardsList.length} places to stay in ${city}`}</b>
               <PlacesSortingForm
-                setSortType={this._setSortType}
-                sortType={this.state.sortType}
-                isMenuOpen={this.state.isMenuOpen}
-                toggleSortMenu={this._toggleSortMenu}
+                setSortType={setSortType}
+                sortType={sortType}
+                isMenuOpen={isMenuOpen}
+                toggleSortMenu={toggleSortMenu}
               />
               {placeCardsList.length === 0 ? (
                 `No places to stay available`
@@ -90,8 +71,8 @@ class Main extends React.Component {
                 <OffersList
                   placeCardsList={sortedPlaceCardsList}
                   onHeaderClick={onHeaderClick}
-                  onMouseEnter={this.props.setActiveItem}
-                  onMouseLeave={this.props.removeActiveItem}
+                  onMouseEnter={setActiveItem}
+                  onMouseLeave={removeActiveItem}
                 />
               )}
             </section>
@@ -102,7 +83,7 @@ class Main extends React.Component {
                     city={location}
                     placeCardsList={sortedPlaceCardsList}
                     height={1000}
-                    activeCard={this.props.activeItem}
+                    activeCard={activeItem}
                   />
                 ) : null}
               </section>
@@ -136,7 +117,11 @@ Main.propTypes = {
   activeItem: PropTypes.string.isRequired,
   setActiveItem: PropTypes.func.isRequired,
   removeActiveItem: PropTypes.func.isRequired,
+  setSortType: PropTypes.func.isRequired,
+  sortType: PropTypes.string.isRequired,
+  toggleSortMenu: PropTypes.func.isRequired,
+  isMenuOpen: PropTypes.bool.isRequired,
 };
 
-export const WrappedMain = withActiveItem(Main);
+export const WrappedMain = withSortMenu(withActiveItem(Main));
 export default Main;
