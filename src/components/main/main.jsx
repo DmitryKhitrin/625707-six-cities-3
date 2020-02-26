@@ -84,6 +84,7 @@ class Main extends React.Component {
           locations={locations}
           setCity={setCity}
           getOffers={getOffers}
+          activeCity={city}
         />
         <div className="cities__places-wrapper">
           <div className="cities__places-container container">

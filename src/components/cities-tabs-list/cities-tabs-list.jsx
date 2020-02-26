@@ -7,7 +7,7 @@ export class CitiesTabsList extends PureComponent {
     super(props);
   }
   render() {
-    const {locations = [], setCity, getOffers} = this.props;
+    const {locations = [], setCity, getOffers, activeCity} = this.props;
     return (
       <div className="cities tabs">
         <section className="locations container">
@@ -20,6 +20,7 @@ export class CitiesTabsList extends PureComponent {
                   cityName={cityName}
                   setCity={setCity}
                   getOffers={getOffers}
+                  isActive={activeCity === cityName}
                 />
               );
             })}
@@ -39,5 +40,6 @@ CitiesTabsList.propTypes = {
       })
   ).isRequired,
   setCity: PropTypes.func.isRequired,
-  getOffers: PropTypes.func.isRequired
+  getOffers: PropTypes.func.isRequired,
+  activeCity: PropTypes.string.isRequired,
 };
