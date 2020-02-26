@@ -1,7 +1,7 @@
-import React, {useCallback} from "react";
+import React, {useCallback, memo} from "react";
 import {PropTypes} from "prop-types";
 
-export const CityTab = ({cityName, setCity, getOffers, isActive}) => {
+const CityTab = ({cityName, setCity, getOffers, isActive}) => {
   const onClick = useCallback(() => {
     setCity(cityName);
     getOffers(cityName);
@@ -19,6 +19,9 @@ export const CityTab = ({cityName, setCity, getOffers, isActive}) => {
     </li>
   );
 };
+
+const MemoizedCityTab = memo(CityTab);
+export {MemoizedCityTab as CityTab};
 
 CityTab.propTypes = {
   cityName: PropTypes.string.isRequired,

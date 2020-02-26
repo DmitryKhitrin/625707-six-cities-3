@@ -25,7 +25,7 @@ export const withActiveItem = (Component) => {
 
     _removeActiveItem() {
       this.setState({
-        activeItem: null
+        activeItem: ``
       });
     }
 

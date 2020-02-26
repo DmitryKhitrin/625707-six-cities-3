@@ -1,7 +1,7 @@
-import React from "react";
+import React, {memo} from "react";
 import {PropTypes} from "prop-types";
 
-export const PlacesSortingForm = ({
+const PlacesSortingForm = ({
   sortType = ``,
   setSortType = () => {},
   toggleSortMenu = () => {},
@@ -65,6 +65,9 @@ export const PlacesSortingForm = ({
     </form>
   );
 };
+
+const MemoizedPlacesSortingForm = memo(PlacesSortingForm);
+export {MemoizedPlacesSortingForm as PlacesSortingForm};
 
 PlacesSortingForm.propTypes = {
   sortType: PropTypes.string.isRequired,
