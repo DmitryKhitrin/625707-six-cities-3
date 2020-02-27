@@ -9,6 +9,7 @@ it(`<CityTab /> should render CityTab.`, () => {
           cityName={`Moscow`}
           setCity={jest.fn()}
           getOffers={jest.fn()}
+          isActive={false}
         />
     )
     .toJSON();

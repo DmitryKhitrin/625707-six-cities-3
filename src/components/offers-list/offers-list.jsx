@@ -1,8 +1,8 @@
-import React from "react";
+import React, {memo} from "react";
 import {PropTypes} from "prop-types";
 import {PlaceCard} from "../place-card/place-card.jsx";
 
-export const OffersList = ({
+const OffersList = ({
   placeCardsList,
   onMouseEnter,
   onMouseLeave,
@@ -41,6 +41,9 @@ export const OffersList = ({
     </div>
   );
 };
+
+const MemoizedOffersList = memo(OffersList);
+export {MemoizedOffersList as OffersList};
 
 OffersList.propTypes = {
   placeCardsList: PropTypes.arrayOf(

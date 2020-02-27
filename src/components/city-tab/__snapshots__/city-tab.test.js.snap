@@ -6,7 +6,7 @@ exports[`<CityTab /> should render CityTab. 1`] = `
   onClick={[Function]}
 >
   <a
-    className="locations__item-link tabs__item"
+    className="locations__item-link tabs__item "
     href="#"
   >
     <span>

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {PropTypes} from 'prop-types';
 
-export const PlaceCard = ({
+const PlaceCard = ({
   priceValue,
   placeCardImage,
   cardName,
@@ -69,6 +69,8 @@ export const PlaceCard = ({
   );
 };
 
+const MemoizedPlaceCard = memo(PlaceCard);
+export {MemoizedPlaceCard as PlaceCard};
 
 PlaceCard.propTypes = {
   id: PropTypes.string.isRequired,

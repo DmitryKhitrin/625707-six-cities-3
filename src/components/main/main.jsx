@@ -1,132 +1,99 @@
-import React from 'react';
+import React, {useEffect, useMemo, memo} from "react";
 import {PropTypes} from 'prop-types';
 import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
 import {CitiesTabsList} from "../cities-tabs-list/cities-tabs-list.jsx";
 import {PlacesSortingForm} from "../places-sorting-form/places-sorting-form.jsx";
-import {sortTypes} from "../../sortTypes.js";
 import {sortOffers} from "../../utils.js";
+import {withActiveItem} from "../../hocs/with-active-item.jsx";
+import {withSortMenu} from "../../hocs/with-sort-menu.jsx";
 
-class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activePlaceCard: null,
-      sortType: sortTypes.POPULAR,
-      isMenuOpen: false
-    };
+const Main = ({
+  city,
+  getOffers,
+  getLocations,
+  onHeaderClick,
+  placeCardsList,
+  locations,
+  setCity,
+  isMenuOpen,
+  setSortType,
+  sortType,
+  toggleSortMenu,
+  setActiveItem,
+  removeActiveItem,
+  activeItem,
+}) => {
 
-    this._setActivePlaceCard = this._setActivePlaceCard.bind(this);
-    this._removeActivePlaceCard = this._removeActivePlaceCard.bind(this);
-    this._setSortType = this._setSortType.bind(this);
-    this._toggleSortMenu = this._toggleSortMenu.bind(this);
-  }
-
-  componentDidMount() {
-    const {city, getOffers, getLocations} = this.props;
+  useEffect(() => {
     getOffers(city);
     getLocations();
-  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  _setActivePlaceCard(id) {
-    this.setState({
-      activePlaceCard: id
-    });
-  }
+  const sortedPlaceCardsList = useMemo(
+      () => sortOffers(sortType, placeCardsList),
+      [sortType, placeCardsList]
+  );
 
-  _removeActivePlaceCard() {
-    this.setState({
-      activePlaceCard: null
-    });
-  }
+  const place = useMemo(
+      () => locations.find((cityInfo) => cityInfo.cityName === city),
+      [locations, city]
+  );
+  const location = useMemo(() => (place ? place.location : undefined), [place]);
 
-  _closeMenu() {
-    this.setState({
-      isMenuOpen: false
-    });
-  }
-
-  _toggleSortMenu() {
-    this.setState({
-      isMenuOpen: !this.state.isMenuOpen,
-    });
-  }
-
-  _setSortType(evt) {
-    this.setState({sortType: evt.target.textContent});
-    this._closeMenu();
-  }
-
-  render() {
-    const {
-      onHeaderClick,
-      placeCardsList,
-      locations,
-      setCity,
-      getOffers,
-      city
-    } = this.props;
-
-    const sortedPlaceCardsList = sortOffers(
-        this.state.sortType,
-        placeCardsList
-    );
-
-    const place = locations.find((cityInfo) => cityInfo.cityName === city);
-    const location = place ? place.location : undefined;
-
-    return (
-      <main className="page__main page__main--index">
-        <h1 onClick={onHeaderClick} className="visually-hidden">
+  return (
+    <main className="page__main page__main--index">
+      <h1 onClick={onHeaderClick} className="visually-hidden">
           Cities
-        </h1>
-        <CitiesTabsList
-          locations={locations}
-          setCity={setCity}
-          getOffers={getOffers}
-        />
-        <div className="cities__places-wrapper">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 onClick={onHeaderClick} className="visually-hidden">
+      </h1>
+      <CitiesTabsList
+        locations={locations}
+        setCity={setCity}
+        getOffers={getOffers}
+        activeCity={city}
+      />
+      <div className="cities__places-wrapper">
+        <div className="cities__places-container container">
+          <section className="cities__places places">
+            <h2 onClick={onHeaderClick} className="visually-hidden">
                 Places
-              </h2>
-              <b className="places__found">{`${sortedPlaceCardsList.length} places to stay in ${city}`}</b>
-              <PlacesSortingForm
-                setSortType={this._setSortType}
-                sortType={this.state.sortType}
-                isMenuOpen={this.state.isMenuOpen}
-                toggleSortMenu={this._toggleSortMenu}
+            </h2>
+            <b className="places__found">{`${sortedPlaceCardsList.length} places to stay in ${city}`}</b>
+            <PlacesSortingForm
+              setSortType={setSortType}
+              sortType={sortType}
+              isMenuOpen={isMenuOpen}
+              toggleSortMenu={toggleSortMenu}
+            />
+            {placeCardsList.length === 0 ? (
+              `No places to stay available`
+            ) : (
+              <OffersList
+                placeCardsList={sortedPlaceCardsList}
+                onHeaderClick={onHeaderClick}
+                onMouseEnter={setActiveItem}
+                onMouseLeave={removeActiveItem}
               />
-              {placeCardsList.length === 0 ? (
-                `No places to stay available`
-              ) : (
-                <OffersList
+            )}
+          </section>
+          <div className="cities__right-section">
+            <section className="cities__map map">
+              {location ? (
+                <Map
+                  city={location}
                   placeCardsList={sortedPlaceCardsList}
-                  onHeaderClick={onHeaderClick}
-                  onMouseEnter={this._setActivePlaceCard}
-                  onMouseLeave={this._removeActivePlaceCard}
+                  height={1000}
+                  activeCard={activeItem}
                 />
-              )}
+              ) : null}
             </section>
-            <div className="cities__right-section">
-              <section className="cities__map map">
-                {location ? (
-                  <Map
-                    city={location}
-                    placeCardsList={sortedPlaceCardsList}
-                    height={1000}
-                    activeCard={this.state.activePlaceCard}
-                  />
-                ) : null}
-              </section>
-            </div>
           </div>
         </div>
-      </main>
-    );
-  }
-}
+      </div>
+    </main>
+  );
+};
 
 Main.propTypes = {
   placeCardsList: PropTypes.arrayOf(
@@ -147,6 +114,14 @@ Main.propTypes = {
   setCity: PropTypes.func,
   city: PropTypes.string,
   onHeaderClick: PropTypes.func.isRequired,
+  activeItem: PropTypes.string.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
+  removeActiveItem: PropTypes.func.isRequired,
+  setSortType: PropTypes.func.isRequired,
+  sortType: PropTypes.string.isRequired,
+  toggleSortMenu: PropTypes.func.isRequired,
+  isMenuOpen: PropTypes.bool.isRequired,
 };
 
+export const WrappedMain = withSortMenu(withActiveItem(memo(Main)));
 export default Main;

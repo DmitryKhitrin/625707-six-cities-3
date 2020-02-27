@@ -24,7 +24,7 @@ exports[`Main <Main /> should render main. 1`] = `
           onClick={[Function]}
         >
           <a
-            className="locations__item-link tabs__item"
+            className="locations__item-link tabs__item tabs__item--active"
             href="#"
           >
             <span>
@@ -67,10 +67,10 @@ exports[`Main <Main /> should render main. 1`] = `
           </span>
           <span
             className="places__sorting-type"
-            onClick={[Function]}
+            onClick={[MockFunction]}
             tabIndex="0"
           >
-            Popular
+            
             <svg
               className="places__sorting-arrow"
               height="4"
@@ -85,29 +85,29 @@ exports[`Main <Main /> should render main. 1`] = `
             className="places__options places__options--custom "
           >
             <li
-              className="places__option places__option--active"
-              onClick={[Function]}
+              className="places__option "
+              onClick={[MockFunction]}
               tabIndex="0"
             >
               Popular
             </li>
             <li
               className="places__option "
-              onClick={[Function]}
+              onClick={[MockFunction]}
               tabIndex="0"
             >
               Price: low to high
             </li>
             <li
               className="places__option "
-              onClick={[Function]}
+              onClick={[MockFunction]}
               tabIndex="0"
             >
               Price: high to low
             </li>
             <li
               className="places__option "
-              onClick={[Function]}
+              onClick={[MockFunction]}
               tabIndex="0"
             >
               Top rated first

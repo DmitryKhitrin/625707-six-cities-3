@@ -13,7 +13,7 @@ describe(`<PlaceCard /> tests.`, () => {
     const getOffers = jest.fn();
 
     const cityTab = shallow(
-        <CityTab setCity={setCity} getOffers={getOffers} cityName={`Moscow`} />
+        <CityTab setCity={setCity} getOffers={getOffers} cityName={`Moscow`} isActive={false}/>
     );
 
     const tab = cityTab.find(`.locations__item`);
