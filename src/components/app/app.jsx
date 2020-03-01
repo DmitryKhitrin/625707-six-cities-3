@@ -6,7 +6,6 @@ import {PropTypes} from "prop-types";
 
 
 export const App = ({
-  placeCardsList,
   onHeaderClick,
   offerPropperties
 }) => {
@@ -15,7 +14,6 @@ export const App = ({
       <Switch>
         <Route exact path="/">
           <MainContainer
-            placeCardsList={placeCardsList}
             onHeaderClick={onHeaderClick}
           />
         </Route>

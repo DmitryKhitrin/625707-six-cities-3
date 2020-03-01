@@ -4,31 +4,31 @@ import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
 import {CitiesTabsList} from "../cities-tabs-list/cities-tabs-list.jsx";
 import {PlacesSortingForm} from "../places-sorting-form/places-sorting-form.jsx";
+import {EmptyMain} from "../empty-main/empty-main.jsx";
 import {sortOffers} from "../../utils.js";
 import {withActiveItem} from "../../hocs/with-active-item.jsx";
 import {withSortMenu} from "../../hocs/with-sort-menu.jsx";
 
 const Main = ({
   city,
-  getOffers,
-  getLocations,
-  onHeaderClick,
-  placeCardsList,
-  locations,
+  getOffers = () => {},
+  getLocations = () => {},
+  onHeaderClick = () => {},
+  placeCardsList = [],
+  locations = [],
   setCity,
-  isMenuOpen,
-  setSortType,
+  isMenuOpen = false,
+  setSortType = () => {},
   sortType,
-  toggleSortMenu,
-  setActiveItem,
-  removeActiveItem,
-  activeItem,
+  toggleSortMenu = () => {},
+  setActiveItem = () => {},
+  removeActiveItem = () => {},
+  activeItem
 }) => {
-
   useEffect(() => {
     getOffers(city);
     getLocations();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sortedPlaceCardsList = useMemo(
@@ -45,7 +45,7 @@ const Main = ({
   return (
     <main className="page__main page__main--index">
       <h1 onClick={onHeaderClick} className="visually-hidden">
-          Cities
+        Cities
       </h1>
       <CitiesTabsList
         locations={locations}
@@ -53,44 +53,48 @@ const Main = ({
         getOffers={getOffers}
         activeCity={city}
       />
-      <div className="cities__places-wrapper">
-        <div className="cities__places-container container">
-          <section className="cities__places places">
-            <h2 onClick={onHeaderClick} className="visually-hidden">
+      {sortedPlaceCardsList && sortedPlaceCardsList.length > 0 ? (
+        <div className="cities__places-wrapper">
+          <div className="cities__places-container container">
+            <section className="cities__places places">
+              <h2 onClick={onHeaderClick} className="visually-hidden">
                 Places
-            </h2>
-            <b className="places__found">{`${sortedPlaceCardsList.length} places to stay in ${city}`}</b>
-            <PlacesSortingForm
-              setSortType={setSortType}
-              sortType={sortType}
-              isMenuOpen={isMenuOpen}
-              toggleSortMenu={toggleSortMenu}
-            />
-            {placeCardsList.length === 0 ? (
-              `No places to stay available`
-            ) : (
-              <OffersList
-                placeCardsList={sortedPlaceCardsList}
-                onHeaderClick={onHeaderClick}
-                onMouseEnter={setActiveItem}
-                onMouseLeave={removeActiveItem}
+              </h2>
+              <b className="places__found">{`${sortedPlaceCardsList.length} places to stay in ${city}`}</b>
+              <PlacesSortingForm
+                setSortType={setSortType}
+                sortType={sortType}
+                isMenuOpen={isMenuOpen}
+                toggleSortMenu={toggleSortMenu}
               />
-            )}
-          </section>
-          <div className="cities__right-section">
-            <section className="cities__map map">
-              {location ? (
-                <Map
-                  city={location}
+              {placeCardsList.length === 0 ? (
+                `No places to stay available`
+              ) : (
+                <OffersList
                   placeCardsList={sortedPlaceCardsList}
-                  height={1000}
-                  activeCard={activeItem}
+                  onHeaderClick={onHeaderClick}
+                  onMouseEnter={setActiveItem}
+                  onMouseLeave={removeActiveItem}
                 />
-              ) : null}
+              )}
             </section>
+            <div className="cities__right-section">
+              <section className="cities__map map">
+                {location ? (
+                  <Map
+                    city={location}
+                    placeCardsList={sortedPlaceCardsList}
+                    height={1000}
+                    activeCard={activeItem}
+                  />
+                ) : null}
+              </section>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <EmptyMain city={city}/>
+      )}
     </main>
   );
 };
