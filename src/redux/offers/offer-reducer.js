@@ -1,7 +1,7 @@
 import {
   SET_CITY,
   SET_OFFERS
-} from "../actions/types.js";
+} from "./types.js";
 
 const initialState = {
   locations: [],

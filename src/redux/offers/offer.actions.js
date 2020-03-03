@@ -1,4 +1,4 @@
-import {SET_CITY, SET_OFFERS} from "./types";
+import {SET_CITY, SET_OFFERS} from "./types.js";
 
 import {
   parseCities,

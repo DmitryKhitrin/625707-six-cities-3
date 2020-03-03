@@ -5,7 +5,7 @@ import {WrappedMain} from "../main/main.jsx";
 import {
   setCity,
   loadOffers
-} from "../../redux/actions/offer.actions.js";
+} from "../../redux/offers/offer.actions.js";
 
 const MainContainer = (props) => {
   return <WrappedMain {...props} />;

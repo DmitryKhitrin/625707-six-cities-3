@@ -1,7 +1,7 @@
 import {createStore, compose, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import {makeApi} from "../api.js";
-import {offersReducer} from "./reducers/offer-reducer.js";
+import {offersReducer} from "./offers/offer-reducer.js";
 
 const api = makeApi();
 export const store = createStore(
