@@ -11,7 +11,7 @@ export const OfferPropperty = ({
   // descriptions = ``,
   isPremium,
   placeType = ``,
-  starsRating = ``,
+  rating = ``,
   bedroomsCount = ``,
   maxPeopleCount = 4,
   price = 120,
@@ -155,7 +155,7 @@ export const OfferPropperty = ({
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: starsRating}} />
+                    <span style={{width: rating}} />
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">
@@ -392,7 +392,7 @@ OfferPropperty.propTypes = {
   descriptions: PropTypes.arrayOf(PropTypes.string.isRequired),
   isPremium: PropTypes.bool.isRequired,
   placeType: PropTypes.string.isRequired,
-  starsRating: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
   bedroomsCount: PropTypes.string.isRequired,
   maxPeopleCount: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,

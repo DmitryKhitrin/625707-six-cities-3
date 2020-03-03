@@ -20,7 +20,6 @@ it(`<CitiesTabsList /> should render CitiesTabsList.`, () => {
         <CitiesTabsList
           locations={locations}
           setCity={jest.fn()}
-          getOffers={jest.fn()}
           activeCity={'Moscow'}
         />
     )

@@ -3,7 +3,7 @@ import {PropTypes} from "prop-types";
 import leaflet from "leaflet";
 
 const SETTINGS = {
-  zoom: 12,
+  zoom: 13,
 };
 
 export class Map extends PureComponent {
@@ -24,13 +24,14 @@ export class Map extends PureComponent {
 
   _initCities() {
     const {city} = this.props;
+    const {location} = city;
     this._map = leaflet.map(`map`, {
-      center: city,
+      center: location,
       zoom: SETTINGS.zoom,
       zoomControl: false,
       marker: true
     });
-    this._map.setView(city, this._zoom);
+    this._map.setView(location, this._zoom);
     leaflet
              .tileLayer(
                  `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
@@ -52,7 +53,7 @@ export class Map extends PureComponent {
       const icon =
         this._activeCard === card.id ? this._getActiveIcon() : this._getIcon();
       return leaflet
-        .marker(card.coords, {icon, title: card.cardName})
+        .marker(card.location, {icon, title: card.title})
         .addTo(this._markersLayer);
     }
 
@@ -64,12 +65,13 @@ export class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
+    const {city} = this.props;
     if (
-      this.props.city !== prevProps.city ||
+      city.name !== prevProps.city.name ||
       this.props.activeCard !== this._activeCard
     ) {
       this._markersLayer.clearLayers();
-      this._map.setView(this.props.city, this._zoom);
+      this._map.setView(city.location, this._zoom);
       this._addMarkers();
     }
   }
@@ -80,20 +82,23 @@ export class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  city: PropTypes.arrayOf(PropTypes.number),
+  city: PropTypes.shape({
+    location: PropTypes.arrayOf(PropTypes.number, PropTypes.number),
+    name: PropTypes.string
+  }),
   placeCardsList: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
-        priceValue: PropTypes.number,
-        placeCardImage: PropTypes.string,
-        cardName: PropTypes.string,
-        starsRating: PropTypes.string,
-        roomType: PropTypes.string,
+        price: PropTypes.number,
+        previewImage: PropTypes.string,
+        title: PropTypes.string,
+        rating: PropTypes.string,
+        type: PropTypes.string,
         isPremium: PropTypes.bool,
-        coords: PropTypes.arrayOf(PropTypes.number).isRequired
+        location: PropTypes.arrayOf(PropTypes.number).isRequired
       })
   ),
   height: PropTypes.number.isRequired,
-  activeCard: PropTypes.string,
+  activeCard: PropTypes.string
 };
 

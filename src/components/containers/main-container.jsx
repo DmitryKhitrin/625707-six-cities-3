@@ -3,10 +3,9 @@ import {connect} from "react-redux";
 import {WrappedMain} from "../main/main.jsx";
 
 import {
-  getOffers,
-  getLocations,
-  setCity
-} from "../../redux/actions/location.actions.js";
+  setCity,
+  loadOffers
+} from "../../redux/actions/offer.actions.js";
 
 const MainContainer = (props) => {
   return <WrappedMain {...props} />;
@@ -14,13 +13,12 @@ const MainContainer = (props) => {
 const mapStateToProps = (state) => ({
   locations: state.locations,
   city: state.city,
-  placeCardsList: state.offers,
+  placeCardsList: state.offers.filter((card) => (card.city === state.city)),
 });
 
 const mapDispatchToProps = {
-  getLocations,
-  getOffers,
-  setCity
+  setCity,
+  loadOffers
 };
 
 

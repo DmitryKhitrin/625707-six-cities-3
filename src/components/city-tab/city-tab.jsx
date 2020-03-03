@@ -1,11 +1,10 @@
 import React, {useCallback, memo} from "react";
 import {PropTypes} from "prop-types";
 
-const CityTab = ({cityName, setCity, getOffers, isActive}) => {
+const CityTab = ({cityName, setCity, isActive}) => {
   const onClick = useCallback(() => {
     setCity(cityName);
-    getOffers(cityName);
-  }, [cityName, setCity, getOffers]);
+  }, [cityName, setCity]);
   return (
     <li className="locations__item" onClick={onClick}>
       <a
@@ -26,6 +25,5 @@ export {MemoizedCityTab as CityTab};
 CityTab.propTypes = {
   cityName: PropTypes.string.isRequired,
   setCity: PropTypes.func.isRequired,
-  getOffers: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired
 };

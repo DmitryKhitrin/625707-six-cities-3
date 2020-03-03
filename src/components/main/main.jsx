@@ -11,8 +11,6 @@ import {withSortMenu} from "../../hocs/with-sort-menu.jsx";
 
 const Main = ({
   city,
-  getOffers = () => {},
-  getLocations = () => {},
   onHeaderClick = () => {},
   placeCardsList = [],
   locations = [],
@@ -23,11 +21,11 @@ const Main = ({
   toggleSortMenu = () => {},
   setActiveItem = () => {},
   removeActiveItem = () => {},
-  activeItem
+  activeItem,
+  loadOffers,
 }) => {
   useEffect(() => {
-    getOffers(city);
-    getLocations();
+    loadOffers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -37,10 +35,10 @@ const Main = ({
   );
 
   const place = useMemo(
-      () => locations.find((cityInfo) => cityInfo.cityName === city),
+      () => locations.find((cityInfo) => cityInfo.name === city),
       [locations, city]
   );
-  const location = useMemo(() => (place ? place.location : undefined), [place]);
+  const location = useMemo(() => (place || undefined), [place]);
 
   return (
     <main className="page__main page__main--index">
@@ -50,7 +48,6 @@ const Main = ({
       <CitiesTabsList
         locations={locations}
         setCity={setCity}
-        getOffers={getOffers}
         activeCity={city}
       />
       {sortedPlaceCardsList && sortedPlaceCardsList.length > 0 ? (
@@ -84,7 +81,7 @@ const Main = ({
                   <Map
                     city={location}
                     placeCardsList={sortedPlaceCardsList}
-                    height={1000}
+                    height={2000}
                     activeCard={activeItem}
                   />
                 ) : null}
@@ -93,7 +90,7 @@ const Main = ({
           </div>
         </div>
       ) : (
-        <EmptyMain city={city}/>
+        <EmptyMain city={city} />
       )}
     </main>
   );
@@ -103,18 +100,16 @@ Main.propTypes = {
   placeCardsList: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
-        priceValue: PropTypes.number,
-        placeCardImage: PropTypes.string,
-        cardName: PropTypes.string,
-        starsRating: PropTypes.string,
-        roomType: PropTypes.string,
+        price: PropTypes.number,
+        previewImage: PropTypes.string,
+        title: PropTypes.string,
+        rating: PropTypes.string,
+        type: PropTypes.string,
         isPremium: PropTypes.bool,
-        coords: PropTypes.arrayOf(PropTypes.number).isRequired
+        location: PropTypes.arrayOf(PropTypes.number).isRequired
       })
   ).isRequired,
   locations: PropTypes.any,
-  getOffers: PropTypes.func,
-  getLocations: PropTypes.func,
   setCity: PropTypes.func,
   city: PropTypes.string,
   onHeaderClick: PropTypes.func.isRequired,
@@ -125,6 +120,7 @@ Main.propTypes = {
   sortType: PropTypes.string.isRequired,
   toggleSortMenu: PropTypes.func.isRequired,
   isMenuOpen: PropTypes.bool.isRequired,
+  loadOffers: PropTypes.func.isRequired
 };
 
 export const WrappedMain = withSortMenu(withActiveItem(memo(Main)));

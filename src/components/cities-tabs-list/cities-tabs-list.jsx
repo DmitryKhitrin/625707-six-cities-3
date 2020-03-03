@@ -2,20 +2,19 @@ import React, {memo} from "react";
 import {PropTypes} from "prop-types";
 import {CityTab} from "../city-tab/city-tab.jsx";
 
-const CitiesTabsList = ({locations = [], setCity, getOffers, activeCity}) => {
+const CitiesTabsList = ({locations = [], setCity, activeCity}) => {
   return (
     <div className="cities tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {locations.map((city) => {
-            const {id, cityName} = city;
+          {locations.map((city, i) => {
+            const {name} = city;
             return (
               <CityTab
-                key={id}
-                cityName={cityName}
+                key={i}
+                cityName={name}
                 setCity={setCity}
-                getOffers={getOffers}
-                isActive={activeCity === cityName}
+                isActive={activeCity === name}
               />
             );
           })}
@@ -38,6 +37,5 @@ CitiesTabsList.propTypes = {
       })
   ).isRequired,
   setCity: PropTypes.func.isRequired,
-  getOffers: PropTypes.func.isRequired,
   activeCity: PropTypes.string.isRequired,
 };

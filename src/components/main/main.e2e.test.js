@@ -14,13 +14,13 @@ describe(`<Main /> tests.`, () => {
     const mocData = [
       {
         id: `1`,
-        priceValue: 20,
-        placeCardImage: `img/room.jpg`,
-        starsRating: `50%`,
-        roomType: `Just Flat`,
+        price: 20,
+        previewImage: `img/room.jpg`,
+        rating: `50%`,
+        type: `Just Flat`,
         isPremium: false,
-        cardName: `Just plane text.`,
-        coords: [49, 52]
+        title: `Just plane text.`,
+        location: [49, 52]
       }
     ];
     const locations = [
@@ -41,8 +41,6 @@ describe(`<Main /> tests.`, () => {
           placeCardsList={mocData}
           onHeaderClick={onHeaderClick}
           locations={locations}
-          getOffers={jest.fn()}
-          getLocations={jest.fn()}
           setCity={jest.fn()}
           city={`Paris`}
           activeItem={``}

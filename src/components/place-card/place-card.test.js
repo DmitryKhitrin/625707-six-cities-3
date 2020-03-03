@@ -4,12 +4,12 @@ import {PlaceCard} from "./place-card.jsx";
 
 const mockedCard = {
   id: `1`,
-  priceValue: 100,
-  placeCardImage: `img/apartment-02.jpg`,
-  starsRating: `100%`,
-  roomType: `Private room`,
+  price: 100,
+  previewImage: `img/apartment-02.jpg`,
+  rating: `100%`,
+  type: `Private room`,
   isPremium: true,
-  cardName: `Best place in the World really.Beautiful luxurious apartment at great location`,
+  title: `Best place in the World really.Beautiful luxurious apartment at great location`,
   onMouseLeave: () => {},
   onHeaderClick: () => {},
   onMouseEnter: () => {},

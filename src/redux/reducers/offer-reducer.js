@@ -1,4 +1,7 @@
-import {GET_OFFERS, GET_LOCATIONS, SET_CITY} from "./actions/types.js";
+import {
+  SET_CITY,
+  SET_OFFERS
+} from "../actions/types.js";
 
 const initialState = {
   locations: [],
@@ -8,23 +11,18 @@ const initialState = {
 
 export const offersReducer = (state = initialState, {type, payload}) => {
   switch (type) {
-    case GET_OFFERS:
+    case SET_OFFERS:
       return {
         ...state,
-        city: payload.city,
-        offers: payload.offers
-      };
-
-    case GET_LOCATIONS:
-      return {
-        ...state,
-        locations: payload
+        locations: payload.locations,
+        offers: payload.offers,
+        city: payload.locations[0].name
       };
 
     case SET_CITY:
       return {
         ...state,
-        city: payload,
+        city: payload
       };
 
     default:

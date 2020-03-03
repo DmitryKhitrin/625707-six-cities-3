@@ -18,9 +18,7 @@ exports[`<CitiesTabsList /> should render CitiesTabsList. 1`] = `
           className="locations__item-link tabs__item "
           href="#"
         >
-          <span>
-            Paris
-          </span>
+          <span />
         </a>
       </li>
       <li
@@ -31,9 +29,7 @@ exports[`<CitiesTabsList /> should render CitiesTabsList. 1`] = `
           className="locations__item-link tabs__item "
           href="#"
         >
-          <span>
-            Dusseldorf
-          </span>
+          <span />
         </a>
       </li>
     </ul>

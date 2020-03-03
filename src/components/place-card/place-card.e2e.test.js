@@ -14,12 +14,12 @@ describe(`<PlaceCard /> tests.`, () => {
     const placeCard = shallow(
         <PlaceCard
           id={`1`}
-          priceValue={20}
-          placeCardImage={`img/room.jpg`}
-          starsRating={`50%`}
-          roomType={`Just Flat`}
+          price={20}
+          previewImage={`img/room.jpg`}
+          rating={`50%`}
+          type={`Just Flat`}
           isPremium={false}
-          cardName={`Just plane text.`}
+          title={`Just plane text.`}
           onMouseEnter={onMouseEnter}
           onMouseLeave={() => {}}
           onHeaderClick={() => {}}
