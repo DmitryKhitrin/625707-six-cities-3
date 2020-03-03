@@ -42,19 +42,6 @@ const locations = [
 ];
 
 describe(`offerReducer`, () => {
-  it(`Should get offers list.`, () => {
-    const state = offersReducer({}, {type: GET_OFFERS, payload: mocData});
-    expect(state).toEqual({city: mocData.city, offers: mocData.offers});
-  });
-
-  it(`should get loactions.`, () => {
-    const state = offersReducer(
-        {},
-        {type: GET_LOCATIONS, payload: locations}
-    );
-    expect(state).toEqual({locations});
-  });
-
   it(`should set city.`, () => {
     const state = offersReducer({}, {type: SET_CITY, payload: `Moscow`});
     expect(state).toEqual({city: `Moscow`});

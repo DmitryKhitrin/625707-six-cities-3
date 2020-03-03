@@ -349,7 +349,7 @@ export const OfferPropperty = ({
             </div>
             <section className="property__map map">
               <Map
-                city={[52.38333, 4.9]}
+                city={{location: [52.38333, 4.9], name: `Moscow`}}
                 placeCardsList={offersList}
                 height={600}
               />

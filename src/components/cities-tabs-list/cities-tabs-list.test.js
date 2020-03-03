@@ -5,12 +5,12 @@ import {CitiesTabsList} from "./cities-tabs-list.jsx";
 const locations = [
   {
     id: `1`,
-    cityName: `Paris`,
+    name: `Paris`,
     location: [48.864716, 2.349014]
   },
   {
     id: `2`,
-    cityName: `Dusseldorf`,
+    name: `Dusseldorf`,
     location: [51.22172, 6.77616]
   },
 ];
@@ -20,7 +20,7 @@ it(`<CitiesTabsList /> should render CitiesTabsList.`, () => {
         <CitiesTabsList
           locations={locations}
           setCity={jest.fn()}
-          activeCity={'Moscow'}
+          activeCity={`Moscow`}
         />
     )
     .toJSON();

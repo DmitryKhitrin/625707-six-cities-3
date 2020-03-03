@@ -24,10 +24,12 @@ exports[`Main <Main /> should render main. 1`] = `
           onClick={[Function]}
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item tabs__item--active"
             href="#"
           >
-            <span />
+            <span>
+              Dusseldorf
+            </span>
           </a>
         </li>
       </ul>
@@ -436,7 +438,16 @@ exports[`Main <Main /> should render main. 1`] = `
       >
         <section
           className="cities__map map"
-        />
+        >
+          <div
+            id="map"
+            style={
+              Object {
+                "height": 2000,
+              }
+            }
+          />
+        </section>
       </div>
     </div>
   </div>

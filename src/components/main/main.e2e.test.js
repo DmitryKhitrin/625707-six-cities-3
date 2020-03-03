@@ -50,6 +50,7 @@ describe(`<Main /> tests.`, () => {
           sortType={``}
           toggleSortMenu={jest.fn()}
           isMenuOpen={false}
+          loadOffers={jest.fn()}
         />
     );
 
