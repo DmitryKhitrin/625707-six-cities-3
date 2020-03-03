@@ -5,30 +5,30 @@ import {OffersList} from "./offers-list.jsx";
 const mocData = [
   {
     id: `1`,
-    priceValue: 1,
-    placeCardImage: `img/apartment-01.jpg`,
-    starsRating: `25%`,
-    roomType: `Apartment`,
+    price: 1,
+    previewImage: `img/apartment-01.jpg`,
+    rating: `25%`,
+    type: `Apartment`,
     isPremium: true,
-    cardName: `Just Flat.`
+    title: `Just Flat.`
   },
   {
     id: `2`,
-    priceValue: 20,
-    placeCardImage: `img/room.jpg`,
-    starsRating: `50%`,
-    roomType: `Just Flat`,
+    price: 20,
+    previewImage: `img/room.jpg`,
+    rating: `50%`,
+    type: `Just Flat`,
     isPremium: false,
-    cardName: `Just plane text.`
+    title: `Just plane text.`
   },
   {
     id: `3`,
-    priceValue: 100,
-    placeCardImage: `img/apartment-02.jpg`,
-    starsRating: `100%`,
-    roomType: `Private room`,
+    price: 100,
+    previewImage: `img/apartment-02.jpg`,
+    rating: `100%`,
+    type: `Private room`,
     isPremium: true,
-    cardName: `Best place in the World really.Beautiful luxurious apartment at great location`
+    title: `Best place in the World really.Beautiful luxurious apartment at great location`
   }
 ];
 

@@ -1,26 +1,29 @@
 import React from "react";
 import {connect} from "react-redux";
 import {WrappedMain} from "../main/main.jsx";
+import {
+  locationsSelector,
+  citySelector,
+  offersInCitySelector,
+} from "../../redux/offers/offer-selectors.js";
 
 import {
-  getOffers,
-  getLocations,
-  setCity
-} from "../../redux/actions/location.actions.js";
+  setCity,
+  loadOffers
+} from "../../redux/offers/offer.actions.js";
 
 const MainContainer = (props) => {
   return <WrappedMain {...props} />;
 };
 const mapStateToProps = (state) => ({
-  locations: state.locations,
-  city: state.city,
-  placeCardsList: state.offers,
+  locations: locationsSelector(state),
+  city: citySelector(state),
+  placeCardsList: offersInCitySelector(state)
 });
 
 const mapDispatchToProps = {
-  getLocations,
-  getOffers,
-  setCity
+  setCity,
+  loadOffers
 };
 
 

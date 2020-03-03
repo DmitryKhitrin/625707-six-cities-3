@@ -2,11 +2,11 @@ import React, {memo} from 'react';
 import {PropTypes} from 'prop-types';
 
 const PlaceCard = ({
-  priceValue,
-  placeCardImage,
-  cardName,
-  starsRating,
-  roomType,
+  price,
+  previewImage,
+  title,
+  rating,
+  type,
   isPremium,
   onHeaderClick,
   onMouseEnter,
@@ -34,7 +34,7 @@ const PlaceCard = ({
         <a href="#">
           <img
             className="place-card__image"
-            src={placeCardImage}
+            src={previewImage}
             width="260"
             height="200"
             alt="Place image"
@@ -44,7 +44,7 @@ const PlaceCard = ({
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{priceValue}</b>
+            <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button button" type="button">
@@ -56,14 +56,14 @@ const PlaceCard = ({
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: starsRating}} />
+            <span style={{width: rating}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name" onClick={onHeaderClick}>
-          <a href="#">{cardName}</a>
+          <a href="#">{title}</a>
         </h2>
-        <p className="place-card__type">{roomType}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );
@@ -74,11 +74,11 @@ export {MemoizedPlaceCard as PlaceCard};
 
 PlaceCard.propTypes = {
   id: PropTypes.string.isRequired,
-  priceValue: PropTypes.number,
-  placeCardImage: PropTypes.string,
-  cardName: PropTypes.string,
-  starsRating: PropTypes.string,
-  roomType: PropTypes.string,
+  price: PropTypes.number,
+  previewImage: PropTypes.string,
+  title: PropTypes.string,
+  rating: PropTypes.string,
+  type: PropTypes.string,
   isPremium: PropTypes.bool,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,

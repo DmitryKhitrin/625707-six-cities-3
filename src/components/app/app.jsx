@@ -26,16 +26,6 @@ export const App = ({
 };
 
 App.propTypes = {
-  placeCardsList: PropTypes.arrayOf(
-      PropTypes.shape({
-        priceValue: PropTypes.number,
-        placeCardImage: PropTypes.string,
-        cardName: PropTypes.string,
-        starsRating: PropTypes.string,
-        roomType: PropTypes.string,
-        isPremium: PropTypes.bool
-      })
-  ).isRequired,
   onHeaderClick: PropTypes.func.isRequired,
   offerPropperties: PropTypes.shape({
     placePhotosList: PropTypes.arrayOf(PropTypes.string),
@@ -43,7 +33,7 @@ App.propTypes = {
     descriptions: PropTypes.arrayOf(PropTypes.string.isRequired),
     isPremium: PropTypes.bool.isRequired,
     placeType: PropTypes.string.isRequired,
-    starsRating: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
     bedroomsCount: PropTypes.string.isRequired,
     maxPeopleCount: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,

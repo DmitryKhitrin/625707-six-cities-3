@@ -443,7 +443,7 @@ exports[`Main <Main /> should render main. 1`] = `
             id="map"
             style={
               Object {
-                "height": 1000,
+                "height": 2000,
               }
             }
           />

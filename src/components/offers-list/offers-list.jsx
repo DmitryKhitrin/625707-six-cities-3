@@ -13,11 +13,11 @@ const OffersList = ({
       {placeCardsList.map(
           ({
             id,
-            priceValue,
-            placeCardImage,
-            cardName,
-            starsRating,
-            roomType,
+            price,
+            previewImage,
+            title,
+            rating,
+            type,
             isPremium
           }) => {
             return (
@@ -25,11 +25,11 @@ const OffersList = ({
                 <PlaceCard
                   id={id}
                   isPremium={isPremium}
-                  roomType={roomType}
-                  starsRating={starsRating}
-                  priceValue={priceValue}
-                  placeCardImage={placeCardImage}
-                  cardName={cardName}
+                  type={type}
+                  rating={rating}
+                  price={price}
+                  previewImage={previewImage}
+                  title={title}
                   onHeaderClick={onHeaderClick}
                   onMouseEnter={onMouseEnter}
                   onMouseLeave={onMouseLeave}
@@ -49,11 +49,11 @@ OffersList.propTypes = {
   placeCardsList: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
-        priceValue: PropTypes.number,
-        placeCardImage: PropTypes.string,
-        cardName: PropTypes.string,
-        starsRating: PropTypes.string,
-        roomType: PropTypes.string,
+        price: PropTypes.number,
+        previewImage: PropTypes.string,
+        title: PropTypes.string,
+        rating: PropTypes.string,
+        type: PropTypes.string,
         isPremium: PropTypes.bool
       })
   ).isRequired,
