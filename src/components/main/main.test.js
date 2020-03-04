@@ -1,4 +1,5 @@
 import React from "react";
+import {BrowserRouter as Router} from "react-router-dom";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 import {Map} from "../map/map.jsx";
@@ -42,23 +43,25 @@ describe(`Main`, () => {
     Map.prototype.componentDidMount = jest.fn();
     const tree = renderer
       .create(
-          <Main
-            placeCardsList={mocData}
-            onHeaderClick={onHeaderClick}
-            setCity={jest.fn()}
-            city={`Dusseldorf`}
-            activeItem={``}
-            setActiveItem={jest.fn()}
-            removeActiveItem={jest.fn()}
-            setSortType={jest.fn()}
-            sortType={``}
-            toggleSortMenu={jest.fn()}
-            isMenuOpen={false}
-            loadOffers={jest.fn()}
-            locations={[
-              {id: `1`, name: `Dusseldorf`, location: [51.22172, 6.77616]}
-            ]}
-          />
+          <Router>
+            <Main
+              placeCardsList={mocData}
+              onHeaderClick={onHeaderClick}
+              setCity={jest.fn()}
+              city={`Dusseldorf`}
+              activeItem={``}
+              setActiveItem={jest.fn()}
+              removeActiveItem={jest.fn()}
+              setSortType={jest.fn()}
+              sortType={``}
+              toggleSortMenu={jest.fn()}
+              isMenuOpen={false}
+              loadOffers={jest.fn()}
+              locations={[
+                {id: `1`, name: `Dusseldorf`, location: [51.22172, 6.77616]}
+              ]}
+            />
+          </Router>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

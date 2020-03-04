@@ -72,3 +72,4 @@ Header.propTypes = {
 
 const MemoizedHeader = memo(Header);
 export {MemoizedHeader as Header};
+export {Header as TestHeader};
