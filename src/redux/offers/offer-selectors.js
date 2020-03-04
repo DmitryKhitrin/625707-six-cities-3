@@ -1,8 +1,8 @@
 import {createSelector} from "reselect";
 
-export const locationsSelector = (state) => state.locations;
-export const citySelector = (state) => state.city;
-export const offersSelector = (state) => state.offers;
+export const locationsSelector = (state) => state.offer.locations;
+export const citySelector = (state) => state.offer.city;
+export const offersSelector = (state) => state.offer.offers;
 
 export const offersInCitySelector = createSelector(
     citySelector,

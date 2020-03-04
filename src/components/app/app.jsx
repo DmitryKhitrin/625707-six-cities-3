@@ -2,6 +2,7 @@ import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {MainContainer} from "../containers/main-container.jsx";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
+import LoginContainer from "../containers/login-container.jsx";
 import {PropTypes} from "prop-types";
 
 
@@ -19,6 +20,9 @@ export const App = ({
         </Route>
         <Route path="/dev-offer">
           <OfferPropperty {...offerPropperties} />
+        </Route>
+        <Route>
+          <LoginContainer path="/login" />
         </Route>
       </Switch>
     </BrowserRouter>
