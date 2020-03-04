@@ -1,9 +1,14 @@
-import React, {memo} from "react";
+import React, {memo, useCallback} from "react";
 import PropTypes from "prop-types";
 import {withLogin} from "../../hocs/with-login.jsx";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 const SignIn = ({setCity, handleChange, handleSubmit}) => {
+  const history = useHistory();
+  const onSubmit = useCallback((evt) => {
+    handleSubmit(evt, history);
+  }, [handleSubmit, history]);
+
   return (
     <main className="page__main page__main--login">
       <div className="page__login-container container">
@@ -13,7 +18,7 @@ const SignIn = ({setCity, handleChange, handleSubmit}) => {
             className="login__form form"
             action="#"
             method="post"
-            onSubmit={handleSubmit}
+            onSubmit={onSubmit}
           >
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">E-mail</label>

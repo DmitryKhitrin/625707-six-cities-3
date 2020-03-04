@@ -1,8 +1,10 @@
 import React from "react";
 import {BrowserRouter as Router} from "react-router-dom";
+import {Provider} from "react-redux";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 import {Map} from "../map/map.jsx";
+import {store} from "../../mocks/mocked-store.js";
 
 const mocData = [
   {
@@ -43,25 +45,27 @@ describe(`Main`, () => {
     Map.prototype.componentDidMount = jest.fn();
     const tree = renderer
       .create(
-          <Router>
-            <Main
-              placeCardsList={mocData}
-              onHeaderClick={onHeaderClick}
-              setCity={jest.fn()}
-              city={`Dusseldorf`}
-              activeItem={``}
-              setActiveItem={jest.fn()}
-              removeActiveItem={jest.fn()}
-              setSortType={jest.fn()}
-              sortType={``}
-              toggleSortMenu={jest.fn()}
-              isMenuOpen={false}
-              loadOffers={jest.fn()}
-              locations={[
-                {id: `1`, name: `Dusseldorf`, location: [51.22172, 6.77616]}
-              ]}
-            />
-          </Router>
+          <Provider store={store}>
+            <Router>
+              <Main
+                placeCardsList={mocData}
+                onHeaderClick={onHeaderClick}
+                setCity={jest.fn()}
+                city={`Dusseldorf`}
+                activeItem={``}
+                setActiveItem={jest.fn()}
+                removeActiveItem={jest.fn()}
+                setSortType={jest.fn()}
+                sortType={``}
+                toggleSortMenu={jest.fn()}
+                isMenuOpen={false}
+                loadOffers={jest.fn()}
+                locations={[
+                  {id: `1`, name: `Dusseldorf`, location: [51.22172, 6.77616]}
+                ]}
+              />
+            </Router>
+          </Provider>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

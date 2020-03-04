@@ -46,6 +46,6 @@ export const userReducer = (state = initialState, {type, payload}) => {
       };
 
     default:
-      return initialState;
+      return state;
   }
 };

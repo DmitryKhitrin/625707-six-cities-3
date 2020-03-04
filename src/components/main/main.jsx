@@ -8,7 +8,7 @@ import {EmptyMain} from "../empty-main/empty-main.jsx";
 import {sortOffers} from "../../utils.js";
 import {withActiveItem} from "../../hocs/with-active-item.jsx";
 import {withSortMenu} from "../../hocs/with-sort-menu.jsx";
-import {Header} from "../header/header.jsx";
+import Header from "../containers/header-container.jsx";
 
 const Main = ({
   city,

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import {Header} from "../../components/header/header.jsx";
 
-export const LayoutContainer = (props) => {
+export const HeaderContainer = (props) => {
   return <Header {...props} />;
 };
 
@@ -14,4 +14,4 @@ const mapStateToProps = ({user}) => {
   };
 };
 
-export default connect(mapStateToProps, null)(LayoutContainer);
+export default connect(mapStateToProps, null)(HeaderContainer);

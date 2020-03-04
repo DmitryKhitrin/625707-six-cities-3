@@ -19,6 +19,7 @@ exports[`<SignIn /> should render SignIn. 1`] = `
         action="#"
         className="login__form form"
         method="post"
+        onSubmit={[Function]}
       >
         <div
           className="login__input-wrapper form__input-wrapper"
