@@ -2,13 +2,20 @@ import configureStore from "redux-mock-store";
 
 const mockStore = configureStore([]);
 export const store = mockStore({
-  authorizationStatus: `NO_AUTH`,
-  user: {
-    id: null,
-    email: ``,
-    name: ``,
-    avatar: ``,
-    isPro: false
+  offer: {
+    locations: [],
+    city: `Paris`,
+    offers: []
   },
-  error: ``
+  user: {
+    authorizationStatus: `NO_AUTH`,
+    user: {
+      id: null,
+      email: ``,
+      name: ``,
+      avatar: ``,
+      isPro: false
+    },
+    error: ``
+  }
 });
