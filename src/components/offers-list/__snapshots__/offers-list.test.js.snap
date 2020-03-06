@@ -55,6 +55,7 @@ exports[`<OffersList /> should render OffersList. 1`] = `
           </div>
           <button
             className="place-card__bookmark-button button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -95,7 +96,6 @@ exports[`<OffersList /> should render OffersList. 1`] = `
         </div>
         <h2
           className="place-card__name"
-          onClick={[Function]}
         >
           <a
             href="#"
@@ -155,6 +155,7 @@ exports[`<OffersList /> should render OffersList. 1`] = `
           </div>
           <button
             className="place-card__bookmark-button button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -195,7 +196,6 @@ exports[`<OffersList /> should render OffersList. 1`] = `
         </div>
         <h2
           className="place-card__name"
-          onClick={[Function]}
         >
           <a
             href="#"
@@ -262,6 +262,7 @@ exports[`<OffersList /> should render OffersList. 1`] = `
           </div>
           <button
             className="place-card__bookmark-button button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -302,7 +303,6 @@ exports[`<OffersList /> should render OffersList. 1`] = `
         </div>
         <h2
           className="place-card__name"
-          onClick={[Function]}
         >
           <a
             href="#"

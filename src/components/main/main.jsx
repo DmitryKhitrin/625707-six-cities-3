@@ -12,7 +12,6 @@ import Header from "../containers/header-container.jsx";
 
 const Main = ({
   city,
-  onHeaderClick = () => {},
   placeCardsList = [],
   locations = [],
   setCity,
@@ -24,6 +23,7 @@ const Main = ({
   removeActiveItem = () => {},
   activeItem,
   loadOffers,
+  setFavorite,
 }) => {
   useEffect(() => {
     loadOffers();
@@ -39,63 +39,59 @@ const Main = ({
       () => locations.find((cityInfo) => cityInfo.name === city),
       [locations, city]
   );
-  const location = useMemo(() => (place || undefined), [place]);
+  const location = useMemo(() => place || undefined, [place]);
 
   return (
     <>
-    <Header/>
-    <main className="page__main page__main--index">
-      <h1 onClick={onHeaderClick} className="visually-hidden">
-        Cities
-      </h1>
-      <CitiesTabsList
-        locations={locations}
-        setCity={setCity}
-        activeCity={city}
-      />
-      {sortedPlaceCardsList && sortedPlaceCardsList.length > 0 ? (
-        <div className="cities__places-wrapper">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 onClick={onHeaderClick} className="visually-hidden">
-                Places
-              </h2>
-              <b className="places__found">{`${sortedPlaceCardsList.length} places to stay in ${city}`}</b>
-              <PlacesSortingForm
-                setSortType={setSortType}
-                sortType={sortType}
-                isMenuOpen={isMenuOpen}
-                toggleSortMenu={toggleSortMenu}
-              />
-              {placeCardsList.length === 0 ? (
-                `No places to stay available`
-              ) : (
-                <OffersList
-                  placeCardsList={sortedPlaceCardsList}
-                  onHeaderClick={onHeaderClick}
-                  onMouseEnter={setActiveItem}
-                  onMouseLeave={removeActiveItem}
+      <Header />
+      <main className="page__main page__main--index">
+        <h1 className="visually-hidden">Cities</h1>
+        <CitiesTabsList
+          locations={locations}
+          setCity={setCity}
+          activeCity={city}
+        />
+        {sortedPlaceCardsList && sortedPlaceCardsList.length > 0 ? (
+          <div className="cities__places-wrapper">
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">{`${sortedPlaceCardsList.length} places to stay in ${city}`}</b>
+                <PlacesSortingForm
+                  setSortType={setSortType}
+                  sortType={sortType}
+                  isMenuOpen={isMenuOpen}
+                  toggleSortMenu={toggleSortMenu}
                 />
-              )}
-            </section>
-            <div className="cities__right-section">
-              <section className="cities__map map">
-                {location ? (
-                  <Map
-                    city={location}
+                {placeCardsList.length === 0 ? (
+                  `No places to stay available`
+                ) : (
+                  <OffersList
                     placeCardsList={sortedPlaceCardsList}
-                    height={4000}
-                    activeCard={activeItem}
+                    onMouseEnter={setActiveItem}
+                    onMouseLeave={removeActiveItem}
+                    setFavorite={setFavorite}
                   />
-                ) : null}
+                )}
               </section>
+              <div className="cities__right-section">
+                <section className="cities__map map">
+                  {location ? (
+                    <Map
+                      city={location}
+                      placeCardsList={sortedPlaceCardsList}
+                      height={4000}
+                      activeCard={activeItem}
+                    />
+                  ) : null}
+                </section>
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <EmptyMain city={city} />
-      )}
-    </main>
+        ) : (
+          <EmptyMain city={city} />
+        )}
+      </main>
     </>
   );
 };
@@ -116,7 +112,6 @@ Main.propTypes = {
   locations: PropTypes.any,
   setCity: PropTypes.func,
   city: PropTypes.string,
-  onHeaderClick: PropTypes.func.isRequired,
   activeItem: PropTypes.string.isRequired,
   setActiveItem: PropTypes.func.isRequired,
   removeActiveItem: PropTypes.func.isRequired,
@@ -124,7 +119,8 @@ Main.propTypes = {
   sortType: PropTypes.string.isRequired,
   toggleSortMenu: PropTypes.func.isRequired,
   isMenuOpen: PropTypes.bool.isRequired,
-  loadOffers: PropTypes.func.isRequired
+  loadOffers: PropTypes.func.isRequired,
+  setFavorite: PropTypes.func.isRequired,
 };
 
 export const WrappedMain = withSortMenu(withActiveItem(memo(Main)));

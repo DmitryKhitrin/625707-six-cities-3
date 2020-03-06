@@ -6,7 +6,7 @@ const OffersList = ({
   placeCardsList,
   onMouseEnter,
   onMouseLeave,
-  onHeaderClick
+  setFavorite,
 }) => {
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -18,8 +18,10 @@ const OffersList = ({
             title,
             rating,
             type,
-            isPremium
+            isPremium,
+            isFavorite
           }) => {
+            const onFavClick = () => (setFavorite(id, Number(!isFavorite)));
             return (
               <div key={id}>
                 <PlaceCard
@@ -30,9 +32,10 @@ const OffersList = ({
                   price={price}
                   previewImage={previewImage}
                   title={title}
-                  onHeaderClick={onHeaderClick}
                   onMouseEnter={onMouseEnter}
                   onMouseLeave={onMouseLeave}
+                  isFavorite={isFavorite}
+                  setFavorite={onFavClick}
                 />
               </div>
             );
@@ -54,10 +57,11 @@ OffersList.propTypes = {
         title: PropTypes.string,
         rating: PropTypes.string,
         type: PropTypes.string,
-        isPremium: PropTypes.bool
+        isPremium: PropTypes.bool,
+        isFavorite: PropTypes.bool
       })
   ).isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
-  onHeaderClick: PropTypes.func.isRequired
+  setFavorite: PropTypes.func,
 };

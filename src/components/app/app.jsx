@@ -1,36 +1,29 @@
 import React from "react";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import {MainContainer} from "../containers/main-container.jsx";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import LoginContainer from "../containers/login-container.jsx";
 import {PropTypes} from "prop-types";
-
+import {history} from "../../history.js";
 
 export const App = ({
-  onHeaderClick,
   offerPropperties
 }) => {
   return (
-    <BrowserRouter>
+    <BrowserRouter history={history}>
       <Switch>
-        <Route exact path="/">
-          <MainContainer
-            onHeaderClick={onHeaderClick}
-          />
-        </Route>
-        <Route path="/dev-offer">
+        <Route path="/" component={MainContainer} exact />
+        <Route path="/offer">
           <OfferPropperty {...offerPropperties} />
         </Route>
-        <Route>
-          <LoginContainer path="/login" />
-        </Route>
+        <Route path="/login" component={LoginContainer} />
+        <Redirect to="/" />
       </Switch>
     </BrowserRouter>
   );
 };
 
 App.propTypes = {
-  onHeaderClick: PropTypes.func.isRequired,
   offerPropperties: PropTypes.shape({
     placePhotosList: PropTypes.arrayOf(PropTypes.string),
     offerHeader: PropTypes.string.isRequired,

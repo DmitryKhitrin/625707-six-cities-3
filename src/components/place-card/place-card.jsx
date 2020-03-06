@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo} from "react";
 import {PropTypes} from 'prop-types';
 
 const PlaceCard = ({
@@ -8,9 +8,10 @@ const PlaceCard = ({
   rating,
   type,
   isPremium,
-  onHeaderClick,
   onMouseEnter,
   onMouseLeave,
+  isFavorite,
+  setFavorite = () => {},
   id,
 }) => {
   const premiumNameplate = isPremium ? (
@@ -47,7 +48,13 @@ const PlaceCard = ({
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button
+            className={`place-card__bookmark-button${
+              isFavorite ? `--active` : ``
+            } button`}
+            type="button"
+            onClick={setFavorite}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark" />
             </svg>
@@ -60,7 +67,7 @@ const PlaceCard = ({
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name" onClick={onHeaderClick}>
+        <h2 className="place-card__name">
           <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
@@ -82,5 +89,6 @@ PlaceCard.propTypes = {
   isPremium: PropTypes.bool,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
-  onHeaderClick: PropTypes.func.isRequired
+  isFavorite: PropTypes.bool,
+  setFavorite: PropTypes.func
 };

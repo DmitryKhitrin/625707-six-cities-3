@@ -62,7 +62,6 @@ Array [
   >
     <h1
       className="visually-hidden"
-      onClick={[Function]}
     >
       Cities
     </h1>

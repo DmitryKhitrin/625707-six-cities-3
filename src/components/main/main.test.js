@@ -60,6 +60,7 @@ describe(`Main`, () => {
                 toggleSortMenu={jest.fn()}
                 isMenuOpen={false}
                 loadOffers={jest.fn()}
+                setFavorite={jest.fn()}
                 locations={[
                   {id: `1`, name: `Dusseldorf`, location: [51.22172, 6.77616]}
                 ]}

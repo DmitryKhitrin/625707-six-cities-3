@@ -1,7 +1,4 @@
-import {
-  SET_CITY,
-  SET_OFFERS
-} from "./types.js";
+import {SET_CITY, SET_OFFERS, UPDATE_OFFERS_INFO} from "./types.js";
 
 const initialState = {
   locations: [],
@@ -22,6 +19,12 @@ export const offersReducer = (state = initialState, {type, payload}) => {
       return {
         ...state,
         city: payload
+      };
+
+    case UPDATE_OFFERS_INFO:
+      return {
+        ...state,
+        offers: payload.offers,
       };
 
     default:

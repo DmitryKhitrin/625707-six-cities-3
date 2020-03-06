@@ -42,6 +42,7 @@ it(`<OffersList /> should render OffersList.`, () => {
           onHeaderClick={onHeaderClick}
           onMouseEnter={jest.fn()}
           onMouseLeave={jest.fn()}
+          setFavorite={jest.fn()}
         />
     )
     .toJSON();
