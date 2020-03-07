@@ -8,6 +8,7 @@ import {EmptyMain} from "../empty-main/empty-main.jsx";
 import {sortOffers} from "../../utils.js";
 import {withActiveItem} from "../../hocs/with-active-item.jsx";
 import {withSortMenu} from "../../hocs/with-sort-menu.jsx";
+import Header from "../containers/header-container.jsx";
 
 const Main = ({
   city,
@@ -41,6 +42,8 @@ const Main = ({
   const location = useMemo(() => (place || undefined), [place]);
 
   return (
+    <>
+    <Header/>
     <main className="page__main page__main--index">
       <h1 onClick={onHeaderClick} className="visually-hidden">
         Cities
@@ -81,7 +84,7 @@ const Main = ({
                   <Map
                     city={location}
                     placeCardsList={sortedPlaceCardsList}
-                    height={2000}
+                    height={4000}
                     activeCard={activeItem}
                   />
                 ) : null}
@@ -93,6 +96,7 @@ const Main = ({
         <EmptyMain city={city} />
       )}
     </main>
+    </>
   );
 };
 

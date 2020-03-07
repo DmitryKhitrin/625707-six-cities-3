@@ -1,7 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {BrowserRouter as Router} from "react-router-dom";
+import {Provider} from "react-redux";
 import {OfferPropperty} from "./offer-property.jsx";
 import {Map} from "../map/map.jsx";
+
+import {store} from "../../mocks/mocked-store.js";
 
 const offerProperties = {
   placePhotosList: [],
@@ -61,7 +65,13 @@ const offerProperties = {
 it(`<OfferPropperty /> should render place-card.`, () => {
   Map.prototype.componentDidMount = jest.fn();
   const tree = renderer
-    .create(<OfferPropperty {...offerProperties} />)
+    .create(
+        <Provider store={store}>
+          <Router>
+            <OfferPropperty {...offerProperties} />
+          </Router>
+        </Provider>
+    )
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

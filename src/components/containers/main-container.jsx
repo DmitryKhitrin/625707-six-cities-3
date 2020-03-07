@@ -10,7 +10,7 @@ import {
 import {
   setCity,
   loadOffers
-} from "../../redux/offers/offer.actions.js";
+} from "../../redux/offers/offer-actions.js";
 
 const MainContainer = (props) => {
   return <WrappedMain {...props} />;

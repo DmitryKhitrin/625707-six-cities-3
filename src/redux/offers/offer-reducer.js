@@ -16,7 +16,6 @@ export const offersReducer = (state = initialState, {type, payload}) => {
         ...state,
         locations: payload.locations,
         offers: payload.offers,
-        city: payload.locations[0].name
       };
 
     case SET_CITY:
