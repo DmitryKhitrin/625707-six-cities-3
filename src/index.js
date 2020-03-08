@@ -7,7 +7,7 @@ import {store} from "./redux/index.js";
 
 ReactDOM.render(
     <Provider store={store}>
-      <App offerPropperties={offerPropperties} />,
+      <App offerPropperties={offerPropperties} />
     </Provider>,
     document.getElementById(`root`)
 );

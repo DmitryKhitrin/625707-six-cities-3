@@ -254,7 +254,6 @@ exports[`<Favorites /> should render Favorites. 1`] = `
         </li>
       </ul>
     </section>
-    ;
   </div>
 </main>
 `;

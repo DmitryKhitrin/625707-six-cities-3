@@ -25,7 +25,8 @@ const MainContainer = (props) => {
 const mapStateToProps = (state) => ({
   locations: locationsSelector(state),
   city: citySelector(state),
-  placeCardsList: offersInCitySelector(state)
+  placeCardsList: offersInCitySelector(state),
+  isAuthenticated: state.user.authorizationStatus === `AUTH`
 });
 
 const mapDispatchToProps = {
@@ -36,23 +37,13 @@ const mapDispatchToProps = {
 
 
 MainContainer.propTypes = {
-  placeCardsList: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        price: PropTypes.number,
-        previewImage: PropTypes.string,
-        title: PropTypes.string,
-        rating: PropTypes.string,
-        type: PropTypes.string,
-        isPremium: PropTypes.bool,
-        location: PropTypes.arrayOf(PropTypes.number).isRequired
-      })
-  ).isRequired,
+  placeCardsList: PropTypes.array.isRequired,
   locations: PropTypes.any,
   setCity: PropTypes.func,
   city: PropTypes.string,
   setFavorite: PropTypes.func.isRequired,
   loadOffers: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const WrappedMainContainer = connect(mapStateToProps, mapDispatchToProps)(MainContainer);

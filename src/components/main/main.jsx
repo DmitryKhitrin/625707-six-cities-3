@@ -23,6 +23,7 @@ const Main = ({
   removeActiveItem = () => {},
   activeItem,
   setFavorite,
+  isAuthenticated,
 }) => {
   const sortedPlaceCardsList = useMemo(
       () => sortOffers(sortType, placeCardsList),
@@ -65,6 +66,7 @@ const Main = ({
                     onMouseEnter={setActiveItem}
                     onMouseLeave={removeActiveItem}
                     setFavorite={setFavorite}
+                    isAuthenticated={isAuthenticated}
                   />
                 )}
               </section>
@@ -91,18 +93,7 @@ const Main = ({
 };
 
 Main.propTypes = {
-  placeCardsList: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        price: PropTypes.number,
-        previewImage: PropTypes.string,
-        title: PropTypes.string,
-        rating: PropTypes.string,
-        type: PropTypes.string,
-        isPremium: PropTypes.bool,
-        location: PropTypes.arrayOf(PropTypes.number).isRequired
-      })
-  ).isRequired,
+  placeCardsList: PropTypes.array.isRequired,
   locations: PropTypes.any,
   setCity: PropTypes.func,
   city: PropTypes.string,
@@ -114,6 +105,7 @@ Main.propTypes = {
   toggleSortMenu: PropTypes.func.isRequired,
   isMenuOpen: PropTypes.bool.isRequired,
   setFavorite: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
 export const WrappedMain = withSortMenu(withActiveItem(memo(Main)));

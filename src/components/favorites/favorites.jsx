@@ -7,7 +7,6 @@ const Favorites = ({favorites = {}, setFavorite = () => {}, getFavorite = () => 
   const isFavoritesEmpty = useMemo(() => Object.keys(favorites).length > 0, [
     favorites
   ]);
-
   return (
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">
@@ -33,7 +32,6 @@ const Favorites = ({favorites = {}, setFavorite = () => {}, getFavorite = () => 
         ) : (
           <EmptyFavorites />
         )}
-        ;
       </div>
     </main>
   );
