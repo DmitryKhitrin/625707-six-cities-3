@@ -4,5 +4,9 @@ export const request = {
   },
   user: {
     login: () => `/login`
+  },
+  favorites: {
+    get: () => `/favorite`,
+    post: (hotelId, status) => `/favorite/${hotelId}/${status}`,
   }
 };

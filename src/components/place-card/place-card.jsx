@@ -8,8 +8,8 @@ const PlaceCard = ({
   rating,
   type,
   isPremium,
-  onMouseEnter,
-  onMouseLeave,
+  onMouseEnter = () => {},
+  onMouseLeave = () => {},
   isFavorite,
   setFavorite = () => {},
   id,
@@ -87,8 +87,8 @@ PlaceCard.propTypes = {
   rating: PropTypes.string,
   type: PropTypes.string,
   isPremium: PropTypes.bool,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
   isFavorite: PropTypes.bool,
   setFavorite: PropTypes.func
 };

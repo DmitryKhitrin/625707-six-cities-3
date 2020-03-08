@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, memo} from "react";
+import React, {useMemo, memo} from "react";
 import {PropTypes} from 'prop-types';
 import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
@@ -22,14 +22,8 @@ const Main = ({
   setActiveItem = () => {},
   removeActiveItem = () => {},
   activeItem,
-  loadOffers,
   setFavorite,
 }) => {
-  useEffect(() => {
-    loadOffers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const sortedPlaceCardsList = useMemo(
       () => sortOffers(sortType, placeCardsList),
       [sortType, placeCardsList]
@@ -119,7 +113,6 @@ Main.propTypes = {
   sortType: PropTypes.string.isRequired,
   toggleSortMenu: PropTypes.func.isRequired,
   isMenuOpen: PropTypes.bool.isRequired,
-  loadOffers: PropTypes.func.isRequired,
   setFavorite: PropTypes.func.isRequired,
 };
 

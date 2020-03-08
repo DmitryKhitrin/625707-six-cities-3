@@ -3,6 +3,7 @@ import {Router, Route, Switch, Redirect} from "react-router-dom";
 import {MainContainer} from "../containers/main-container.jsx";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import LoginContainer from "../containers/login-container.jsx";
+import FavoritesContainer from "../containers/favorites-container.jsx";
 import {PropTypes} from "prop-types";
 import {history} from "../../history.js";
 
@@ -13,10 +14,11 @@ export const App = ({
     <Router history={history}>
       <Switch>
         <Route path="/" component={MainContainer} exact />
-        <Route path="/property">
+        <Route path="/offer/:id">
           <OfferPropperty {...offerPropperties} />
         </Route>
         <Route path="/login" component={LoginContainer} />
+        <Route path="/favorites" component={FavoritesContainer} />
         <Redirect to="/" />
       </Switch>
     </Router>

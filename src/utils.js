@@ -59,6 +59,22 @@ export const parseCities = (offers) => {
   });
 };
 
+export const parseFavorites = (favorites) => {
+  if (favorites.length === 0) {
+    return {};
+  }
+  return favorites.reduce((acc, offer) => {
+    const parsedOffer = parseOffer(offer);
+    const {city} = parsedOffer;
+    if (acc[city]) {
+      acc[city] = [...acc[city], parsedOffer];
+    } else {
+      acc[city] = [parsedOffer];
+    }
+    return acc;
+  }, {});
+};
+
 const rateToNumber = (rate) => (Number(rate.replace(`%`, ``)));
 
 export const sortOffers = (type, offersList) => {

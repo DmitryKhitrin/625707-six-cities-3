@@ -4,8 +4,8 @@ import {PlaceCard} from "../place-card/place-card.jsx";
 
 const OffersList = ({
   placeCardsList,
-  onMouseEnter,
-  onMouseLeave,
+  onMouseEnter = () => {},
+  onMouseLeave = () => {},
   setFavorite,
 }) => {
   return (
