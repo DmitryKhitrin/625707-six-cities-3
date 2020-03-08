@@ -2,42 +2,42 @@ import {sortTypes} from "./sortTypes.js";
 
 const parseRating = (rate) => (String(Math.abs(rate * 100 / 5)) + `%`);
 
-export const parseOffers = (offers) => {
-  return offers.map((offer) => {
-    const {preview_image: previewImage,
-      images, title,
-      is_favorite: isFavorite,
-      is_premium: isPremium,
-      rating,
-      type,
-      bedrooms,
-      max_adults: maxAdults,
-      price,
-      goods,
-      host,
-      location,
-      description,
-      id,
-      city} = offer;
-    return {
-      previewImage,
-      images,
-      title,
-      isFavorite,
-      isPremium,
-      rating: parseRating(rating),
-      type,
-      bedrooms,
-      maxAdults,
-      price,
-      goods,
-      host,
-      location: [location.latitude, location.longitude],
-      description,
-      id: String(id),
-      city: city.name,
-    };
-  });
+export const parseOffer = ({
+  preview_image: previewImage,
+  images,
+  title,
+  is_favorite: isFavorite,
+  is_premium: isPremium,
+  rating,
+  type,
+  bedrooms,
+  max_adults: maxAdults,
+  price,
+  goods,
+  host,
+  location,
+  description,
+  id,
+  city
+}) => {
+  return {
+    previewImage,
+    images,
+    title,
+    isFavorite,
+    isPremium,
+    rating: parseRating(rating),
+    type,
+    bedrooms,
+    maxAdults,
+    price,
+    goods,
+    host,
+    location: [location.latitude, location.longitude],
+    description,
+    id: String(id),
+    city: city.name
+  };
 };
 
 export const parseCities = (offers) => {

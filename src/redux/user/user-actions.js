@@ -1,5 +1,6 @@
 import {LOG_IN, LOG_OUT, SET_AUTH_ERROR} from "./types.js";
 import {request} from "../../api/config.js";
+import {history} from "../../history.js";
 
 export const setLoginParams = ({
   id,
@@ -36,7 +37,7 @@ export const setAuthError = (error) => {
   };
 };
 
-export const login = (email, password, history) => (dispatch, _getState, api) => {
+export const login = (email, password) => (dispatch, _getState, api) => {
   return api
     .post(request.user.login(), {email, password})
     .then((response) => {

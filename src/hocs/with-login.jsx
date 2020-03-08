@@ -15,13 +15,13 @@ export const withLogin = (Component) => {
       this._handleChange = this._handleChange.bind(this);
     }
 
-    _handleSubmit(evt, history) {
+    _handleSubmit(evt) {
       evt.preventDefault();
 
       const {email, password} = this.state;
       const {login} = this.props;
 
-      login(email, password, history);
+      login(email, password);
     }
 
     _handleChange(evt) {

@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import {Router, Route, Switch, Redirect} from "react-router-dom";
 import {MainContainer} from "../containers/main-container.jsx";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import LoginContainer from "../containers/login-container.jsx";
@@ -10,16 +10,16 @@ export const App = ({
   offerPropperties
 }) => {
   return (
-    <BrowserRouter history={history}>
+    <Router history={history}>
       <Switch>
         <Route path="/" component={MainContainer} exact />
-        <Route path="/offer">
+        <Route path="/property">
           <OfferPropperty {...offerPropperties} />
         </Route>
         <Route path="/login" component={LoginContainer} />
         <Redirect to="/" />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 
