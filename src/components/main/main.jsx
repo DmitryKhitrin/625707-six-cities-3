@@ -8,7 +8,6 @@ import {EmptyMain} from "../empty-main/empty-main.jsx";
 import {sortOffers} from "../../utils.js";
 import {withActiveItem} from "../../hocs/with-active-item.jsx";
 import {withSortMenu} from "../../hocs/with-sort-menu.jsx";
-import Header from "../containers/header-container.jsx";
 
 const Main = ({
   city,
@@ -38,7 +37,6 @@ const Main = ({
 
   return (
     <>
-      <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <CitiesTabsList
