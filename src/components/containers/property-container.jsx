@@ -4,7 +4,8 @@ import {PropTypes} from "prop-types";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import {useMountEffect} from "../../hooks/useMountEffect.js";
 import {
-  offersInCitySelector
+  offersInCitySelector,
+  locationsSelector
 } from "../../redux/offers/offer-selectors.js";
 
 import {
@@ -14,7 +15,8 @@ import {
 const PropertyContainer = ({
   match,
   placeCardsList,
-  loadOffers: loadOffersCards
+  loadOffers: loadOffersCards,
+  locations,
 }) => {
   const {id} = match.params;
 
@@ -22,12 +24,20 @@ const PropertyContainer = ({
     loadOffersCards();
   });
 
-  const currentOffer = useMemo(() => placeCardsList.find((item) => item.id === id), [placeCardsList, id]);
+  const currentOffer = useMemo(
+      () => placeCardsList.find((item) => item.id === id),
+      [placeCardsList, id]
+  );
+  const city = useMemo(
+      () => locations.find((location) => location.name === currentOffer.city),
+      [locations, currentOffer]
+  );
 
-  return <OfferPropperty {...currentOffer} />;
+  return <OfferPropperty {...currentOffer} offerCity={city}/>;
 };
 const mapStateToProps = (state) => ({
   placeCardsList: offersInCitySelector(state),
+  locations: locationsSelector(state)
 });
 
 const mapDispatchToProps = {

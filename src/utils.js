@@ -2,6 +2,12 @@ import {sortTypes} from "./sortTypes.js";
 
 const parseRating = (rate) => (String(Math.abs(rate * 100 / 5)) + `%`);
 
+const parseHost = ({avatar_url: hostPhoto, name: hostName, id}) => ({
+  hostPhoto,
+  hostName,
+  id
+});
+
 export const parseOffer = ({
   preview_image: previewImage,
   images,
@@ -32,7 +38,7 @@ export const parseOffer = ({
     maxAdults,
     price,
     goods,
-    host,
+    host: parseHost(host),
     location: [location.latitude, location.longitude],
     description,
     id: String(id),

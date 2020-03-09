@@ -3,32 +3,35 @@ import {PropTypes} from "prop-types";
 import {ReviewsItem} from "../reviews-item/reviews-item.jsx";
 
 export const ReviewsList = ({reviews}) => {
+  if (!reviews || reviews.length < 0) {
+    return null;
+  }
   return (
     <ul className="reviews__list">
       {reviews
-        .sort((a, b) => new Date(b.reviewsDate) - new Date(a.reviewsDate))
-        .slice(0, 10)
-        .map(
-            ({
-              id,
-              reviewsDate,
-              reviewsText,
-              reviewsRating,
-              reviewsUserName,
-              reviewsAvatar
-            }) => {
-              return (
-                <ReviewsItem
-                  key={id}
-                  reviewsDate={reviewsDate}
-                  reviewsText={reviewsText}
-                  reviewsRating={reviewsRating}
-                  reviewsUserName={reviewsUserName}
-                  reviewsAvatar={reviewsAvatar}
-                />
-              );
-            }
-        )}
+          .sort((a, b) => new Date(b.reviewsDate) - new Date(a.reviewsDate))
+          .slice(0, 10)
+          .map(
+              ({
+                id,
+                reviewsDate,
+                reviewsText,
+                reviewsRating,
+                reviewsUserName,
+                reviewsAvatar
+              }) => {
+                return (
+                  <ReviewsItem
+                    key={id}
+                    reviewsDate={reviewsDate}
+                    reviewsText={reviewsText}
+                    reviewsRating={reviewsRating}
+                    reviewsUserName={reviewsUserName}
+                    reviewsAvatar={reviewsAvatar}
+                  />
+                );
+              }
+          )}
     </ul>
   );
 };

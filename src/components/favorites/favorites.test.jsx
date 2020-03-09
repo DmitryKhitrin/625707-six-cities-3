@@ -32,9 +32,9 @@ const moc = {
 it(`<Favorites /> should render Favorites.`, () => {
   const tree = renderer
     .create(
-      <Router>
-        <Favorites {...moc} />
-      </Router>
+        <Router>
+          <Favorites {...moc} />
+        </Router>
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

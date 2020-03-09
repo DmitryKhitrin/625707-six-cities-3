@@ -74,62 +74,7 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
         >
           <div
             className="property__gallery"
-          >
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/room.jpg"
-              />
-            </div>
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/apartment-01.jpg"
-              />
-            </div>
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/apartment-02.jpg"
-              />
-            </div>
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/apartment-03.jpg"
-              />
-            </div>
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/studio-01.jpg"
-              />
-            </div>
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/apartment-01.jpg"
-              />
-            </div>
-          </div>
+          />
         </div>
         <div
           className="property__container container"
@@ -263,15 +208,12 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                     alt="Host avatar"
                     className="property__avatar user__avatar"
                     height={74}
-                    src="img/avatar-angelina.jpg"
                     width={74}
                   />
                 </div>
                 <span
                   className="property__user-name"
-                >
-                  Angelina
-                </span>
+                />
               </div>
               <div
                 className="property__description"
@@ -279,12 +221,7 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                 <p
                   className="property__text"
                 >
-                  A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                </p>
-                <p
-                  className="property__text"
-                >
-                  An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                  
                 </p>
               </div>
             </div>

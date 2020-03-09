@@ -7,8 +7,9 @@ import {Map} from "../map/map.jsx";
 import {FeedbackFrom} from "../feedback-form/feedback-form.jsx";
 
 export const OfferPropperty = ({
-  // placePhotosList = [],
+  images = [],
   offerHeader = ``,
+  description = ``,
   // descriptions = ``,
   isPremium,
   placeType = ``,
@@ -17,11 +18,14 @@ export const OfferPropperty = ({
   maxPeopleCount = 4,
   price = 120,
   amenitiesList = [],
-  reviews,
-  offersList,
+  reviews = [],
+  offersList = [],
   isAuthenticated = true,
-  // hostInformation
+  host = {},
+  offerCity = {},
 }) => {
+  const {hostPhoto, hostName} = host;
+  const {name = ``, location = []} = offerCity;
   const premium = isPremium ? (
     <div className="property__mark">
       <span>Premium</span>
@@ -63,48 +67,17 @@ export const OfferPropperty = ({
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/room.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/apartment-01.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/apartment-02.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/apartment-03.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/studio-01.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/apartment-01.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
+                {images.map((item, index) => {
+                  return (
+                    <div key={index} className="property__image-wrapper">
+                      <img
+                        className="property__image"
+                        src={item}
+                        alt="Photo studio"
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className="property__container container">
@@ -159,26 +132,18 @@ export const OfferPropperty = ({
                     <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
                       <img
                         className="property__avatar user__avatar"
-                        src="img/avatar-angelina.jpg"
+                        src={hostPhoto}
                         width={74}
                         height={74}
                         alt="Host avatar"
                       />
                     </div>
-                    <span className="property__user-name">Angelina</span>
+                    <span className="property__user-name">
+                      {hostName}
+                    </span>
                   </div>
                   <div className="property__description">
-                    <p className="property__text">
-                             A quiet cozy and picturesque that hides behind a a
-                             river by the unique lightness of Amsterdam. The
-                             building is green and from 18th century.
-                    </p>
-                    <p className="property__text">
-                             An independent House, strategically located between
-                             Rembrand Square and National Opera, but where the
-                             bustle of the city comes to rest in this alley
-                             flowery and colorful.
-                    </p>
+                    <p className="property__text">{description}</p>
                   </div>
                 </div>
                 <section className="property__reviews reviews">
@@ -195,7 +160,7 @@ export const OfferPropperty = ({
             </div>
             <section className="property__map map">
               <Map
-                city={{location: [52.38333, 4.9], name: `Moscow`}}
+                city={{location, name}}
                 placeCardsList={offersList}
                 height={600}
               />
@@ -225,29 +190,34 @@ export const OfferPropperty = ({
 OfferPropperty.propTypes = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        reviewsDate: PropTypes.string.isRequired,
-        reviewsText: PropTypes.string.isRequired,
-        reviewsRating: PropTypes.string.isRequired,
-        reviewsUserName: PropTypes.string.isRequired,
-        reviewsAvatar: PropTypes.string.isRequired
+        id: PropTypes.string,
+        reviewsDate: PropTypes.string,
+        reviewsText: PropTypes.string,
+        reviewsRating: PropTypes.string,
+        reviewsUserName: PropTypes.string,
+        reviewsAvatar: PropTypes.string
       })
   ),
-  placePhotosList: PropTypes.arrayOf(PropTypes.string),
-  offerHeader: PropTypes.string.isRequired,
-  descriptions: PropTypes.arrayOf(PropTypes.string.isRequired),
-  isPremium: PropTypes.bool.isRequired,
-  placeType: PropTypes.string.isRequired,
-  rating: PropTypes.string.isRequired,
-  bedroomsCount: PropTypes.string.isRequired,
-  maxPeopleCount: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
+  images: PropTypes.arrayOf(PropTypes.string),
+  offerHeader: PropTypes.string,
+  descriptions: PropTypes.arrayOf(PropTypes.string),
+  isPremium: PropTypes.bool,
+  placeType: PropTypes.string,
+  rating: PropTypes.string,
+  bedroomsCount: PropTypes.string,
+  maxPeopleCount: PropTypes.number,
+  price: PropTypes.number,
   amenitiesList: PropTypes.arrayOf(PropTypes.string),
-  hostInformation: PropTypes.shape({
+  host: PropTypes.shape({
     hostPhoto: PropTypes.string,
     hostName: PropTypes.string,
     isSuper: PropTypes.bool
   }),
-  offersList: PropTypes.array.isRequired,
+  offersList: PropTypes.array,
   isAuthenticated: PropTypes.bool,
+  description: PropTypes.string,
+  offerCity: PropTypes.shape({
+    name: PropTypes.string,
+    location: PropTypes.array,
+  })
 };
