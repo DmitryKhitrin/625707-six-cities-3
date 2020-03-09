@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {BrowserRouter as Router} from "react-router-dom";
 import {Favorites} from "./favorites.jsx";
 
 const moc = {
@@ -29,6 +30,12 @@ const moc = {
   }
 };
 it(`<Favorites /> should render Favorites.`, () => {
-  const tree = renderer.create(<Favorites {...moc} />).toJSON();
+  const tree = renderer
+    .create(
+      <Router>
+        <Favorites {...moc} />
+      </Router>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {ReviewsList} from "../reviews-list/reviews-list.jsx";
 import {PropertiesInsideList} from "../properties-inside-list/properties-inside-list.jsx";
 import {OffersList} from "../offers-list/offers-list.jsx";
-import Header from "../containers/header-container.jsx";
 import {Map} from "../map/map.jsx";
 import {FeedbackFrom} from "../feedback-form/feedback-form.jsx";
 
@@ -60,7 +59,6 @@ export const OfferPropperty = ({
         </svg>
       </div>
       <div className="page">
-        <Header />
         <main className="page__main page__main--property">
           <section className="property">
             <div className="property__gallery-container container">

@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {BrowserRouter as Router} from "react-router-dom";
 import {FavoriteLoacation} from "./favorite-location.jsx";
 
 const moc = {
@@ -28,6 +29,12 @@ const moc = {
   ]
 };
 it(`<FavoriteLoacation /> should render FavoriteLoacation.`, () => {
-  const tree = renderer.create(<FavoriteLoacation {...moc}/>).toJSON();
+  const tree = renderer
+    .create(
+        <Router>
+          <FavoriteLoacation {...moc} />
+        </Router>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

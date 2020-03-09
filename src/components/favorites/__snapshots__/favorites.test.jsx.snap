@@ -133,7 +133,8 @@ exports[`<Favorites /> should render Favorites. 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/1"
+                    onClick={[Function]}
                   >
                     Best place in the World really.Beautiful luxurious apartment at great location
                   </a>
@@ -238,7 +239,8 @@ exports[`<Favorites /> should render Favorites. 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/2"
+                    onClick={[Function]}
                   >
                     Best place in the World really.Beautiful luxurious apartment at great location
                   </a>
