@@ -61,3 +61,53 @@ export const withFeedback = (Component) => {
 
   return WithFeedback;
 };
+
+
+export const useFeedback = (hotelId) => {
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState(``);
+
+  const isFormSending = useSelector(formStatusSelector);
+  const dispatch = useDispatch();
+
+  const reset = () => {
+    setRating(0);
+    setComment(``);
+  };
+
+  const setStarsCount = (evt) => {
+    setRating(Number(evt.target.value));
+  };
+
+  const setCommentText = (evt) => {
+    const commentText = evt.target.value;
+    const {max} = COMMENT_PARAM;
+    if (commentText.length > max) {
+      return;
+    }
+    setComment(commentText);
+  };
+
+  const onSubmitForm = (evt) => {
+    evt.preventDefault();
+    dispatch(sendCommentAsync(hotelId, rating, comment));
+    reset();
+  };
+
+  const {max, min} = COMMENT_PARAM;
+  const commentLength = comment.length;
+  const isSubmiteButtonDisabled =
+           !rating ||
+           commentLength < min ||
+           commentLength > max ||
+           isFormSending;
+
+  return {
+    comment,
+    rating,
+    isSubmiteButtonDisabled,
+    setStarsCount,
+    setCommentText,
+    onSubmite: onSubmitForm
+  };
+};
