@@ -108,7 +108,7 @@ export const parseComment = ({
 }) => ({
   comment,
   date,
-  id,
+  id: String(id),
   rating: parseRating(rating),
   user: parseUser(user)
 });
