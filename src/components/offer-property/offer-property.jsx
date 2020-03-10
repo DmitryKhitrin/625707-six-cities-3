@@ -17,7 +17,7 @@ export const OfferPropperty = ({
   bedroomsCount = ``,
   maxPeopleCount = 4,
   price = 120,
-  amenitiesList = [],
+  goods = [],
   reviews = [],
   offersList = [],
   isAuthenticated = true,
@@ -35,13 +35,10 @@ export const OfferPropperty = ({
     <div>
       <meta charSet="utf-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-      />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>6 cities: property</title>
       <link rel="stylesheet" href="css/main.css" />
-      <div style={{display: `none`}}>
+      <div style={{ display: `none` }}>
         <svg xmlns="http://www.w3.org/2000/svg">
           <symbol id="icon-arrow-select" viewBox="0 0 7 4">
             <path
@@ -101,11 +98,11 @@ export const OfferPropperty = ({
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: rating}} />
+                    <span style={{ width: rating }} />
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">
-                           4.8
+                    4.8
                   </span>
                 </div>
                 <ul className="property__features">
@@ -116,16 +113,14 @@ export const OfferPropperty = ({
                     {bedroomsCount}
                   </li>
                   <li className="property__feature property__feature--adults">
-                           Max {maxPeopleCount} adults
+                    Max {maxPeopleCount} adults
                   </li>
                 </ul>
                 <div className="property__price">
                   <b className="property__price-value">€{price}</b>
-                  <span className="property__price-text">
-                           &nbsp;night
-                  </span>
+                  <span className="property__price-text">&nbsp;night</span>
                 </div>
-                <PropertiesInsideList propertyInside={amenitiesList} />
+                <PropertiesInsideList propertyInside={goods} />
                 <div className="property__host">
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
@@ -138,9 +133,7 @@ export const OfferPropperty = ({
                         alt="Host avatar"
                       />
                     </div>
-                    <span className="property__user-name">
-                      {hostName}
-                    </span>
+                    <span className="property__user-name">{hostName}</span>
                   </div>
                   <div className="property__description">
                     <p className="property__text">{description}</p>
@@ -148,10 +141,8 @@ export const OfferPropperty = ({
                 </div>
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">
-                           Reviews &middot;
-                    <span className="reviews__amount">
-                      {reviews.length}
-                    </span>
+                    Reviews &middot;
+                    <span className="reviews__amount">{reviews.length}</span>
                   </h2>
                   <ReviewsList reviews={reviews} />
                   {isAuthenticated ? <FeedbackFrom /> : null}
@@ -160,7 +151,7 @@ export const OfferPropperty = ({
             </div>
             <section className="property__map map">
               <Map
-                city={{location, name}}
+                city={{ location, name }}
                 placeCardsList={offersList}
                 height={600}
               />
@@ -169,7 +160,7 @@ export const OfferPropperty = ({
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">
-                       Other places in the neighbourhood
+                Other places in the neighbourhood
               </h2>
               <div className="near-places__list places__list">
                 <OffersList
@@ -207,7 +198,7 @@ OfferPropperty.propTypes = {
   bedroomsCount: PropTypes.string,
   maxPeopleCount: PropTypes.number,
   price: PropTypes.number,
-  amenitiesList: PropTypes.arrayOf(PropTypes.string),
+  goods: PropTypes.arrayOf(PropTypes.string),
   host: PropTypes.shape({
     hostPhoto: PropTypes.string,
     hostName: PropTypes.string,
@@ -218,6 +209,6 @@ OfferPropperty.propTypes = {
   description: PropTypes.string,
   offerCity: PropTypes.shape({
     name: PropTypes.string,
-    location: PropTypes.array,
+    location: PropTypes.array
   })
 };
