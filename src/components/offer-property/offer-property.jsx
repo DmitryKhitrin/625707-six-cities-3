@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useCallback} from "react";
 import PropTypes from "prop-types";
+import {useHistory} from "react-router-dom";
 import {ReviewsList} from "../reviews-list/reviews-list.jsx";
 import {PropertiesInsideList} from "../properties-inside-list/properties-inside-list.jsx";
 import {OffersList} from "../offers-list/offers-list.jsx";
@@ -20,12 +21,24 @@ export const OfferPropperty = ({
   goods = [],
   reviews = [],
   offersList = [],
-  isAuthenticated = true,
+  isAuthenticated = false,
   host = {},
   offerCity = {},
+  isFavorite,
+  setFavorite,
+  id,
 }) => {
   const {hostPhoto, hostName} = host;
   const {name = ``, location = []} = offerCity;
+  const history = useHistory();
+
+  const onFavoriteClick = useCallback(
+      () =>
+        isAuthenticated
+          ? setFavorite(id, Number(!isFavorite))
+          : history.push(`/login`),
+      [setFavorite, isAuthenticated, id, isFavorite, history]
+  );
   const premium = isPremium ? (
     <div className="property__mark">
       <span>Premium</span>
@@ -83,8 +96,11 @@ export const OfferPropperty = ({
                 <div className="property__name-wrapper">
                   <h1 className="property__name">{offerHeader}</h1>
                   <button
-                    className="property__bookmark-button button"
+                    className={`property__bookmark-button button ${
+                      isFavorite ? `place-card__bookmark-button--active` : ``
+                    }`}
                     type="button"
+                    onClick={onFavoriteClick}
                   >
                     <svg
                       className="property__bookmark-icon"
@@ -189,7 +205,9 @@ OfferPropperty.propTypes = {
         reviewsAvatar: PropTypes.string
       })
   ),
+  id: PropTypes.string,
   images: PropTypes.arrayOf(PropTypes.string),
+  setFavorite: PropTypes.func.isRequired,
   offerHeader: PropTypes.string,
   descriptions: PropTypes.arrayOf(PropTypes.string),
   isPremium: PropTypes.bool,
@@ -204,6 +222,7 @@ OfferPropperty.propTypes = {
     hostName: PropTypes.string,
     isSuper: PropTypes.bool
   }),
+  isFavorite: PropTypes.bool,
   offersList: PropTypes.array,
   isAuthenticated: PropTypes.bool,
   description: PropTypes.string,

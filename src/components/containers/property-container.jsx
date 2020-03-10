@@ -3,20 +3,20 @@ import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import {useMountEffect} from "../../hooks/useMountEffect.js";
+import {loadOffers, setFavorite} from "../../redux/offers/offer-actions.js";
+
 import {
   offersInCitySelector,
   locationsSelector
 } from "../../redux/offers/offer-selectors.js";
-
-import {
-  loadOffers,
-} from "../../redux/offers/offer-actions.js";
 
 const PropertyContainer = ({
   match,
   placeCardsList,
   loadOffers: loadOffersCards,
   locations,
+  isAuthenticated,
+  setFavorite,
 }) => {
   const {id} = match.params;
 
@@ -33,15 +33,24 @@ const PropertyContainer = ({
       [locations, currentOffer]
   );
 
-  return <OfferPropperty {...currentOffer} offerCity={city}/>;
+  return (
+    <OfferPropperty
+      {...currentOffer}
+      offerCity={city}
+      isAuthenticated={isAuthenticated}
+      setFavorite={setFavorite}
+    />
+  );
 };
 const mapStateToProps = (state) => ({
   placeCardsList: offersInCitySelector(state),
-  locations: locationsSelector(state)
+  locations: locationsSelector(state),
+  isAuthenticated: state.user.authorizationStatus === `AUTH`,
 });
 
 const mapDispatchToProps = {
   loadOffers,
+  setFavorite,
 };
 
 PropertyContainer.propTypes = {
@@ -49,9 +58,9 @@ PropertyContainer.propTypes = {
   locations: PropTypes.any,
   setCity: PropTypes.func,
   city: PropTypes.string,
-  setFavorite: PropTypes.func.isRequired,
   loadOffers: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
+  setFavorite: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired
