@@ -28,7 +28,7 @@ export const OfferPropperty = ({
   setFavorite,
   id,
 }) => {
-  const {hostPhoto, hostName} = host;
+  const {personPhoto = ``, personName = ``} = host;
   const {name = ``, location = []} = offerCity;
   const history = useHistory();
 
@@ -143,13 +143,13 @@ export const OfferPropperty = ({
                     <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
                       <img
                         className="property__avatar user__avatar"
-                        src={hostPhoto}
+                        src={personPhoto}
                         width={74}
                         height={74}
                         alt="Host avatar"
                       />
                     </div>
-                    <span className="property__user-name">{hostName}</span>
+                    <span className="property__user-name">{personName}</span>
                   </div>
                   <div className="property__description">
                     <p className="property__text">{description}</p>
@@ -217,8 +217,8 @@ OfferPropperty.propTypes = {
   price: PropTypes.number,
   goods: PropTypes.arrayOf(PropTypes.string),
   host: PropTypes.shape({
-    hostPhoto: PropTypes.string,
-    hostName: PropTypes.string,
+    personPhoto: PropTypes.string,
+    personName: PropTypes.string,
     isSuper: PropTypes.bool
   }),
   isFavorite: PropTypes.bool,

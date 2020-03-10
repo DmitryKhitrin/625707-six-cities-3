@@ -17,17 +17,17 @@ export const ReviewsList = ({reviews}) => {
                 date,
                 comment,
                 rating,
-                user,
+                user = {},
               }) => {
-                const {hostName, hostPhoto} = user;
+                const {personName = ``, personPhoto = ``} = user;
                 return (
                   <ReviewsItem
                     key={id}
                     reviewsDate={date}
                     reviewsText={comment}
                     reviewsRating={rating}
-                    reviewsUserName={hostName}
-                    reviewsAvatar={hostPhoto}
+                    reviewsUserName={personName}
+                    reviewsAvatar={personPhoto}
                   />
                 );
               }
@@ -39,12 +39,12 @@ export const ReviewsList = ({reviews}) => {
 ReviewsList.propTypes = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        reviewsDate: PropTypes.string.isRequired,
-        reviewsText: PropTypes.string.isRequired,
-        reviewsRating: PropTypes.string.isRequired,
-        reviewsUserName: PropTypes.string.isRequired,
-        reviewsAvatar: PropTypes.string.isRequired
+        id: PropTypes.string,
+        date: PropTypes.string,
+        comment: PropTypes.string,
+        rating: PropTypes.string,
+        personName: PropTypes.string,
+        personPhoto: PropTypes.string
       })
   )
 };

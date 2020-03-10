@@ -2,9 +2,9 @@ import {sortTypes} from "./sortTypes.js";
 
 const parseRating = (rate) => (String(Math.abs(rate * 100 / 5)) + `%`);
 
-const parseUser = ({avatar_url: hostPhoto, name: hostName, id, is_prop: isProp}) => ({
-  hostPhoto,
-  hostName,
+const parseUser = ({avatar_url: personPhoto, name: personName, id, is_prop: isProp}) => ({
+  personPhoto,
+  personName,
   id,
   isProp,
 });
