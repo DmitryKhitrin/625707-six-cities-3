@@ -2,10 +2,11 @@ import {sortTypes} from "./sortTypes.js";
 
 const parseRating = (rate) => (String(Math.abs(rate * 100 / 5)) + `%`);
 
-const parseHost = ({avatar_url: hostPhoto, name: hostName, id}) => ({
+const parseUser = ({avatar_url: hostPhoto, name: hostName, id, is_prop: isProp}) => ({
   hostPhoto,
   hostName,
-  id
+  id,
+  isProp,
 });
 
 export const parseOffer = ({
@@ -38,7 +39,7 @@ export const parseOffer = ({
     maxAdults,
     price,
     goods,
-    host: parseHost(host),
+    host: parseUser(host),
     location: [location.latitude, location.longitude],
     description,
     id: String(id),
@@ -97,3 +98,18 @@ export const sortOffers = (type, offersList) => {
       return [...offersList];
   }
 };
+
+export const parseComment = ({
+  comment,
+  date,
+  id,
+  rating,
+  user,
+}) => ({
+  comment,
+  date,
+  id,
+  rating: parseRating(rating),
+  user: parseUser(user)
+});
+

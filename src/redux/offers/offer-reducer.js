@@ -40,6 +40,6 @@ export const offersReducer = (state = initialState, {type, payload}) => {
       };
 
     default:
-      return initialState;
+      return state;
   }
 };

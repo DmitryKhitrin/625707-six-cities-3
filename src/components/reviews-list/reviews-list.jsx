@@ -9,25 +9,25 @@ export const ReviewsList = ({reviews}) => {
   return (
     <ul className="reviews__list">
       {reviews
-          .sort((a, b) => new Date(b.reviewsDate) - new Date(a.reviewsDate))
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
           .slice(0, 10)
           .map(
               ({
                 id,
-                reviewsDate,
-                reviewsText,
-                reviewsRating,
-                reviewsUserName,
-                reviewsAvatar
+                date,
+                comment,
+                rating,
+                user,
               }) => {
+                const {hostName, hostPhoto} = user;
                 return (
                   <ReviewsItem
                     key={id}
-                    reviewsDate={reviewsDate}
-                    reviewsText={reviewsText}
-                    reviewsRating={reviewsRating}
-                    reviewsUserName={reviewsUserName}
-                    reviewsAvatar={reviewsAvatar}
+                    reviewsDate={date}
+                    reviewsText={comment}
+                    reviewsRating={rating}
+                    reviewsUserName={hostName}
+                    reviewsAvatar={hostPhoto}
                   />
                 );
               }

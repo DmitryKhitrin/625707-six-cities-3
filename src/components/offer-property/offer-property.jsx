@@ -51,7 +51,7 @@ export const OfferPropperty = ({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>6 cities: property</title>
       <link rel="stylesheet" href="css/main.css" />
-      <div style={{ display: `none` }}>
+      <div style={{display: `none`}}>
         <svg xmlns="http://www.w3.org/2000/svg">
           <symbol id="icon-arrow-select" viewBox="0 0 7 4">
             <path
@@ -114,7 +114,7 @@ export const OfferPropperty = ({
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{ width: rating }} />
+                    <span style={{width: rating}} />
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">
@@ -167,7 +167,7 @@ export const OfferPropperty = ({
             </div>
             <section className="property__map map">
               <Map
-                city={{ location, name }}
+                city={{location, name}}
                 placeCardsList={offersList}
                 height={600}
               />
@@ -198,11 +198,10 @@ OfferPropperty.propTypes = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
-        reviewsDate: PropTypes.string,
-        reviewsText: PropTypes.string,
-        reviewsRating: PropTypes.string,
-        reviewsUserName: PropTypes.string,
-        reviewsAvatar: PropTypes.string
+        date: PropTypes.string,
+        comment: PropTypes.string,
+        rating: PropTypes.string,
+        user: PropTypes.object,
       })
   ),
   id: PropTypes.string,
