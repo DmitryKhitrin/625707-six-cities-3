@@ -4,7 +4,7 @@ import {PropTypes} from "prop-types";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import {useMountEffect} from "../../hooks/useMountEffect.js";
 import {loadOffers, setFavorite} from "../../redux/offers/offer-actions.js";
-import {getCommentsAcyns} from "../../redux/comments/comments-actions.js";
+import {getCommentsAcync} from "../../redux/comments/comments-actions.js";
 
 import {
   offersInCitySelector,
@@ -15,11 +15,11 @@ const PropertyContainer = ({
   match,
   placeCardsList,
   loadOffers: loadOffersCards,
-  getCommentsAcyns: getComments,
+  getCommentsAcync: getComments,
   locations,
   isAuthenticated,
   setFavorite: setFavoriteCard,
-  reviews,
+  reviews
 }) => {
   const {id} = match.params;
 
@@ -57,7 +57,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadOffers,
   setFavorite,
-  getCommentsAcyns,
+  getCommentsAcync
 };
 
 PropertyContainer.propTypes = {
@@ -68,7 +68,7 @@ PropertyContainer.propTypes = {
   loadOffers: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   setFavorite: PropTypes.func.isRequired,
-  getCommentsAcyns: PropTypes.func.isRequired,
+  getCommentsAcync: PropTypes.func.isRequired,
   reviews: PropTypes.array.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
