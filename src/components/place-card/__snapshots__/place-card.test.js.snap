@@ -17,7 +17,8 @@ exports[`<PlaceCard /> should render place-card. 1`] = `
     className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
-      href="#"
+      href="/offer/1"
+      onClick={[Function]}
     >
       <img
         alt="Place image"
@@ -94,7 +95,8 @@ exports[`<PlaceCard /> should render place-card. 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/1"
+        onClick={[Function]}
       >
         Best place in the World really.Beautiful luxurious apartment at great location
       </a>

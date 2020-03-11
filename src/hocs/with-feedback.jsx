@@ -1,4 +1,7 @@
-import React, {PureComponent} from "react";
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {formStatusSelector} from '../redux/choosed/choosed-selector.js';
+import {sendCommentAsync} from '../redux/choosed/choosed-actions.js';
 
 export const RATING = [1, 2, 3, 4, 5];
 const COMMENT_PARAM = {
@@ -7,69 +10,54 @@ const COMMENT_PARAM = {
 };
 
 export const withFeedback = (Component) => {
-  class WithFeedback extends PureComponent {
-    constructor(props) {
-      super(props);
+  const WithFeedback = (props) => {
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState(``);
 
-      this.state = {
-        rating: 0,
-        comment: ``
-      };
+    const isFormSending = useSelector(formStatusSelector);
+    const dispatch = useDispatch();
 
-      this._setStarsCount = this._setStarsCount.bind(this);
-      this._setCommentText = this._setCommentText.bind(this);
-      this._onSubmitForm = this._onSubmitForm.bind(this);
-    }
+    const reset = () => {
+      setRating(0);
+      setComment(``);
+    };
 
-    _reset() {
-      this.setState({
-        rating: 0,
-        comment: ``
-      });
-    }
+    const setStarsCount = (evt) => {
+      setRating(Number(evt.target.value));
+    };
 
-    _setStarsCount(evt) {
-      this.setState({rating: Number(evt.target.value)});
-    }
-
-    _setCommentText(evt) {
-      const comment = evt.target.value;
+    const setCommentText = (evt) => {
+      const commentText = evt.target.value;
       const {max} = COMMENT_PARAM;
-
-      if (comment.length > max) {
+      if (commentText.length > max) {
         return;
       }
+      setComment(commentText);
+    };
 
-      this.setState({
-        comment
-      });
-    }
-
-    _onSubmitForm(evt) {
+    const onSubmitForm = (evt, hotelId) => {
       evt.preventDefault();
-      this._reset();
-    }
+      dispatch(sendCommentAsync(hotelId, rating, comment));
+      reset();
+    };
 
-    render() {
-      const {comment, rating} = this.state;
-      const {max, min} = COMMENT_PARAM;
-      const commentLength = comment.length;
-      const isSubmiteButtonDisabled =
-        !rating || commentLength < min || commentLength > max;
-      return (
-        <Component
-          {...this.props}
-          comment={comment}
-          rating={rating}
-          isSubmiteButtonDisabled={isSubmiteButtonDisabled}
-          setStarsCount={this._setStarsCount}
-          setCommentText={this._setCommentText}
-          onSubmite={this._onSubmitForm}
-        />
-      );
-    }
-  }
+    const {max, min} = COMMENT_PARAM;
+    const commentLength = comment.length;
+    const isSubmiteButtonDisabled =
+            !rating || commentLength < min || commentLength > max || isFormSending;
+
+    return (
+      <Component
+        {...props}
+        comment={comment}
+        rating={rating}
+        isSubmiteButtonDisabled={isSubmiteButtonDisabled}
+        setStarsCount={setStarsCount}
+        setCommentText={setCommentText}
+        onSubmite={onSubmitForm}
+      />
+    );
+  };
 
   return WithFeedback;
 };
-

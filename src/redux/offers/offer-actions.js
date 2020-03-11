@@ -1,8 +1,13 @@
-import {SET_CITY, SET_OFFERS, UPDATE_OFFERS_INFO} from "./types.js";
+import {
+  SET_CITY,
+  SET_OFFERS,
+  UPDATE_OFFERS_INFO,
+  SET_FAVORITE,
+} from "./types.js";
 import {request} from "../../api/config.js";
 import {offersSelector} from "./offer-selectors.js";
 
-import {parseCities, parseOffer} from "../../utils.js";
+import {parseCities, parseOffer, parseFavorites} from "../../utils.js";
 
 export const setCity = (city) => {
   return {
@@ -26,6 +31,16 @@ export const setOffers = (hotels) => {
   return {
     type: SET_OFFERS,
     payload: {locations, offers}
+  };
+};
+
+const updateFavorite = (favorites) => {
+  const parsedFavorites = parseFavorites(favorites);
+  return {
+    type: SET_FAVORITE,
+    payload: {
+      favorites: parsedFavorites
+    }
   };
 };
 
@@ -56,14 +71,22 @@ export const setFavorite = (hotelId, status) => (
 ) => {
   const offersList = offersSelector(getState());
   return api
-           .post(`/favorite/${hotelId}/${status}`)
-           .then((response) => {
-             // eslint-disable-next-line no-console
-             console.log(response);
-             if (response.data) {
-               dispatch(updateOffer(response.data, offersList));
-             }
-           })
-           .catch(() => {
-           });
+    .post(request.favorites.post(hotelId, status))
+    .then((response) => {
+      if (response.data) {
+        dispatch(updateOffer(response.data, offersList));
+      }
+    })
+    .catch(() => {});
+};
+
+export const getFavoriteAsync = () => (dispatch, _getState, api) => {
+  return api
+    .get(request.favorites.get())
+    .then((response) => {
+      if (response && response.data) {
+        dispatch(updateFavorite(response.data));
+      }
+    })
+    .catch(() => {});
 };

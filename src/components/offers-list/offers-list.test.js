@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {BrowserRouter as Router} from "react-router-dom";
 import {OffersList} from "./offers-list.jsx";
 
 const mocData = [
@@ -37,13 +38,15 @@ const onHeaderClick = () => {};
 it(`<OffersList /> should render OffersList.`, () => {
   const tree = renderer
     .create(
-        <OffersList
-          placeCardsList={mocData}
-          onHeaderClick={onHeaderClick}
-          onMouseEnter={jest.fn()}
-          onMouseLeave={jest.fn()}
-          setFavorite={jest.fn()}
-        />
+        <Router>
+          <OffersList
+            placeCardsList={mocData}
+            onHeaderClick={onHeaderClick}
+            onMouseEnter={jest.fn()}
+            onMouseLeave={jest.fn()}
+            setFavorite={jest.fn()}
+          />
+        </Router>
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

@@ -1,9 +1,15 @@
-import {SET_CITY, SET_OFFERS, UPDATE_OFFERS_INFO} from "./types.js";
+import {
+  SET_CITY,
+  SET_OFFERS,
+  UPDATE_OFFERS_INFO,
+  SET_FAVORITE,
+} from "./types.js";
 
 const initialState = {
   locations: [],
   city: `Paris`,
   offers: [],
+  favorites: {}
 };
 
 export const offersReducer = (state = initialState, {type, payload}) => {
@@ -12,7 +18,7 @@ export const offersReducer = (state = initialState, {type, payload}) => {
       return {
         ...state,
         locations: payload.locations,
-        offers: payload.offers,
+        offers: payload.offers
       };
 
     case SET_CITY:
@@ -24,10 +30,16 @@ export const offersReducer = (state = initialState, {type, payload}) => {
     case UPDATE_OFFERS_INFO:
       return {
         ...state,
-        offers: payload.offers,
+        offers: payload.offers
+      };
+
+    case SET_FAVORITE:
+      return {
+        ...state,
+        favorites: payload.favorites
       };
 
     default:
-      return initialState;
+      return state;
   }
 };

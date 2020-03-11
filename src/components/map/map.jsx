@@ -24,12 +24,12 @@ export class Map extends PureComponent {
 
   _initCities() {
     const {city} = this.props;
-    const {location} = city;
+    const {location = [52.38333, 4.9]} = city;
     this._map = leaflet.map(`map`, {
       center: location,
       zoom: SETTINGS.zoom,
       zoomControl: false,
-      marker: true
+      marker: true,
     });
     this._map.setView(location, this._zoom);
     leaflet
@@ -49,11 +49,15 @@ export class Map extends PureComponent {
     this._activeCard = activeCard;
     this._markersLayer = leaflet.layerGroup().addTo(this._map);
 
-    placeCardsList.map((card) => {
+    placeCardsList.forEach((card) => {
+      const {location, title, id} = card;
+      if (!location) {
+        return;
+      }
       const icon =
-        this._activeCard === card.id ? this._getActiveIcon() : this._getIcon();
-      return leaflet
-        .marker(card.location, {icon, title: card.title})
+        this._activeCard === id ? this._getActiveIcon() : this._getIcon();
+      leaflet
+        .marker(location, {icon, title})
         .addTo(this._markersLayer);
     }
 
@@ -64,16 +68,14 @@ export class Map extends PureComponent {
     this._initCities();
   }
 
-  componentDidUpdate(prevProps) {
-    const {city} = this.props;
-    if (
-      city.name !== prevProps.city.name ||
-      this.props.activeCard !== this._activeCard
-    ) {
+  componentDidUpdate() {
+    const {name, location} = this.props.city;
+    if (name && location.length) {
       this._markersLayer.clearLayers();
-      this._map.setView(city.location, this._zoom);
+      this._map.setView(location, this._zoom);
       this._addMarkers();
     }
+
   }
 
   render() {
@@ -95,7 +97,7 @@ Map.propTypes = {
         rating: PropTypes.string,
         type: PropTypes.string,
         isPremium: PropTypes.bool,
-        location: PropTypes.arrayOf(PropTypes.number).isRequired
+        location: PropTypes.arrayOf(PropTypes.number)
       })
   ),
   height: PropTypes.number.isRequired,

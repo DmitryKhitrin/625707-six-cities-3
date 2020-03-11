@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, memo} from "react";
+import React, {useMemo, memo} from "react";
 import {PropTypes} from 'prop-types';
 import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
@@ -8,7 +8,6 @@ import {EmptyMain} from "../empty-main/empty-main.jsx";
 import {sortOffers} from "../../utils.js";
 import {withActiveItem} from "../../hocs/with-active-item.jsx";
 import {withSortMenu} from "../../hocs/with-sort-menu.jsx";
-import Header from "../containers/header-container.jsx";
 
 const Main = ({
   city,
@@ -22,14 +21,9 @@ const Main = ({
   setActiveItem = () => {},
   removeActiveItem = () => {},
   activeItem,
-  loadOffers,
   setFavorite,
+  isAuthenticated,
 }) => {
-  useEffect(() => {
-    loadOffers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const sortedPlaceCardsList = useMemo(
       () => sortOffers(sortType, placeCardsList),
       [sortType, placeCardsList]
@@ -43,7 +37,6 @@ const Main = ({
 
   return (
     <>
-      <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <CitiesTabsList
@@ -71,6 +64,7 @@ const Main = ({
                     onMouseEnter={setActiveItem}
                     onMouseLeave={removeActiveItem}
                     setFavorite={setFavorite}
+                    isAuthenticated={isAuthenticated}
                   />
                 )}
               </section>
@@ -97,18 +91,7 @@ const Main = ({
 };
 
 Main.propTypes = {
-  placeCardsList: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        price: PropTypes.number,
-        previewImage: PropTypes.string,
-        title: PropTypes.string,
-        rating: PropTypes.string,
-        type: PropTypes.string,
-        isPremium: PropTypes.bool,
-        location: PropTypes.arrayOf(PropTypes.number).isRequired
-      })
-  ).isRequired,
+  placeCardsList: PropTypes.array.isRequired,
   locations: PropTypes.any,
   setCity: PropTypes.func,
   city: PropTypes.string,
@@ -119,8 +102,8 @@ Main.propTypes = {
   sortType: PropTypes.string.isRequired,
   toggleSortMenu: PropTypes.func.isRequired,
   isMenuOpen: PropTypes.bool.isRequired,
-  loadOffers: PropTypes.func.isRequired,
   setFavorite: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
 export const WrappedMain = withSortMenu(withActiveItem(memo(Main)));

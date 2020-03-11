@@ -107,5 +107,22 @@ Array [
       </div>
     </main>
   </main>,
+  <footer
+    className="footer container"
+  >
+    <a
+      className="footer__logo-link"
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        alt="6 cities logo"
+        className="footer__logo"
+        height="33"
+        src="img/logo.svg"
+        width="64"
+      />
+    </a>
+  </footer>,
 ]
 `;

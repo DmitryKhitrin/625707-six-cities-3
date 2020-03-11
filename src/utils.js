@@ -2,6 +2,13 @@ import {sortTypes} from "./sortTypes.js";
 
 const parseRating = (rate) => (String(Math.abs(rate * 100 / 5)) + `%`);
 
+const parseUser = ({avatar_url: personPhoto, name: personName, id, is_prop: isProp}) => ({
+  personPhoto,
+  personName,
+  id,
+  isProp,
+});
+
 export const parseOffer = ({
   preview_image: previewImage,
   images,
@@ -32,7 +39,7 @@ export const parseOffer = ({
     maxAdults,
     price,
     goods,
-    host,
+    host: parseUser(host),
     location: [location.latitude, location.longitude],
     description,
     id: String(id),
@@ -59,6 +66,22 @@ export const parseCities = (offers) => {
   });
 };
 
+export const parseFavorites = (favorites) => {
+  if (favorites.length === 0) {
+    return {};
+  }
+  return favorites.reduce((acc, offer) => {
+    const parsedOffer = parseOffer(offer);
+    const {city} = parsedOffer;
+    if (acc[city]) {
+      acc[city] = [...acc[city], parsedOffer];
+    } else {
+      acc[city] = [parsedOffer];
+    }
+    return acc;
+  }, {});
+};
+
 const rateToNumber = (rate) => (Number(rate.replace(`%`, ``)));
 
 export const sortOffers = (type, offersList) => {
@@ -75,3 +98,18 @@ export const sortOffers = (type, offersList) => {
       return [...offersList];
   }
 };
+
+export const parseComment = ({
+  comment,
+  date,
+  id,
+  rating,
+  user,
+}) => ({
+  comment,
+  date,
+  id: String(id),
+  rating: parseRating(rating),
+  user: parseUser(user)
+});
+

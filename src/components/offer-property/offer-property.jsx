@@ -1,15 +1,17 @@
-import React from "react";
+import React, {useCallback, memo} from 'react';
 import PropTypes from "prop-types";
+import {useHistory} from "react-router-dom";
 import {ReviewsList} from "../reviews-list/reviews-list.jsx";
 import {PropertiesInsideList} from "../properties-inside-list/properties-inside-list.jsx";
 import {OffersList} from "../offers-list/offers-list.jsx";
-import Header from "../containers/header-container.jsx";
 import {Map} from "../map/map.jsx";
 import {FeedbackFrom} from "../feedback-form/feedback-form.jsx";
 
-export const OfferPropperty = ({
-  // placePhotosList = [],
+const OfferPropperty = ({
+  images = [],
+  title,
   offerHeader = ``,
+  description = ``,
   // descriptions = ``,
   isPremium,
   placeType = ``,
@@ -17,12 +19,24 @@ export const OfferPropperty = ({
   bedroomsCount = ``,
   maxPeopleCount = 4,
   price = 120,
-  amenitiesList = [],
-  reviews,
-  offersList,
-  isAuthenticated = true,
-  // hostInformation
+  goods = [],
+  reviews = [],
+  offersList = [],
+  isAuthenticated = false,
+  host = {},
+  offerCity = {},
+  isFavorite,
+  setFavorite,
+  id,
 }) => {
+  const {personPhoto = ``, personName = ``} = host;
+  const {name, location} = offerCity;
+  const history = useHistory();
+
+  const onFavoriteClick = useCallback(
+      () => (isAuthenticated ? setFavorite(id, Number(!isFavorite)) : history.push(`/login`)),
+      [setFavorite, isAuthenticated, id, isFavorite, history],
+  );
   const premium = isPremium ? (
     <div className="property__mark">
       <span>Premium</span>
@@ -32,10 +46,7 @@ export const OfferPropperty = ({
     <div>
       <meta charSet="utf-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-      />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>6 cities: property</title>
       <link rel="stylesheet" href="css/main.css" />
       <div style={{display: `none`}}>
@@ -60,53 +71,21 @@ export const OfferPropperty = ({
         </svg>
       </div>
       <div className="page">
-        <Header />
         <main className="page__main page__main--property">
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/room.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/apartment-01.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/apartment-02.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/apartment-03.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/studio-01.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="img/apartment-01.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
+                {images.map((item, index) => {
+                  return (
+                    <div key={index} className="property__image-wrapper">
+                      <img
+                        className="property__image"
+                        src={item}
+                        alt="Photo studio"
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className="property__container container">
@@ -115,8 +94,11 @@ export const OfferPropperty = ({
                 <div className="property__name-wrapper">
                   <h1 className="property__name">{offerHeader}</h1>
                   <button
-                    className="property__bookmark-button button"
+                    className={`property__bookmark-button button ${
+                      isFavorite ? `place-card__bookmark-button--active` : ``
+                    }`}
                     type="button"
+                    onClick={onFavoriteClick}
                   >
                     <svg
                       className="property__bookmark-icon"
@@ -133,9 +115,7 @@ export const OfferPropperty = ({
                     <span style={{width: rating}} />
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="property__rating-value rating__value">
-                           4.8
-                  </span>
+                  <span className="property__rating-value rating__value">4.8</span>
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
@@ -145,75 +125,61 @@ export const OfferPropperty = ({
                     {bedroomsCount}
                   </li>
                   <li className="property__feature property__feature--adults">
-                           Max {maxPeopleCount} adults
+                                      Max {maxPeopleCount} adults
                   </li>
                 </ul>
                 <div className="property__price">
                   <b className="property__price-value">€{price}</b>
-                  <span className="property__price-text">
-                           &nbsp;night
-                  </span>
+                  <span className="property__price-text">&nbsp;night</span>
                 </div>
-                <PropertiesInsideList propertyInside={amenitiesList} />
+                <PropertiesInsideList propertyInside={goods} />
                 <div className="property__host">
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
                     <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
                       <img
                         className="property__avatar user__avatar"
-                        src="img/avatar-angelina.jpg"
+                        src={personPhoto}
                         width={74}
                         height={74}
                         alt="Host avatar"
                       />
                     </div>
-                    <span className="property__user-name">Angelina</span>
+                    <span className="property__user-name">{personName}</span>
                   </div>
                   <div className="property__description">
-                    <p className="property__text">
-                             A quiet cozy and picturesque that hides behind a a
-                             river by the unique lightness of Amsterdam. The
-                             building is green and from 18th century.
-                    </p>
-                    <p className="property__text">
-                             An independent House, strategically located between
-                             Rembrand Square and National Opera, but where the
-                             bustle of the city comes to rest in this alley
-                             flowery and colorful.
-                    </p>
+                    <p className="property__text">{description}</p>
                   </div>
                 </div>
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">
-                           Reviews &middot;
-                    <span className="reviews__amount">
-                      {reviews.length}
-                    </span>
+                                      Reviews &middot;
+                    <span className="reviews__amount">{reviews.length}</span>
                   </h2>
                   <ReviewsList reviews={reviews} />
-                  {isAuthenticated ? <FeedbackFrom /> : null}
+                  {isAuthenticated ? <FeedbackFrom id={id} /> : null}
                 </section>
               </div>
             </div>
             <section className="property__map map">
               <Map
-                city={{location: [52.38333, 4.9], name: `Moscow`}}
-                placeCardsList={offersList}
+                city={{location, name}}
+                placeCardsList={[...offersList, {id, location, title}]}
+                activeCard={id}
                 height={600}
               />
             </section>
           </section>
           <div className="container">
             <section className="near-places places">
-              <h2 className="near-places__title">
-                       Other places in the neighbourhood
-              </h2>
+              <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
                 <OffersList
                   placeCardsList={offersList}
-                  onHeaderClick={() => {}}
                   onMouseEnter={() => {}}
                   onMouseLeave={() => {}}
+                  isAuthenticated={isAuthenticated}
+                  setFavorite={setFavorite}
                 />
               </div>
             </section>
@@ -224,32 +190,43 @@ export const OfferPropperty = ({
   );
 };
 
+const MemoizedOfferPropperty = memo(OfferPropperty);
+export {MemoizedOfferPropperty as OfferPropperty};
+
 OfferPropperty.propTypes = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        reviewsDate: PropTypes.string.isRequired,
-        reviewsText: PropTypes.string.isRequired,
-        reviewsRating: PropTypes.string.isRequired,
-        reviewsUserName: PropTypes.string.isRequired,
-        reviewsAvatar: PropTypes.string.isRequired
-      })
+        id: PropTypes.string,
+        date: PropTypes.string,
+        comment: PropTypes.string,
+        rating: PropTypes.string,
+        user: PropTypes.object,
+      }),
   ),
-  placePhotosList: PropTypes.arrayOf(PropTypes.string),
-  offerHeader: PropTypes.string.isRequired,
-  descriptions: PropTypes.arrayOf(PropTypes.string.isRequired),
-  isPremium: PropTypes.bool.isRequired,
-  placeType: PropTypes.string.isRequired,
-  rating: PropTypes.string.isRequired,
-  bedroomsCount: PropTypes.string.isRequired,
-  maxPeopleCount: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
-  amenitiesList: PropTypes.arrayOf(PropTypes.string),
-  hostInformation: PropTypes.shape({
-    hostPhoto: PropTypes.string,
-    hostName: PropTypes.string,
-    isSuper: PropTypes.bool
+  id: PropTypes.string,
+  title: PropTypes.string,
+  images: PropTypes.arrayOf(PropTypes.string),
+  setFavorite: PropTypes.func.isRequired,
+  offerHeader: PropTypes.string,
+  descriptions: PropTypes.arrayOf(PropTypes.string),
+  isPremium: PropTypes.bool,
+  placeType: PropTypes.string,
+  rating: PropTypes.string,
+  bedroomsCount: PropTypes.string,
+  maxPeopleCount: PropTypes.number,
+  price: PropTypes.number,
+  goods: PropTypes.arrayOf(PropTypes.string),
+  host: PropTypes.shape({
+    personPhoto: PropTypes.string,
+    personName: PropTypes.string,
+    isSuper: PropTypes.bool,
   }),
-  offersList: PropTypes.array.isRequired,
+  isFavorite: PropTypes.bool,
+  offersList: PropTypes.array,
   isAuthenticated: PropTypes.bool,
+  description: PropTypes.string,
+  offerCity: PropTypes.shape({
+    name: PropTypes.string,
+    location: PropTypes.array,
+  }),
 };

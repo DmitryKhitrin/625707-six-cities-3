@@ -21,7 +21,8 @@ exports[`<OffersList /> should render OffersList. 1`] = `
         className="cities__image-wrapper place-card__image-wrapper"
       >
         <a
-          href="#"
+          href="/offer/1"
+          onClick={[Function]}
         >
           <img
             alt="Place image"
@@ -98,7 +99,8 @@ exports[`<OffersList /> should render OffersList. 1`] = `
           className="place-card__name"
         >
           <a
-            href="#"
+            href="/offer/1"
+            onClick={[Function]}
           >
             Just Flat.
           </a>
@@ -121,7 +123,8 @@ exports[`<OffersList /> should render OffersList. 1`] = `
         className="cities__image-wrapper place-card__image-wrapper"
       >
         <a
-          href="#"
+          href="/offer/2"
+          onClick={[Function]}
         >
           <img
             alt="Place image"
@@ -198,7 +201,8 @@ exports[`<OffersList /> should render OffersList. 1`] = `
           className="place-card__name"
         >
           <a
-            href="#"
+            href="/offer/2"
+            onClick={[Function]}
           >
             Just plane text.
           </a>
@@ -228,7 +232,8 @@ exports[`<OffersList /> should render OffersList. 1`] = `
         className="cities__image-wrapper place-card__image-wrapper"
       >
         <a
-          href="#"
+          href="/offer/3"
+          onClick={[Function]}
         >
           <img
             alt="Place image"
@@ -305,7 +310,8 @@ exports[`<OffersList /> should render OffersList. 1`] = `
           className="place-card__name"
         >
           <a
-            href="#"
+            href="/offer/3"
+            onClick={[Function]}
           >
             Best place in the World really.Beautiful luxurious apartment at great location
           </a>

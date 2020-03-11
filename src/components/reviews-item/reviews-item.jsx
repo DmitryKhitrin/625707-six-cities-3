@@ -42,9 +42,9 @@ export const ReviewsItem = ({
 
 ReviewsItem.propTypes = {
   id: PropTypes.string,
-  reviewsDate: PropTypes.string.isRequired,
-  reviewsText: PropTypes.string.isRequired,
-  reviewsRating: PropTypes.string.isRequired,
-  reviewsUserName: PropTypes.string.isRequired,
-  reviewsAvatar: PropTypes.string.isRequired,
+  date: PropTypes.string,
+  comment: PropTypes.string,
+  rating: PropTypes.string,
+  personName: PropTypes.string,
+  personPhoto: PropTypes.string,
 };

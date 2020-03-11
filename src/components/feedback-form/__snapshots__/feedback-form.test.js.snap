@@ -5,7 +5,7 @@ exports[`<FeedbackForm /> should render FeedbackForm. 1`] = `
   action="#"
   className="reviews__form form"
   method="post"
-  onSubmit={[MockFunction]}
+  onSubmit={[Function]}
 >
   <label
     className="reviews__label form__label"

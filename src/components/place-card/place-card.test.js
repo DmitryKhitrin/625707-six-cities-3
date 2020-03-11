@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {BrowserRouter as Router} from "react-router-dom";
 import {PlaceCard} from "./place-card.jsx";
 
 const mockedCard = {
@@ -19,7 +20,7 @@ const onHeaderClick = () => {};
 
 it(`<PlaceCard /> should render place-card.`, () => {
   const tree = renderer
-    .create(<PlaceCard {...mockedCard} onHeaderClick={onHeaderClick} />)
+    .create(<Router><PlaceCard {...mockedCard} onHeaderClick={onHeaderClick} /></Router>)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

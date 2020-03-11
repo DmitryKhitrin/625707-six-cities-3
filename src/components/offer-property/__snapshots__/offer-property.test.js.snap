@@ -63,61 +63,6 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
   <div
     className="page"
   >
-    <header
-      className="header"
-    >
-      <div
-        className="container"
-      >
-        <div
-          className="header__wrapper"
-        >
-          <div
-            className="header__left"
-          >
-            <a
-              className="header__logo-link header__logo-link--active"
-              href="/"
-              onClick={[Function]}
-            >
-              <img
-                alt="6 cities logo"
-                className="header__logo"
-                height="41"
-                src="img/logo.svg"
-                width="81"
-              />
-            </a>
-          </div>
-          <nav
-            className="header__nav"
-          >
-            <ul
-              className="header__nav-list"
-            >
-              <li
-                className="header__nav-item user"
-              >
-                <a
-                  className="header__nav-link header__nav-link--profile"
-                  href="/login"
-                  onClick={[Function]}
-                >
-                  <div
-                    className="header__avatar-wrapper user__avatar-wrapper"
-                  />
-                  <span
-                    className="header__user-name user__name"
-                  >
-                    Sign in
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
     <main
       className="page__main page__main--property"
     >
@@ -129,62 +74,7 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
         >
           <div
             className="property__gallery"
-          >
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/room.jpg"
-              />
-            </div>
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/apartment-01.jpg"
-              />
-            </div>
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/apartment-02.jpg"
-              />
-            </div>
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/apartment-03.jpg"
-              />
-            </div>
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/studio-01.jpg"
-              />
-            </div>
-            <div
-              className="property__image-wrapper"
-            >
-              <img
-                alt="Photo studio"
-                className="property__image"
-                src="img/apartment-01.jpg"
-              />
-            </div>
-          </div>
+          />
         </div>
         <div
           className="property__container container"
@@ -208,7 +98,8 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                 Test header
               </h1>
               <button
-                className="property__bookmark-button button"
+                className="property__bookmark-button button "
+                onClick={[Function]}
                 type="button"
               >
                 <svg
@@ -318,14 +209,14 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                     alt="Host avatar"
                     className="property__avatar user__avatar"
                     height={74}
-                    src="img/avatar-angelina.jpg"
+                    src=""
                     width={74}
                   />
                 </div>
                 <span
                   className="property__user-name"
                 >
-                  Angelina
+                  
                 </span>
               </div>
               <div
@@ -334,12 +225,7 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                 <p
                   className="property__text"
                 >
-                  A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                </p>
-                <p
-                  className="property__text"
-                >
-                  An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                  
                 </p>
               </div>
             </div>
@@ -372,14 +258,14 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                         alt="Reviews avatar"
                         className="reviews__avatar user__avatar"
                         height={54}
-                        src="img/avatar-max.jpg"
+                        src=""
                         width={54}
                       />
                     </div>
                     <span
                       className="reviews__user-name"
                     >
-                      Max
+                      
                     </span>
                   </div>
                   <div
@@ -419,176 +305,6 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                   </div>
                 </li>
               </ul>
-              <form
-                action="#"
-                className="reviews__form form"
-                method="post"
-                onSubmit={[Function]}
-              >
-                <label
-                  className="reviews__label form__label"
-                  htmlFor="review"
-                >
-                  Your review
-                </label>
-                <div
-                  className="reviews__rating-form form__rating"
-                >
-                  <input
-                    checked={false}
-                    className="form__rating-input visually-hidden"
-                    id="5-stars"
-                    name="rating"
-                    onChange={[Function]}
-                    type="radio"
-                    value={5}
-                  />
-                  <label
-                    className="reviews__rating-label form__rating-label"
-                    htmlFor="5-stars"
-                  >
-                    <svg
-                      className="form__star-image"
-                      height="33"
-                      width="37"
-                    >
-                      <use
-                        xlinkHref="#icon-star"
-                      />
-                    </svg>
-                  </label>
-                  <input
-                    checked={false}
-                    className="form__rating-input visually-hidden"
-                    id="4-stars"
-                    name="rating"
-                    onChange={[Function]}
-                    type="radio"
-                    value={4}
-                  />
-                  <label
-                    className="reviews__rating-label form__rating-label"
-                    htmlFor="4-stars"
-                  >
-                    <svg
-                      className="form__star-image"
-                      height="33"
-                      width="37"
-                    >
-                      <use
-                        xlinkHref="#icon-star"
-                      />
-                    </svg>
-                  </label>
-                  <input
-                    checked={false}
-                    className="form__rating-input visually-hidden"
-                    id="3-stars"
-                    name="rating"
-                    onChange={[Function]}
-                    type="radio"
-                    value={3}
-                  />
-                  <label
-                    className="reviews__rating-label form__rating-label"
-                    htmlFor="3-stars"
-                  >
-                    <svg
-                      className="form__star-image"
-                      height="33"
-                      width="37"
-                    >
-                      <use
-                        xlinkHref="#icon-star"
-                      />
-                    </svg>
-                  </label>
-                  <input
-                    checked={false}
-                    className="form__rating-input visually-hidden"
-                    id="2-stars"
-                    name="rating"
-                    onChange={[Function]}
-                    type="radio"
-                    value={2}
-                  />
-                  <label
-                    className="reviews__rating-label form__rating-label"
-                    htmlFor="2-stars"
-                  >
-                    <svg
-                      className="form__star-image"
-                      height="33"
-                      width="37"
-                    >
-                      <use
-                        xlinkHref="#icon-star"
-                      />
-                    </svg>
-                  </label>
-                  <input
-                    checked={false}
-                    className="form__rating-input visually-hidden"
-                    id="1-stars"
-                    name="rating"
-                    onChange={[Function]}
-                    type="radio"
-                    value={1}
-                  />
-                  <label
-                    className="reviews__rating-label form__rating-label"
-                    htmlFor="1-stars"
-                  >
-                    <svg
-                      className="form__star-image"
-                      height="33"
-                      width="37"
-                    >
-                      <use
-                        xlinkHref="#icon-star"
-                      />
-                    </svg>
-                  </label>
-                </div>
-                <textarea
-                  className="reviews__textarea form__textarea"
-                  id="review"
-                  name="review"
-                  onChange={[Function]}
-                  placeholder="Tell how was your stay, what you like and what can be improved"
-                  value=""
-                />
-                <div
-                  className="reviews__button-wrapper"
-                >
-                  <p
-                    className="reviews__help"
-                  >
-                    To submit review please make sure to set
-                     
-                    <span
-                      className="reviews__star"
-                    >
-                      rating
-                    </span>
-                     and describe your stay with at least
-                     
-                    <b
-                      className="reviews__text-amount"
-                    >
-                      50 characters
-                    </b>
-                    .
-                  </p>
-                  <button
-                    className="reviews__submit form__submit button"
-                    disabled={true}
-                    type="submit"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </form>
             </section>
           </div>
         </div>
@@ -639,7 +355,8 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                     className="cities__image-wrapper place-card__image-wrapper"
                   >
                     <a
-                      href="#"
+                      href="/offer/5"
+                      onClick={[Function]}
                     >
                       <img
                         alt="Place image"
@@ -716,7 +433,8 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                       className="place-card__name"
                     >
                       <a
-                        href="#"
+                        href="/offer/5"
+                        onClick={[Function]}
                       >
                         Wood and stone place
                       </a>
@@ -739,7 +457,8 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                     className="cities__image-wrapper place-card__image-wrapper"
                   >
                     <a
-                      href="#"
+                      href="/offer/3"
+                      onClick={[Function]}
                     >
                       <img
                         alt="Place image"
@@ -816,7 +535,8 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                       className="place-card__name"
                     >
                       <a
-                        href="#"
+                        href="/offer/3"
+                        onClick={[Function]}
                       >
                         Canal View Prinsengracht
                       </a>
@@ -846,7 +566,8 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                     className="cities__image-wrapper place-card__image-wrapper"
                   >
                     <a
-                      href="#"
+                      href="/offer/4"
+                      onClick={[Function]}
                     >
                       <img
                         alt="Place image"
@@ -923,7 +644,8 @@ exports[`<OfferPropperty /> should render place-card. 1`] = `
                       className="place-card__name"
                     >
                       <a
-                        href="#"
+                        href="/offer/4"
+                        onClick={[Function]}
                       >
                         Nice, cozy, warm big bed apartment
                       </a>

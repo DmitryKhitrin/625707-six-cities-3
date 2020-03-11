@@ -1,4 +1,4 @@
-import React, {memo, Fragment} from "react";
+import React, {memo, Fragment, useCallback} from "react";
 import PropTypes from "prop-types";
 import {RATING, withFeedback} from "../../hocs/with-feedback.jsx";
 
@@ -8,15 +8,23 @@ const FeedbackFrom = ({
   isSubmiteButtonDisabled = true,
   setStarsCount = () => {},
   comment,
-  rating
+  rating,
+  id,
 }) => {
+
+  const onSubmiteClick = useCallback(
+      (evt) => {
+        onSubmite(evt, id);
+      },
+      [onSubmite, id]
+  );
 
   return (
     <form
       className="reviews__form form"
       action="#"
       method="post"
-      onSubmit={onSubmite}
+      onSubmit={onSubmiteClick}
     >
       <label className="reviews__label form__label" htmlFor="review">
         Your review
@@ -81,6 +89,7 @@ FeedbackFrom.propTypes = {
   setStarsCount: PropTypes.func.isRequired,
   rating: PropTypes.number.isRequired,
   comment: PropTypes.string,
+  id: PropTypes.string
 };
 
 const WrappedFeedbackForm = withFeedback(memo(FeedbackFrom));

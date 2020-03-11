@@ -18,14 +18,18 @@ const offerProperties = {
   maxPeopleCount: 100,
   price: 500,
   amenitiesList: [],
+  host: {
+    personPhoto: ``,
+    personName: ``,
+  },
   reviews: [
     {
       id: `1`,
-      reviewsDate: `April 2019`,
-      reviewsText: `A quiet cozy and picturesque that The building is green and from 18th century.`,
-      reviewsRating: `80%`,
-      reviewsUserName: `Max`,
-      reviewsAvatar: `img/avatar-max.jpg`
+      date: `April 2019`,
+      comment: `A quiet cozy and picturesque that The building is green and from 18th century.`,
+      rating: `80%`,
+      personName: `Max`,
+      personPhoto: `img/avatar-max.jpg`
     }
   ],
   offersList: [
@@ -37,7 +41,11 @@ const offerProperties = {
       type: `Apartment`,
       isPremium: true,
       title: `Wood and stone place`,
-      location: [52.369553943508, 4.939309666406197]
+      location: [52.369553943508, 4.939309666406197],
+      offerCity: {
+        name: `Moscow`,
+        location: [52.3809553943508, 4.939309666406198]
+      }
     },
     {
       id: `3`,
@@ -47,7 +55,11 @@ const offerProperties = {
       type: `Apartment`,
       isPremium: false,
       title: `Canal View Prinsengracht`,
-      location: [52.3909553943508, 4.929309666406198]
+      location: [52.3809553943508, 4.939309666406198],
+      offerCity: {
+        name: `Moscow`,
+        location: [52.3809553943508, 4.939309666406198]
+      },
     },
     {
       id: `4`,
@@ -57,7 +69,11 @@ const offerProperties = {
       type: `Apartment`,
       isPremium: true,
       title: `Nice, cozy, warm big bed apartment`,
-      location: [52.3809553943508, 4.939309666406198]
+      location: [52.3809553943508, 4.939309666406198],
+      offerCity: {
+        name: `Moscow`,
+        location: [52.3809553943508, 4.939309666406198]
+      }
     }
   ]
 };

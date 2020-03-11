@@ -1,44 +1,43 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {Router, Route, Switch, Redirect} from "react-router-dom";
+import {connect} from 'react-redux';
+
 import {MainContainer} from "../containers/main-container.jsx";
-import {OfferPropperty} from "../offer-property/offer-property.jsx";
+import {Footer} from "../footer/footer.jsx";
+import {PropertyContainer} from "../containers/property-container.jsx";
 import LoginContainer from "../containers/login-container.jsx";
-import {PropTypes} from "prop-types";
+import FavoritesContainer from "../containers/favorites-container.jsx";
+import Header from "../containers/header-container.jsx";
 import {history} from "../../history.js";
 
-export const App = ({
-  offerPropperties
-}) => {
+const App = ({isAuthenticated}) => {
   return (
     <Router history={history}>
+      <Header />
       <Switch>
         <Route path="/" component={MainContainer} exact />
-        <Route path="/property">
-          <OfferPropperty {...offerPropperties} />
-        </Route>
-        <Route path="/login" component={LoginContainer} />
-        <Redirect to="/" />
+        <Route path="/offer/:id" component={PropertyContainer} />
+        <Route path="/login" exact={true} component={LoginContainer} />
+        {isAuthenticated ? (
+          <Route path="/favorites" component={FavoritesContainer} />
+        ) : (
+          <Redirect to="/login" />
+        )}
       </Switch>
+      <Footer />
     </Router>
   );
 };
 
 App.propTypes = {
-  offerPropperties: PropTypes.shape({
-    placePhotosList: PropTypes.arrayOf(PropTypes.string),
-    offerHeader: PropTypes.string.isRequired,
-    descriptions: PropTypes.arrayOf(PropTypes.string.isRequired),
-    isPremium: PropTypes.bool.isRequired,
-    placeType: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    bedroomsCount: PropTypes.string.isRequired,
-    maxPeopleCount: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    amenitiesList: PropTypes.arrayOf(PropTypes.string),
-    hostInformation: PropTypes.shape({
-      hostPhoto: PropTypes.string,
-      hostName: PropTypes.string,
-      isSuper: PropTypes.bool
-    })
-  })
+  isAuthenticated: PropTypes.bool,
 };
+
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.user.authorizationStatus === `AUTH`,
+});
+
+const ConnectedApp = connect(mapStateToProps, null)(App);
+export {ConnectedApp as App};

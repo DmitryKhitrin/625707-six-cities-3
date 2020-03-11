@@ -1,13 +1,16 @@
 import React, {memo} from "react";
 import {PropTypes} from "prop-types";
 import {PlaceCard} from "../place-card/place-card.jsx";
+import {useHistory} from "react-router-dom";
 
 const OffersList = ({
   placeCardsList,
-  onMouseEnter,
-  onMouseLeave,
+  onMouseEnter = () => {},
+  onMouseLeave = () => {},
   setFavorite,
+  isAuthenticated,
 }) => {
+  const history = useHistory();
   return (
     <div className="cities__places-list places__list tabs__content">
       {placeCardsList.map(
@@ -21,7 +24,8 @@ const OffersList = ({
             isPremium,
             isFavorite
           }) => {
-            const onFavClick = () => (setFavorite(id, Number(!isFavorite)));
+            const onFavClick = () =>
+              isAuthenticated ? setFavorite(id, Number(!isFavorite)) : history.push(`/login`);
             return (
               <div key={id}>
                 <PlaceCard
@@ -49,19 +53,9 @@ const MemoizedOffersList = memo(OffersList);
 export {MemoizedOffersList as OffersList};
 
 OffersList.propTypes = {
-  placeCardsList: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        price: PropTypes.number,
-        previewImage: PropTypes.string,
-        title: PropTypes.string,
-        rating: PropTypes.string,
-        type: PropTypes.string,
-        isPremium: PropTypes.bool,
-        isFavorite: PropTypes.bool
-      })
-  ).isRequired,
+  placeCardsList: PropTypes.array.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
   setFavorite: PropTypes.func,
+  isAuthenticated: PropTypes.bool
 };

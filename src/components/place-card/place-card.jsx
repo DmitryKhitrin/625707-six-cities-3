@@ -1,4 +1,5 @@
 import React, {memo} from "react";
+import {Link} from "react-router-dom";
 import {PropTypes} from 'prop-types';
 
 const PlaceCard = ({
@@ -8,8 +9,8 @@ const PlaceCard = ({
   rating,
   type,
   isPremium,
-  onMouseEnter,
-  onMouseLeave,
+  onMouseEnter = () => {},
+  onMouseLeave = () => {},
   isFavorite,
   setFavorite = () => {},
   id,
@@ -32,7 +33,7 @@ const PlaceCard = ({
     >
       {premiumNameplate}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`/offer/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -40,7 +41,7 @@ const PlaceCard = ({
             height="200"
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -68,7 +69,7 @@ const PlaceCard = ({
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -87,8 +88,8 @@ PlaceCard.propTypes = {
   rating: PropTypes.string,
   type: PropTypes.string,
   isPremium: PropTypes.bool,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
   isFavorite: PropTypes.bool,
   setFavorite: PropTypes.func
 };
