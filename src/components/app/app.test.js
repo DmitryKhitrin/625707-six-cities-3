@@ -44,17 +44,16 @@ const offerPropperties = {
 
 describe(`App`, () => {
   it(`<App /> should render app.`, () => {
-    const onHeaderClick = () => {};
     Map.prototype.componentDidMount = jest.fn();
     const tree = renderer
-      .create(
-          <Provider store={store}>
-            <Router>
-              <App onHeaderClick={onHeaderClick} offerPropperties={offerPropperties}/>
-            </Router>
-          </Provider>
-      )
-      .toJSON();
+        .create(
+            <Provider store={store}>
+              <Router>
+                <App isAuthenticated={false} offerPropperties={offerPropperties} />
+              </Router>
+            </Provider>,
+        )
+        .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

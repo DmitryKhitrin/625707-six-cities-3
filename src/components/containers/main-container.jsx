@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
 import {useMountEffect} from "../../hooks/use-mount-effect.js";
+import {useScrollToTop} from "../../hooks/use-scroll-to-top.js";
 import {WrappedMain} from "../main/main.jsx";
 import {
   locationsSelector,
@@ -19,6 +20,8 @@ const MainContainer = (props) => {
   useMountEffect(() => {
     props.loadOffers();
   });
+
+  useScrollToTop();
 
   return <WrappedMain {...props} />;
 };

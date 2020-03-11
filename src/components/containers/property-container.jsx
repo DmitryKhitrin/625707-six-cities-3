@@ -2,6 +2,7 @@ import React, {useMemo, useEffect} from 'react';
 import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
+import {useScrollToTop} from '../../hooks/use-scroll-to-top.js';
 import {setFavorite} from "../../redux/offers/offer-actions.js";
 import {
   getCommentsAcync,
@@ -27,6 +28,7 @@ const PropertyContainer = ({
   getNearbyAsync: getNearby,
 }) => {
   const {id} = match.params;
+  useScrollToTop();
 
   useEffect(() => {
     getChoosedOffer(id);
