@@ -1,9 +1,16 @@
-import {SET_COMMENTS, START_REVIEW_SENDING, FINISH_REVIEW_SENDING, SET_NEARBY} from './types.js';
+import {
+  SET_COMMENTS,
+  START_REVIEW_SENDING,
+  FINISH_REVIEW_SENDING,
+  SET_NEARBY,
+  SET_CHOOSED,
+} from './types.js';
 
 const initialState = {
   comments: [],
   isFormSending: false,
   nearby: [],
+  choosed: {},
 };
 
 export const choosedReducer = (state = initialState, {type, payload}) => {
@@ -29,6 +36,12 @@ export const choosedReducer = (state = initialState, {type, payload}) => {
       return {
         ...state,
         isFormSending: false,
+      };
+
+    case SET_CHOOSED:
+      return {
+        ...state,
+        choosed: payload.choosed,
       };
 
     default:

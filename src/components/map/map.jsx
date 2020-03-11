@@ -24,12 +24,12 @@ export class Map extends PureComponent {
 
   _initCities() {
     const {city} = this.props;
-    const {location} = city;
+    const {location = [52.38333, 4.9]} = city;
     this._map = leaflet.map(`map`, {
       center: location,
       zoom: SETTINGS.zoom,
       zoomControl: false,
-      marker: true
+      marker: true,
     });
     this._map.setView(location, this._zoom);
     leaflet
@@ -65,9 +65,13 @@ export class Map extends PureComponent {
   }
 
   componentDidUpdate() {
-    this._markersLayer.clearLayers();
-    this._map.setView(this.props.city.location, this._zoom);
-    this._addMarkers();
+    const {name, location} = this.props.city;
+    if (name && location.length) {
+      this._markersLayer.clearLayers();
+      this._map.setView(location, this._zoom);
+      this._addMarkers();
+    }
+
   }
 
   render() {

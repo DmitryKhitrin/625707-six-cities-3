@@ -1,20 +1,23 @@
-import React, {useMemo} from "react";
+import React, {useMemo, useEffect} from 'react';
 import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
-import {useMountEffect} from "../../hooks/use-mount-effect.js";
-import {loadOffers, setFavorite} from "../../redux/offers/offer-actions.js";
-import {getCommentsAcync, getNearbyAsync} from '../../redux/choosed/choosed-actions.js';
+import {setFavorite} from "../../redux/offers/offer-actions.js";
+import {
+  getCommentsAcync,
+  getNearbyAsync,
+  getChoosedOfferAsync,
+} from '../../redux/choosed/choosed-actions.js';
 
 import {
-  offersInCitySelector,
-  locationsSelector
-} from "../../redux/offers/offer-selectors.js";
+  locationsSelector,
+  citySelector,
+} from '../../redux/offers/offer-selectors.js';
 
 const PropertyContainer = ({
   match,
-  placeCardsList,
-  loadOffers: loadOffersCards,
+  currentOffer,
+  getChoosedOfferAsync: getChoosedOffer,
   getCommentsAcync: getComments,
   locations,
   isAuthenticated,
@@ -25,20 +28,17 @@ const PropertyContainer = ({
 }) => {
   const {id} = match.params;
 
-  useMountEffect(() => {
-    loadOffersCards();
+  useEffect(() => {
+    getChoosedOffer(id);
     getNearby(id);
     getComments(id);
-  });
+  }, [getChoosedOffer, getNearby, getComments, id]);
 
-  const currentOffer = useMemo(() => placeCardsList.find((item) => item.id === id), [
-    placeCardsList,
-    id,
-  ]);
-  const city = useMemo(() => locations.find((location) => location.name === currentOffer.city), [
-    locations,
-    currentOffer,
-  ]);
+  const city = useMemo(() => {
+    return currentOffer
+      ? locations.find((location) => location.name === currentOffer.city)
+      : undefined;
+  }, [locations, currentOffer]);
 
   return (
     <OfferPropperty
@@ -52,32 +52,33 @@ const PropertyContainer = ({
   );
 };
 const mapStateToProps = (state) => ({
-  placeCardsList: offersInCitySelector(state),
+  currentOffer: state.choosed.choosed,
   locations: locationsSelector(state),
   isAuthenticated: state.user.authorizationStatus === `AUTH`,
   reviews: state.choosed.comments,
   nearby: state.choosed.nearby,
+  city: citySelector(state),
 });
 
 const mapDispatchToProps = {
-  loadOffers,
+  getChoosedOfferAsync,
   setFavorite,
   getCommentsAcync,
   getNearbyAsync,
 };
 
 PropertyContainer.propTypes = {
-  placeCardsList: PropTypes.array.isRequired,
   locations: PropTypes.any,
   setCity: PropTypes.func,
   city: PropTypes.string,
-  loadOffers: PropTypes.func.isRequired,
+  getChoosedOfferAsync: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   setFavorite: PropTypes.func.isRequired,
   getNearbyAsync: PropTypes.func.isRequired,
   getCommentsAcync: PropTypes.func.isRequired,
   reviews: PropTypes.array.isRequired,
   nearby: PropTypes.array,
+  currentOffer: PropTypes.object,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,

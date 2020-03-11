@@ -33,7 +33,7 @@ const OfferPropperty = ({
   activeItem,
 }) => {
   const {personPhoto = ``, personName = ``} = host;
-  const {name = ``, location = []} = offerCity;
+  const {name, location} = offerCity;
   const history = useHistory();
 
   const onFavoriteClick = useCallback(

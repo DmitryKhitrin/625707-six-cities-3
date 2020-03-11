@@ -14,7 +14,7 @@ export const App = () => {
       <Header />
       <Switch>
         <Route path="/" component={MainContainer} exact />
-        <Route exact path="/offer/:id" component={PropertyContainer} />
+        <Route path="/offer/:id" component={PropertyContainer} />
         <Route path="/login" exact={true} component={LoginContainer} />
         <Route path="/favorites" component={FavoritesContainer} />
         <Redirect to="/" />
