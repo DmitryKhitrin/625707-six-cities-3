@@ -49,11 +49,15 @@ export class Map extends PureComponent {
     this._activeCard = activeCard;
     this._markersLayer = leaflet.layerGroup().addTo(this._map);
 
-    placeCardsList.map((card) => {
+    placeCardsList.forEach((card) => {
+      const {location, title, id} = card;
+      if (!location) {
+        return;
+      }
       const icon =
-        this._activeCard === card.id ? this._getActiveIcon() : this._getIcon();
-      return leaflet
-        .marker(card.location, {icon, title: card.title})
+        this._activeCard === id ? this._getActiveIcon() : this._getIcon();
+      leaflet
+        .marker(location, {icon, title})
         .addTo(this._markersLayer);
     }
 
@@ -93,7 +97,7 @@ Map.propTypes = {
         rating: PropTypes.string,
         type: PropTypes.string,
         isPremium: PropTypes.bool,
-        location: PropTypes.arrayOf(PropTypes.number).isRequired
+        location: PropTypes.arrayOf(PropTypes.number)
       })
   ),
   height: PropTypes.number.isRequired,

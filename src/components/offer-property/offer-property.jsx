@@ -6,10 +6,10 @@ import {PropertiesInsideList} from "../properties-inside-list/properties-inside-
 import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
 import {FeedbackFrom} from "../feedback-form/feedback-form.jsx";
-import {withActiveItem} from '../../hocs/with-active-item.jsx';
 
 const OfferPropperty = ({
   images = [],
+  title,
   offerHeader = ``,
   description = ``,
   // descriptions = ``,
@@ -28,9 +28,6 @@ const OfferPropperty = ({
   isFavorite,
   setFavorite,
   id,
-  setActiveItem = () => {},
-  removeActiveItem = () => {},
-  activeItem,
 }) => {
   const {personPhoto = ``, personName = ``} = host;
   const {name, location} = offerCity;
@@ -167,8 +164,8 @@ const OfferPropperty = ({
             <section className="property__map map">
               <Map
                 city={{location, name}}
-                placeCardsList={offersList}
-                activeCard={activeItem}
+                placeCardsList={[...offersList, {id, location, title}]}
+                activeCard={id}
                 height={600}
               />
             </section>
@@ -179,8 +176,8 @@ const OfferPropperty = ({
               <div className="near-places__list places__list">
                 <OffersList
                   placeCardsList={offersList}
-                  onMouseEnter={setActiveItem}
-                  onMouseLeave={removeActiveItem}
+                  onMouseEnter={() => {}}
+                  onMouseLeave={() => {}}
                   isAuthenticated={isAuthenticated}
                   setFavorite={setFavorite}
                 />
@@ -193,8 +190,8 @@ const OfferPropperty = ({
   );
 };
 
-const WrappedOfferPropperty = withActiveItem(memo(OfferPropperty));
-export {WrappedOfferPropperty as OfferPropperty};
+const MemoizedOfferPropperty = memo(OfferPropperty);
+export {MemoizedOfferPropperty as OfferPropperty};
 
 OfferPropperty.propTypes = {
   reviews: PropTypes.arrayOf(
@@ -207,6 +204,7 @@ OfferPropperty.propTypes = {
       }),
   ),
   id: PropTypes.string,
+  title: PropTypes.string,
   images: PropTypes.arrayOf(PropTypes.string),
   setFavorite: PropTypes.func.isRequired,
   offerHeader: PropTypes.string,
@@ -231,7 +229,4 @@ OfferPropperty.propTypes = {
     name: PropTypes.string,
     location: PropTypes.array,
   }),
-  activeItem: PropTypes.string.isRequired,
-  setActiveItem: PropTypes.func.isRequired,
-  removeActiveItem: PropTypes.func.isRequired,
 };
