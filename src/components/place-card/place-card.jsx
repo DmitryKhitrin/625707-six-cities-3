@@ -33,7 +33,7 @@ const PlaceCard = ({
     >
       {premiumNameplate}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`/offer/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -41,7 +41,7 @@ const PlaceCard = ({
             height="200"
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">

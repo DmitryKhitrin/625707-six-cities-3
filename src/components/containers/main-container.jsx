@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
-import {useMountEffect} from "../../hooks/useMountEffect.js";
+import {useMountEffect} from "../../hooks/use-mount-effect.js";
 import {WrappedMain} from "../main/main.jsx";
 import {
   locationsSelector,

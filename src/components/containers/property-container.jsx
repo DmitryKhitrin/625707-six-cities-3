@@ -2,7 +2,7 @@ import React, {useMemo} from "react";
 import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
-import {useMountEffect} from "../../hooks/useMountEffect.js";
+import {useMountEffect} from "../../hooks/use-mount-effect.js";
 import {loadOffers, setFavorite} from "../../redux/offers/offer-actions.js";
 import {getCommentsAcync, getNearbyAsync} from '../../redux/choosed/choosed-actions.js';
 

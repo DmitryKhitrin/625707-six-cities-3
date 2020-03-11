@@ -64,16 +64,10 @@ export class Map extends PureComponent {
     this._initCities();
   }
 
-  componentDidUpdate(prevProps) {
-    const {city} = this.props;
-    if (
-      city.name !== prevProps.city.name ||
-      this.props.activeCard !== this._activeCard
-    ) {
-      this._markersLayer.clearLayers();
-      this._map.setView(city.location, this._zoom);
-      this._addMarkers();
-    }
+  componentDidUpdate() {
+    this._markersLayer.clearLayers();
+    this._map.setView(this.props.city.location, this._zoom);
+    this._addMarkers();
   }
 
   render() {
