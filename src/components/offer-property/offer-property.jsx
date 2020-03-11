@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, {useCallback, memo} from 'react';
 import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom";
 import {ReviewsList} from "../reviews-list/reviews-list.jsx";
@@ -6,8 +6,9 @@ import {PropertiesInsideList} from "../properties-inside-list/properties-inside-
 import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
 import {FeedbackFrom} from "../feedback-form/feedback-form.jsx";
+import {withActiveItem} from '../../hocs/with-active-item.jsx';
 
-export const OfferPropperty = ({
+const OfferPropperty = ({
   images = [],
   offerHeader = ``,
   description = ``,
@@ -27,17 +28,17 @@ export const OfferPropperty = ({
   isFavorite,
   setFavorite,
   id,
+  setActiveItem = () => {},
+  removeActiveItem = () => {},
+  activeItem,
 }) => {
   const {personPhoto = ``, personName = ``} = host;
   const {name = ``, location = []} = offerCity;
   const history = useHistory();
 
   const onFavoriteClick = useCallback(
-      () =>
-        isAuthenticated
-          ? setFavorite(id, Number(!isFavorite))
-          : history.push(`/login`),
-      [setFavorite, isAuthenticated, id, isFavorite, history]
+      () => (isAuthenticated ? setFavorite(id, Number(!isFavorite)) : history.push(`/login`)),
+      [setFavorite, isAuthenticated, id, isFavorite, history],
   );
   const premium = isPremium ? (
     <div className="property__mark">
@@ -117,9 +118,7 @@ export const OfferPropperty = ({
                     <span style={{width: rating}} />
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="property__rating-value rating__value">
-                    4.8
-                  </span>
+                  <span className="property__rating-value rating__value">4.8</span>
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
@@ -129,7 +128,7 @@ export const OfferPropperty = ({
                     {bedroomsCount}
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max {maxPeopleCount} adults
+                                      Max {maxPeopleCount} adults
                   </li>
                 </ul>
                 <div className="property__price">
@@ -157,11 +156,11 @@ export const OfferPropperty = ({
                 </div>
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">
-                    Reviews &middot;
+                                      Reviews &middot;
                     <span className="reviews__amount">{reviews.length}</span>
                   </h2>
                   <ReviewsList reviews={reviews} />
-                  {isAuthenticated ? <FeedbackFrom id={id}/> : null}
+                  {isAuthenticated ? <FeedbackFrom id={id} /> : null}
                 </section>
               </div>
             </div>
@@ -169,21 +168,21 @@ export const OfferPropperty = ({
               <Map
                 city={{location, name}}
                 placeCardsList={offersList}
+                activeCard={activeItem}
                 height={600}
               />
             </section>
           </section>
           <div className="container">
             <section className="near-places places">
-              <h2 className="near-places__title">
-                Other places in the neighbourhood
-              </h2>
+              <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
                 <OffersList
                   placeCardsList={offersList}
-                  onHeaderClick={() => {}}
-                  onMouseEnter={() => {}}
-                  onMouseLeave={() => {}}
+                  onMouseEnter={setActiveItem}
+                  onMouseLeave={removeActiveItem}
+                  isAuthenticated={isAuthenticated}
+                  setFavorite={setFavorite}
                 />
               </div>
             </section>
@@ -194,6 +193,9 @@ export const OfferPropperty = ({
   );
 };
 
+const WrappedOfferPropperty = withActiveItem(memo(OfferPropperty));
+export {WrappedOfferPropperty as OfferPropperty};
+
 OfferPropperty.propTypes = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
@@ -202,7 +204,7 @@ OfferPropperty.propTypes = {
         comment: PropTypes.string,
         rating: PropTypes.string,
         user: PropTypes.object,
-      })
+      }),
   ),
   id: PropTypes.string,
   images: PropTypes.arrayOf(PropTypes.string),
@@ -219,7 +221,7 @@ OfferPropperty.propTypes = {
   host: PropTypes.shape({
     personPhoto: PropTypes.string,
     personName: PropTypes.string,
-    isSuper: PropTypes.bool
+    isSuper: PropTypes.bool,
   }),
   isFavorite: PropTypes.bool,
   offersList: PropTypes.array,
@@ -227,6 +229,9 @@ OfferPropperty.propTypes = {
   description: PropTypes.string,
   offerCity: PropTypes.shape({
     name: PropTypes.string,
-    location: PropTypes.array
-  })
+    location: PropTypes.array,
+  }),
+  activeItem: PropTypes.string.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
+  removeActiveItem: PropTypes.func.isRequired,
 };

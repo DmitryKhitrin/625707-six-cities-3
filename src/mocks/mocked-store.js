@@ -5,7 +5,7 @@ export const store = mockStore({
   offer: {
     locations: [],
     city: `Paris`,
-    offers: []
+    offers: [],
   },
   user: {
     authorizationStatus: `NO_AUTH`,
@@ -14,8 +14,12 @@ export const store = mockStore({
       email: ``,
       name: ``,
       avatar: ``,
-      isPro: false
+      isPro: false,
     },
-    error: ``
-  }
+    error: ``,
+  },
+  choosed: {
+    comments: [],
+    isFormSending: false,
+  },
 });

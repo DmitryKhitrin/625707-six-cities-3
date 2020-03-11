@@ -4,7 +4,7 @@ import {PropTypes} from "prop-types";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import {useMountEffect} from "../../hooks/useMountEffect.js";
 import {loadOffers, setFavorite} from "../../redux/offers/offer-actions.js";
-import {getCommentsAcync} from "../../redux/comments/comments-actions.js";
+import {getCommentsAcync, getNearbyAsync} from '../../redux/choosed/choosed-actions.js';
 
 import {
   offersInCitySelector,
@@ -19,23 +19,26 @@ const PropertyContainer = ({
   locations,
   isAuthenticated,
   setFavorite: setFavoriteCard,
-  reviews
+  reviews,
+  nearby,
+  getNearbyAsync: getNearby,
 }) => {
   const {id} = match.params;
 
   useMountEffect(() => {
     loadOffersCards();
+    getNearby(id);
     getComments(id);
   });
 
-  const currentOffer = useMemo(
-      () => placeCardsList.find((item) => item.id === id),
-      [placeCardsList, id]
-  );
-  const city = useMemo(
-      () => locations.find((location) => location.name === currentOffer.city),
-      [locations, currentOffer]
-  );
+  const currentOffer = useMemo(() => placeCardsList.find((item) => item.id === id), [
+    placeCardsList,
+    id,
+  ]);
+  const city = useMemo(() => locations.find((location) => location.name === currentOffer.city), [
+    locations,
+    currentOffer,
+  ]);
 
   return (
     <OfferPropperty
@@ -44,6 +47,7 @@ const PropertyContainer = ({
       isAuthenticated={isAuthenticated}
       setFavorite={setFavoriteCard}
       reviews={reviews}
+      offersList={nearby}
     />
   );
 };
@@ -51,13 +55,15 @@ const mapStateToProps = (state) => ({
   placeCardsList: offersInCitySelector(state),
   locations: locationsSelector(state),
   isAuthenticated: state.user.authorizationStatus === `AUTH`,
-  reviews: state.comments.comments,
+  reviews: state.choosed.comments,
+  nearby: state.choosed.nearby,
 });
 
 const mapDispatchToProps = {
   loadOffers,
   setFavorite,
-  getCommentsAcync
+  getCommentsAcync,
+  getNearbyAsync,
 };
 
 PropertyContainer.propTypes = {
@@ -68,13 +74,15 @@ PropertyContainer.propTypes = {
   loadOffers: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   setFavorite: PropTypes.func.isRequired,
+  getNearbyAsync: PropTypes.func.isRequired,
   getCommentsAcync: PropTypes.func.isRequired,
   reviews: PropTypes.array.isRequired,
+  nearby: PropTypes.array,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string.isRequired
-    })
-  })
+      id: PropTypes.string.isRequired,
+    }),
+  }),
 };
 
 const WrappedPropertyContainer = connect(

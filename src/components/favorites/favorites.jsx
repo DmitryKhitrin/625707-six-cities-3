@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {FavoriteLoacation} from "../favorite-location/favorite-location.jsx";
 import {EmptyFavorites} from "../empty-favorites/empty-favorites.jsx";
 
-const Favorites = ({favorites = {}, setFavorite = () => {}, getFavorite = () => {}}) => {
+const Favorites = ({favorites = {}, setFavorite = () => {}, getFavoriteAsync = () => {}}) => {
   const isFavoritesEmpty = useMemo(() => Object.keys(favorites).length > 0, [
     favorites
   ]);
@@ -22,7 +22,7 @@ const Favorites = ({favorites = {}, setFavorite = () => {}, getFavorite = () => 
                       city={city}
                       favorites={favoritesForCity}
                       setFavorite={setFavorite}
-                      getFavorite={getFavorite}
+                      getFavoriteAsync={getFavoriteAsync}
                     />
                   </li>
                 );
@@ -43,5 +43,5 @@ export {MemoizedFavorites as Favorites};
 Favorites.propTypes = {
   favorites: PropTypes.object,
   setFavorite: PropTypes.func,
-  getFavorite: PropTypes.func
+  getFavoriteAsync: PropTypes.func
 };

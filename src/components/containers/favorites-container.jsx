@@ -4,14 +4,14 @@ import {PropTypes} from "prop-types";
 import {useMountEffect} from "../../hooks/useMountEffect.js";
 import {
   setCity,
-  getFavorite,
+  getFavoriteAsync,
   setFavorite
 } from "../../redux/offers/offer-actions.js";
 import {Favorites} from "../favorites/favorites.jsx";
 
 const FavoritesContainer = (props) => {
   useMountEffect(() => {
-    props.getFavorite();
+    props.getFavoriteAsync();
   });
   return <Favorites {...props} />;
 };
@@ -24,13 +24,13 @@ const mapStateToProps = ({offer}) => {
 
 const mapDispatchToProps = {
   setCity,
-  getFavorite,
+  getFavoriteAsync,
   setFavorite,
 };
 
 FavoritesContainer.propTypes = {
   setCity: PropTypes.func,
-  getFavorite: PropTypes.func.isRequired,
+  getFavoriteAsync: PropTypes.func.isRequired,
   setFavorite: PropTypes.func.isRequired,
 };
 

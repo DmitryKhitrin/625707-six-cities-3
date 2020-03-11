@@ -1,16 +1,16 @@
-import {commentsReducer} from "./comments-reducer.js";
+import {choosedReducer} from './choosed-reducer.js';
 import {SET_COMMENTS} from "./types.js";
 
-describe(`commentsReducer`, () => {
+describe(`choosedReducer`, () => {
   it(`should SET_COMMENTS.`, () => {
-    const state = commentsReducer(
+    const state = choosedReducer(
         {},
         {
           type: SET_COMMENTS,
           payload: {
-            comments: [`Error`]
-          }
-        }
+            comments: [`Error`],
+          },
+        },
     );
     expect(state).toEqual({comments: [`Error`]});
   });

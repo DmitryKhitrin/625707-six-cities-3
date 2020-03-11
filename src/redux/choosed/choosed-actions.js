@@ -1,10 +1,6 @@
-import {
-  SET_COMMENTS,
-  START_REVIEW_SENDING,
-  FINISH_REVIEW_SENDING
-} from "./types.js";
+import {SET_COMMENTS, START_REVIEW_SENDING, FINISH_REVIEW_SENDING, SET_NEARBY} from './types.js';
 import {request} from "../../api/config.js";
-import {parseComment} from "../../utils.js";
+import {parseComment, parseOffer} from '../../utils.js';
 
 const setComments = (comments) => {
   const parsedComments = comments.map(parseComment);
@@ -16,18 +12,28 @@ const setComments = (comments) => {
   };
 };
 
-export const setStartReviewSending = () => {
+const setStartReviewSending = () => {
   return {
     type: START_REVIEW_SENDING
   };
 };
 
-export const setFinishReviewSending = () => {
+const setFinishReviewSending = () => {
   return {
     type: FINISH_REVIEW_SENDING
   };
 };
 
+
+const setNearby = (nearby) => {
+  const parsedNearby = nearby.map(parseOffer);
+  return {
+    type: SET_NEARBY,
+    payload: {
+      nearby: parsedNearby,
+    },
+  };
+};
 
 export const getCommentsAcync = (hotelId) => (dispatch, getState, api) => {
   return api
@@ -57,4 +63,15 @@ export const sendCommentAsync = (hotelId, rating, comment) => (
     .catch(() => {
       dispatch(setFinishReviewSending());
     });
+};
+
+export const getNearbyAsync = (hotelId) => (dispatch, getState, api) => {
+  return api
+        .get(request.nearby.get(hotelId))
+        .then((response) => {
+          if (response.data) {
+            dispatch(setNearby(response.data));
+          }
+        })
+        .catch(() => {});
 };

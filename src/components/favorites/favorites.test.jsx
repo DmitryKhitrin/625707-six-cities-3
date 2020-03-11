@@ -4,7 +4,7 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {Favorites} from "./favorites.jsx";
 
 const moc = {
-  getFavorite: jest.fn(),
+  getFavoriteAsync: jest.fn(),
   setFavorite: jest.fn(),
   favorites: {
     Paris: [

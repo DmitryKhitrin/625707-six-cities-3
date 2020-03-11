@@ -6,7 +6,7 @@ const FavoriteLoacation = ({
   city,
   favorites,
   setFavorite = () => {},
-  getFavorite = () => {}
+  getFavoriteAsync = () => {}
 }) => {
   return (
     <>
@@ -22,7 +22,7 @@ const FavoriteLoacation = ({
           const {id, isFavorite} = card;
           const onFavClick = () => {
             setFavorite(id, Number(!isFavorite));
-            getFavorite();
+            getFavoriteAsync();
           };
           return <PlaceCard key={i} {...card} setFavorite={onFavClick} />;
         })}
@@ -38,5 +38,5 @@ FavoriteLoacation.propTypes = {
   favorites: PropTypes.array,
   city: PropTypes.string,
   setFavorite: PropTypes.func,
-  getFavorite: PropTypes.func
+  getFavoriteAsync: PropTypes.func
 };

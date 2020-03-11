@@ -5,7 +5,7 @@ import {FavoriteLoacation} from "./favorite-location.jsx";
 
 const moc = {
   city: `Paris`,
-  getFavorite: jest.fn(),
+  getFavoriteAsync: jest.fn(),
   setFavorite: jest.fn(),
   favorites: [
     {

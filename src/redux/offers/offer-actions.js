@@ -80,7 +80,7 @@ export const setFavorite = (hotelId, status) => (
     .catch(() => {});
 };
 
-export const getFavorite = () => (dispatch, _getState, api) => {
+export const getFavoriteAsync = () => (dispatch, _getState, api) => {
   return api
     .get(request.favorites.get())
     .then((response) => {
