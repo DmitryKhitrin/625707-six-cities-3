@@ -9,7 +9,8 @@ import {
 
 import {
   setCity,
-  loadOffers
+  loadOffers,
+  setFavorite,
 } from "../../redux/offers/offer-actions.js";
 
 const MainContainer = (props) => {
@@ -23,7 +24,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   setCity,
-  loadOffers
+  loadOffers,
+  setFavorite,
 };
 
 

@@ -68,7 +68,7 @@ it(`<OfferPropperty /> should render place-card.`, () => {
     .create(
         <Provider store={store}>
           <Router>
-            <OfferPropperty {...offerProperties} />
+            <OfferPropperty {...offerProperties} setFavorite={jest.fn()} />
           </Router>
         </Provider>
     )

@@ -62,7 +62,6 @@ Array [
   >
     <h1
       className="visually-hidden"
-      onClick={[Function]}
     >
       Cities
     </h1>
@@ -102,7 +101,6 @@ Array [
         >
           <h2
             className="visually-hidden"
-            onClick={[Function]}
           >
             Places
           </h2>
@@ -224,6 +222,7 @@ Array [
                     </div>
                     <button
                       className="place-card__bookmark-button button"
+                      onClick={[Function]}
                       type="button"
                     >
                       <svg
@@ -264,7 +263,6 @@ Array [
                   </div>
                   <h2
                     className="place-card__name"
-                    onClick={[Function]}
                   >
                     <a
                       href="#"
@@ -324,6 +322,7 @@ Array [
                     </div>
                     <button
                       className="place-card__bookmark-button button"
+                      onClick={[Function]}
                       type="button"
                     >
                       <svg
@@ -364,7 +363,6 @@ Array [
                   </div>
                   <h2
                     className="place-card__name"
-                    onClick={[Function]}
                   >
                     <a
                       href="#"
@@ -431,6 +429,7 @@ Array [
                     </div>
                     <button
                       className="place-card__bookmark-button button"
+                      onClick={[Function]}
                       type="button"
                     >
                       <svg
@@ -471,7 +470,6 @@ Array [
                   </div>
                   <h2
                     className="place-card__name"
-                    onClick={[Function]}
                   >
                     <a
                       href="#"
