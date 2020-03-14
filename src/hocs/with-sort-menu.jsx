@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {sortTypes} from "../sortTypes.js";
+import {sortTypes} from "../utils/sort-types";
 
 export const withSortMenu = (Component) => {
   class WithActiveItem extends PureComponent {

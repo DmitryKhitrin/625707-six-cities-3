@@ -1,10 +1,10 @@
-import {userReducer} from "./user-reducer";
-import {LOG_IN, LOG_OUT, SET_AUTH_ERROR} from "./types.js";
+import {userReducer, UserState} from "./user-reducer";
+import {LOG_IN, LOG_OUT, SET_AUTH_ERROR} from "./types";
 
 describe(`offerReducer`, () => {
   it(`should login.`, () => {
     const payload = {id: 1, email: ``, name: `Vasia`, avatar: `url`, isPro: false};
-    const state = userReducer({}, {type: LOG_IN, payload});
+    const state = userReducer({} as UserState, {type: LOG_IN, payload});
     expect(state).toEqual({
       user: {
         ...payload
@@ -17,7 +17,7 @@ describe(`offerReducer`, () => {
     const logoutState = {
       authorizationStatus: `NO_AUTH`,
       user: {
-        id: null,
+        id: 2,
         email: ``,
         name: ``,
         avatar: ``,
@@ -25,12 +25,12 @@ describe(`offerReducer`, () => {
       },
       error: ``
     };
-    const state = userReducer({}, {type: LOG_OUT, payload: `Moscow`});
+    const state = userReducer({} as UserState, {type: LOG_OUT, payload: `Moscow`});
     expect(state).toEqual(logoutState);
   });
 
   it(`should set autherror.`, () => {
-    const state = userReducer({}, {type: SET_AUTH_ERROR, payload: {
+    const state = userReducer({} as UserState, {type: SET_AUTH_ERROR, payload: {
       error: `Error`
     }});
     expect(state).toEqual({error: `Error`});

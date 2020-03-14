@@ -5,8 +5,8 @@ import {
   SET_NEARBY,
   SET_CHOOSED,
 } from './types.js';
-import {request} from "../../api/config.js";
-import {parseComment, parseOffer} from '../../utils.js';
+import {request} from "../../api/config";
+import {parseComment, parseOffer} from '../../utils/utils';
 
 const setComments = (comments) => {
   const parsedComments = comments.map(parseComment);

@@ -4,10 +4,10 @@ import {
   UPDATE_OFFERS_INFO,
   SET_FAVORITE,
 } from "./types.js";
-import {request} from "../../api/config.js";
+import {request} from "../../api/config";
 import {offersSelector} from "./offer-selectors.js";
 
-import {parseCities, parseOffer, parseFavorites} from "../../utils.js";
+import {parseCities, parseOffer, parseFavorites} from "../../utils/utils";
 
 export const setCity = (city) => {
   return {

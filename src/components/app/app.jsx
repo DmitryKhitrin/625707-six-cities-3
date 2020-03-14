@@ -10,7 +10,7 @@ import {PropertyContainer} from "../containers/property-container.jsx";
 import LoginContainer from "../containers/login-container.jsx";
 import FavoritesContainer from "../containers/favorites-container.jsx";
 import Header from "../containers/header-container.jsx";
-import {history} from "../../history.js";
+import {history} from "../../utils/history.js";
 
 const App = ({isAuthenticated}) => {
   return (

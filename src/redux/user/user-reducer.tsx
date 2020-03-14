@@ -1,6 +1,13 @@
 import {LOG_IN, LOG_OUT, SET_AUTH_ERROR} from "./types.js";
+import {ParsedLoginParams, UserAction} from "./user-actions";
 
-const initialState = {
+export type UserState = {
+  authorizationStatus: `NO_AUTH` | `AUTH`;
+  user: ParsedLoginParams;
+  error: string;
+}
+
+const initialState: UserState = {
   authorizationStatus: `NO_AUTH`,
   user: {
     id: null,
@@ -12,8 +19,8 @@ const initialState = {
   error: ``,
 };
 
-export const userReducer = (state = initialState, {type, payload}) => {
-  switch (type) {
+export const userReducer = (state = initialState, action: UserAction) => {
+  switch (action.type) {
     case LOG_IN:
       const {
         id,
@@ -21,7 +28,7 @@ export const userReducer = (state = initialState, {type, payload}) => {
         name,
         avatar,
         isPro
-      } = payload;
+      } = action.payload;
       return {
         ...state,
         authorizationStatus: `AUTH`,
@@ -42,7 +49,7 @@ export const userReducer = (state = initialState, {type, payload}) => {
     case SET_AUTH_ERROR:
       return {
         ...state,
-        error: payload.error,
+        error: action.payload.error,
       };
 
     default:
