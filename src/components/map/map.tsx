@@ -1,12 +1,25 @@
 import React, {PureComponent} from "react";
-import {PropTypes} from "prop-types";
 import leaflet from "leaflet";
+import {ParsedOfferCard, ParsedCity} from "../../utils/utils";
+import {any} from "prop-types";
+
+type Props = {
+  placeCardsList: ParsedOfferCard[];
+  city: ParsedCity;
+  height: number;
+  activeCard: string;
+}
 
 const SETTINGS = {
   zoom: 13,
 };
 
-export class Map extends PureComponent {
+export class Map extends PureComponent<Props> {
+
+  _map: leaflet.Map = {} as leaflet.Map;
+  _zoom = 13;
+  _markersLayer: leaflet.LayerGroup<any> = {} as leaflet.LayerGroup<any>;
+  _activeCard = ``;
 
   _getIcon() {
     return leaflet.icon({
@@ -29,7 +42,6 @@ export class Map extends PureComponent {
       center: location,
       zoom: SETTINGS.zoom,
       zoomControl: false,
-      marker: true,
     });
     this._map.setView(location, this._zoom);
     leaflet
@@ -82,25 +94,3 @@ export class Map extends PureComponent {
     return <div id="map" style={{height: this.props.height}} />;
   }
 }
-
-Map.propTypes = {
-  city: PropTypes.shape({
-    location: PropTypes.arrayOf(PropTypes.number, PropTypes.number),
-    name: PropTypes.string
-  }),
-  placeCardsList: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        price: PropTypes.number,
-        previewImage: PropTypes.string,
-        title: PropTypes.string,
-        rating: PropTypes.string,
-        type: PropTypes.string,
-        isPremium: PropTypes.bool,
-        location: PropTypes.arrayOf(PropTypes.number)
-      })
-  ),
-  height: PropTypes.number.isRequired,
-  activeCard: PropTypes.string
-};
-

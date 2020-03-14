@@ -4,7 +4,7 @@ import {CityTab} from "../city-tab/city-tab";
 type Location = {
   id: string;
   name: string;
-  location: number[];
+  location: [number, number];
 }
 
 type Props = {

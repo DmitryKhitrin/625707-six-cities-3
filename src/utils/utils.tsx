@@ -13,7 +13,7 @@ location: Location;
 
 export type ParsedCity = {
   name: string;
-  location: number[];
+  location: [number, number]
 }
 
 const parseCity = ({name, location}: City): ParsedCity => ({
@@ -76,7 +76,7 @@ export type ParsedOfferCard = {
   price: number;
   goods: string[];
   host: ParsedUser;
-  location: number[];
+  location: [number, number]
   description: string;
   id: string;
   city: ParsedCity;

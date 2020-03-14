@@ -4,7 +4,7 @@ import {useHistory} from "react-router-dom";
 import {ReviewsList} from "../reviews-list/reviews-list.jsx";
 import {PropertiesInsideList} from "../properties-inside-list/properties-inside-list";
 import {OffersList} from "../offers-list/offers-list";
-import {Map} from "../map/map.jsx";
+import {Map} from "../map/map";
 import {FeedbackFrom} from "../feedback-form/feedback-form.jsx";
 
 const OfferPropperty = ({

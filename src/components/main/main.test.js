@@ -3,7 +3,7 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {Provider} from "react-redux";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
-import {Map} from "../map/map.jsx";
+import {Map} from "../map/map";
 import {store} from "../../mocks/mocked-store.js";
 
 const mocData = [
