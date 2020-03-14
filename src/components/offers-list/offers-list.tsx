@@ -1,9 +1,17 @@
-import React, {memo} from "react";
-import {PropTypes} from "prop-types";
+import React, {memo, FC} from "react";
 import {useHistory} from "react-router-dom";
 import {PlaceCard} from "../place-card/place-card";
+import {ParsedOfferCard} from "../../utils/utils";
 
-const OffersList = ({
+type Props = {
+  placeCardsList: ParsedOfferCard[];
+  onMouseEnter: (T: string) => void;
+  onMouseLeave: () => void;
+  setFavorite: (id: string, hotel: number) => void;
+  isAuthenticated: boolean;
+}
+
+const OffersList: FC<Props> = ({
   placeCardsList,
   onMouseEnter = () => {},
   onMouseLeave = () => {},
@@ -51,11 +59,3 @@ const OffersList = ({
 
 const MemoizedOffersList = memo(OffersList);
 export {MemoizedOffersList as OffersList};
-
-OffersList.propTypes = {
-  placeCardsList: PropTypes.array.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  setFavorite: PropTypes.func,
-  isAuthenticated: PropTypes.bool
-};

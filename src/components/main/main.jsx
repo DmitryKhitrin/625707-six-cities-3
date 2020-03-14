@@ -1,6 +1,6 @@
 import React, {useMemo, memo} from "react";
 import {PropTypes} from 'prop-types';
-import {OffersList} from "../offers-list/offers-list.jsx";
+import {OffersList} from "../offers-list/offers-list";
 import {Map} from "../map/map.jsx";
 import {CitiesTabsList} from "../cities-tabs-list/cities-tabs-list";
 import {PlacesSortingForm} from "../places-sorting-form/places-sorting-form.jsx";

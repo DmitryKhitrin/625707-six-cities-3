@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom";
 import {ReviewsList} from "../reviews-list/reviews-list.jsx";
 import {PropertiesInsideList} from "../properties-inside-list/properties-inside-list.jsx";
-import {OffersList} from "../offers-list/offers-list.jsx";
+import {OffersList} from "../offers-list/offers-list";
 import {Map} from "../map/map.jsx";
 import {FeedbackFrom} from "../feedback-form/feedback-form.jsx";
 

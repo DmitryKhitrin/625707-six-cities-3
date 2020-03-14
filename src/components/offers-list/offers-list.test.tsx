@@ -1,7 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {BrowserRouter as Router} from "react-router-dom";
-import {OffersList} from "./offers-list.jsx";
+import {OffersList} from "./offers-list";
+import {ParsedOfferCard} from "../../utils/utils";
 
 const mocData = [
   {
@@ -11,7 +12,9 @@ const mocData = [
     rating: `25%`,
     type: `Apartment`,
     isPremium: true,
-    title: `Just Flat.`
+    title: `Just Flat.`,
+    isFavorite: false,
+    setFavorite: () => {}
   },
   {
     id: `2`,
@@ -20,7 +23,9 @@ const mocData = [
     rating: `50%`,
     type: `Just Flat`,
     isPremium: false,
-    title: `Just plane text.`
+    title: `Just plane text.`,
+    isFavorite: false,
+    setFavorite: () => {}
   },
   {
     id: `3`,
@@ -29,9 +34,10 @@ const mocData = [
     rating: `100%`,
     type: `Private room`,
     isPremium: true,
-    title: `Best place in the World really.Beautiful luxurious apartment at great location`
+    title: `Best place in the World really.Beautiful luxurious apartment at great location`,
+    isFavorite: false,
   }
-];
+] as ParsedOfferCard[];
 
 const onHeaderClick = () => {};
 
@@ -41,10 +47,10 @@ it(`<OffersList /> should render OffersList.`, () => {
         <Router>
           <OffersList
             placeCardsList={mocData}
-            onHeaderClick={onHeaderClick}
             onMouseEnter={jest.fn()}
             onMouseLeave={jest.fn()}
             setFavorite={jest.fn()}
+            isAuthenticated={false}
           />
         </Router>
     )
