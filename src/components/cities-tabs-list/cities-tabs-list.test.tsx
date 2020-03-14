@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {CitiesTabsList} from "./cities-tabs-list";
+import {ParsedCity} from "../../utils/utils";
 
 const locations = [
   {
@@ -13,7 +14,7 @@ const locations = [
     name: `Dusseldorf`,
     location: [51.22172, 6.77616]
   },
-];
+] as unknown as ParsedCity[];
 it(`<CitiesTabsList /> should render CitiesTabsList.`, () => {
   const tree = renderer
     .create(

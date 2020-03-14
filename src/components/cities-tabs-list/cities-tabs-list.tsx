@@ -1,16 +1,12 @@
 import React, {FC, memo} from "react";
 import {CityTab} from "../city-tab/city-tab";
+import {ParsedCity} from "../../utils/utils";
 
-type Location = {
-  id: string;
-  name: string;
-  location: [number, number];
-}
 
 type Props = {
   setCity: (city: string) => void;
   activeCity: string;
-  locations: Location[]
+  locations: ParsedCity[]
 }
 
 const CitiesTabsList: FC<Props> = ({locations = [], setCity, activeCity}) => {
