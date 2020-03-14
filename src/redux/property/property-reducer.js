@@ -13,7 +13,7 @@ const initialState = {
   choosed: {},
 };
 
-export const choosedReducer = (state = initialState, {type, payload}) => {
+export const propertyReducer = (state = initialState, {type, payload}) => {
   switch (type) {
     case SET_COMMENTS:
       return {

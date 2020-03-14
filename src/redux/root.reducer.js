@@ -1,11 +1,11 @@
 import {combineReducers} from "redux";
 import {offersReducer} from "./offers/offer-reducer.js";
 import {userReducer} from "./user/user-reducer.js";
-import {choosedReducer} from './choosed/choosed-reducer.js';
+import {propertyReducer} from './property/property-reducer.js';
 
 export const rootReducer = () =>
   combineReducers({
     offer: offersReducer,
     user: userReducer,
-    choosed: choosedReducer,
+    property: propertyReducer,
   });

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {formStatusSelector} from '../redux/choosed/choosed-selector.js';
-import {sendCommentAsync} from '../redux/choosed/choosed-actions.js';
+import {formStatusSelector} from '../redux/property/property-selectors.js';
+import {sendCommentAsync} from '../redux/property/property-actions.js';
 
 export const RATING = [1, 2, 3, 4, 5];
 const COMMENT_PARAM = {

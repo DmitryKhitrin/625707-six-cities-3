@@ -5,12 +5,12 @@ import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import {useScrollToTop} from '../../hooks/use-scroll-to-top.js';
 import {setFavorite} from "../../redux/offers/offer-actions.js";
 import {authSelector} from "../../redux/user/user-selector.js";
-import {commentsSelector, choosedSelector, nearbySelector} from "../../redux/choosed/choosed-selector.js";
+import {commentsSelector, choosedSelector, nearbySelector} from "../../redux/property/property-selectors.js";
 import {
   getCommentsAcync,
   getNearbyAsync,
   getChoosedOfferAsync,
-} from '../../redux/choosed/choosed-actions.js';
+} from '../../redux/property/property-actions.js';
 
 const PropertyContainer = ({
   match,
