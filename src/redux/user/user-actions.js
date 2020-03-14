@@ -39,7 +39,7 @@ export const setAuthError = (error) => {
 
 export const login = (email, password) => (dispatch, _getState, api) => {
   return api
-    .post(request.user.login(), {email, password})
+    .post(request.login.get(), {email, password})
     .then((response) => {
       if (response.data) {
         dispatch(setLoginParams(response.data));

@@ -1,26 +1,22 @@
-import React, {useMemo, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import {useScrollToTop} from '../../hooks/use-scroll-to-top.js';
 import {setFavorite} from "../../redux/offers/offer-actions.js";
+import {authSelector} from "../../redux/user/user-selector.js";
+import {commentsSelector, choosedSelector, nearbySelector} from "../../redux/choosed/choosed-selector.js";
 import {
   getCommentsAcync,
   getNearbyAsync,
   getChoosedOfferAsync,
 } from '../../redux/choosed/choosed-actions.js';
 
-import {
-  locationsSelector,
-  citySelector,
-} from '../../redux/offers/offer-selectors.js';
-
 const PropertyContainer = ({
   match,
   currentOffer,
   getChoosedOfferAsync: getChoosedOffer,
   getCommentsAcync: getComments,
-  locations,
   isAuthenticated,
   setFavorite: setFavoriteCard,
   reviews,
@@ -36,16 +32,9 @@ const PropertyContainer = ({
     getComments(id);
   }, [getChoosedOffer, getNearby, getComments, id]);
 
-  const city = useMemo(() => {
-    return currentOffer
-      ? locations.find((location) => location.name === currentOffer.city)
-      : undefined;
-  }, [locations, currentOffer]);
-
   return (
     <OfferPropperty
       {...currentOffer}
-      offerCity={city}
       isAuthenticated={isAuthenticated}
       setFavorite={setFavoriteCard}
       reviews={reviews}
@@ -54,12 +43,10 @@ const PropertyContainer = ({
   );
 };
 const mapStateToProps = (state) => ({
-  currentOffer: state.choosed.choosed,
-  locations: locationsSelector(state),
-  isAuthenticated: state.user.authorizationStatus === `AUTH`,
-  reviews: state.choosed.comments,
-  nearby: state.choosed.nearby,
-  city: citySelector(state),
+  currentOffer: choosedSelector(state),
+  isAuthenticated: authSelector(state),
+  reviews: commentsSelector(state),
+  nearby: nearbySelector(state),
 });
 
 const mapDispatchToProps = {
@@ -70,9 +57,7 @@ const mapDispatchToProps = {
 };
 
 PropertyContainer.propTypes = {
-  locations: PropTypes.any,
   setCity: PropTypes.func,
-  city: PropTypes.string,
   getChoosedOfferAsync: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   setFavorite: PropTypes.func.isRequired,

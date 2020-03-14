@@ -12,7 +12,8 @@ export const makeApi = () => {
         return response;
       },
       (error) => {
-        if (error && error.response.status === 401) {
+        const {status} = error.response;
+        if (error && status === 401 || status === 400) {
           history.push(`/login`);
         }
         return Promise.reject(error);

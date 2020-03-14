@@ -7,5 +7,5 @@ export const offersSelector = (state) => state.offer.offers;
 export const offersInCitySelector = createSelector(
     citySelector,
     offersSelector,
-    (city, offers) => offers.filter((card) => card.city === city)
+    (city, offers) => offers.filter((card) => card.city.name === city)
 );

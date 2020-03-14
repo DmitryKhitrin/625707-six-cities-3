@@ -5,8 +5,8 @@ export const request = {
   nearby: {
     get: (hotelId) => `/hotels/${hotelId}/nearby`
   },
-  user: {
-    login: () => `/login`
+  login: {
+    get: () => `/login`
   },
   favorites: {
     get: () => `/favorite`,

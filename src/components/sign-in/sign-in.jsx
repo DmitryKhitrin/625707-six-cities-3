@@ -1,13 +1,12 @@
 import React, {memo, useCallback} from "react";
 import PropTypes from "prop-types";
 import {withLogin} from "../../hocs/with-login.jsx";
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const SignIn = ({setCity, handleChange, handleSubmit}) => {
-  const history = useHistory();
   const onSubmit = useCallback((evt) => {
-    handleSubmit(evt, history);
-  }, [handleSubmit, history]);
+    handleSubmit(evt);
+  }, [handleSubmit]);
 
   return (
     <main className="page__main page__main--login">

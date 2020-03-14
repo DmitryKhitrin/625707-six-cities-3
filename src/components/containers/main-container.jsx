@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
 import {useMountEffect} from "../../hooks/use-mount-effect.js";
 import {useScrollToTop} from "../../hooks/use-scroll-to-top.js";
+import {authSelector} from "../../redux/user/user-selector.js";
 import {WrappedMain} from "../main/main.jsx";
 import {
   locationsSelector,
@@ -29,7 +30,7 @@ const mapStateToProps = (state) => ({
   locations: locationsSelector(state),
   city: citySelector(state),
   placeCardsList: offersInCitySelector(state),
-  isAuthenticated: state.user.authorizationStatus === `AUTH`
+  isAuthenticated: authSelector(state),
 });
 
 const mapDispatchToProps = {

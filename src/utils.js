@@ -9,6 +9,11 @@ const parseUser = ({avatar_url: personPhoto, name: personName, id, is_prop: isPr
   isProp,
 });
 
+const parseCity = ({name, location}) => ({
+  name,
+  location: [parseFloat(location.latitude), parseFloat(location.longitude)],
+});
+
 export const parseOffer = ({
   preview_image: previewImage,
   images,
@@ -43,7 +48,7 @@ export const parseOffer = ({
     location: [location.latitude, location.longitude],
     description,
     id: String(id),
-    city: city.name
+    city: parseCity(city)
   };
 };
 
@@ -51,11 +56,7 @@ export const parseCities = (offers) => {
   const citiesList = new Set();
   return offers.map((offer) => {
     const {city} = offer;
-    const {name, location} = city;
-    return {
-      name,
-      location: [parseFloat(location.latitude), parseFloat(location.longitude)],
-    };
+    return parseCity(city);
   }
   ).filter((city) => {
     if (!citiesList.has(city.name)) {
@@ -72,11 +73,13 @@ export const parseFavorites = (favorites) => {
   }
   return favorites.reduce((acc, offer) => {
     const parsedOffer = parseOffer(offer);
-    const {city} = parsedOffer;
-    if (acc[city]) {
-      acc[city] = [...acc[city], parsedOffer];
+    const {city: {
+      name,
+    }} = parsedOffer;
+    if (acc[name]) {
+      acc[name] = [...acc[name], parsedOffer];
     } else {
-      acc[city] = [parsedOffer];
+      acc[name] = [parsedOffer];
     }
     return acc;
   }, {});

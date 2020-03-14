@@ -7,7 +7,6 @@ import {
 } from './types.js';
 import {request} from "../../api/config.js";
 import {parseComment, parseOffer} from '../../utils.js';
-import {setOffers} from "../offers/offer-actions.js";
 
 const setComments = (comments) => {
   const parsedComments = comments.map(parseComment);
@@ -58,7 +57,6 @@ export const getChoosedOfferAsync = (id) => (dispatch, _getState, api) => {
       .get(request.hotels.get())
       .then((response) => {
         dispatch(setChoosed(id, response.data));
-        dispatch(setOffers(response.data));
       })
       .catch(() => {});
 };
