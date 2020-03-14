@@ -4,7 +4,7 @@ import {PropTypes} from "prop-types";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
 import {useScrollToTop} from '../../hooks/use-scroll-to-top.js';
 import {setFavorite} from "../../redux/offers/offer-actions.js";
-import {authSelector} from "../../redux/user/user-selector.js";
+import {authSelector} from "../../redux/user/user-selectors.js";
 import {commentsSelector, choosedSelector, nearbySelector} from "../../redux/property/property-selectors.js";
 import {
   getCommentsAcync,
