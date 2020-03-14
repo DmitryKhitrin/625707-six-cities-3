@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {BrowserRouter as Router} from "react-router-dom";
-import {PlaceCard} from "./place-card.jsx";
+import {PlaceCard} from "./place-card";
 
 const mockedCard = {
   id: `1`,
@@ -12,15 +12,16 @@ const mockedCard = {
   isPremium: true,
   title: `Best place in the World really.Beautiful luxurious apartment at great location`,
   onMouseLeave: () => {},
-  onHeaderClick: () => {},
   onMouseEnter: () => {},
+  isFavorite: false,
+  setFavorite: () => {}
 };
 
 const onHeaderClick = () => {};
 
 it(`<PlaceCard /> should render place-card.`, () => {
   const tree = renderer
-    .create(<Router><PlaceCard {...mockedCard} onHeaderClick={onHeaderClick} /></Router>)
+    .create(<Router><PlaceCard {...mockedCard} /></Router>)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

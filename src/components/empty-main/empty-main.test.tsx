@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {EmptyMain} from "./empty-main.jsx";
+import {EmptyMain} from "./empty-main";
 
 it(`Should render EmptyMain`, () => {
   const tree = renderer

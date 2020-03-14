@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {PlaceCard} from "./place-card.jsx";
+import {PlaceCard} from "./place-card";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -22,7 +22,8 @@ describe(`<PlaceCard /> tests.`, () => {
           title={`Just plane text.`}
           onMouseEnter={onMouseEnter}
           onMouseLeave={() => {}}
-          onHeaderClick={() => {}}
+          isFavorite={false}
+          setFavorite={() => {}}
         />
     );
 

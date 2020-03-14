@@ -1,7 +1,7 @@
 import React, {memo, useMemo} from "react";
 import PropTypes from "prop-types";
 import {FavoriteLoacation} from "../favorite-location/favorite-location.jsx";
-import {EmptyFavorites} from "../empty-favorites/empty-favorites.jsx";
+import {EmptyFavorites} from "../empty-favorites/empty-favorites";
 
 const Favorites = ({favorites = {}, setFavorite = () => {}, getFavoriteAsync = () => {}}) => {
   const isFavoritesEmpty = useMemo(() => Object.keys(favorites).length > 0, [

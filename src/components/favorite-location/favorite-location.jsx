@@ -1,6 +1,6 @@
 import React, {memo} from "react";
 import PropTypes from "prop-types";
-import {PlaceCard} from "../place-card/place-card.jsx";
+import {PlaceCard} from "../place-card/place-card";
 
 const FavoriteLoacation = ({
   city,

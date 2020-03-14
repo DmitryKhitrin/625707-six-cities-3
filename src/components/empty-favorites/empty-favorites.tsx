@@ -1,6 +1,6 @@
-import React from "react";
+import React, {FC} from "react";
 
-export const EmptyFavorites = () => {
+export const EmptyFavorites: FC = () => {
   return (
     <main className="page__main page__main--favorites page__main--favorites-empty">
       <div className="page__favorites-container container">

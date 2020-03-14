@@ -1,8 +1,21 @@
-import React, {memo} from "react";
+import React, {memo, FC} from "react";
 import {Link} from "react-router-dom";
-import {PropTypes} from 'prop-types';
 
-const PlaceCard = ({
+export type Props = {
+  id: string;
+  price: number;
+  previewImage: string;
+  title: string;
+  rating: string;
+  type: string;
+  isPremium: boolean;
+  onMouseEnter?: (id: string) => void;
+  onMouseLeave?: () => void;
+  isFavorite: boolean;
+  setFavorite: () => void;
+}
+
+const PlaceCard: FC<Props> = ({
   price,
   previewImage,
   title,
@@ -79,17 +92,3 @@ const PlaceCard = ({
 
 const MemoizedPlaceCard = memo(PlaceCard);
 export {MemoizedPlaceCard as PlaceCard};
-
-PlaceCard.propTypes = {
-  id: PropTypes.string.isRequired,
-  price: PropTypes.number,
-  previewImage: PropTypes.string,
-  title: PropTypes.string,
-  rating: PropTypes.string,
-  type: PropTypes.string,
-  isPremium: PropTypes.bool,
-  onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func,
-  isFavorite: PropTypes.bool,
-  setFavorite: PropTypes.func
-};

@@ -1,7 +1,7 @@
 import React, {memo} from "react";
 import {PropTypes} from "prop-types";
-import {PlaceCard} from "../place-card/place-card.jsx";
 import {useHistory} from "react-router-dom";
+import {PlaceCard} from "../place-card/place-card";
 
 const OffersList = ({
   placeCardsList,

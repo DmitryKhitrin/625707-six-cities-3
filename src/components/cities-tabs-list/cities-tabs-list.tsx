@@ -1,8 +1,19 @@
-import React, {memo} from "react";
-import {PropTypes} from "prop-types";
-import {CityTab} from "../city-tab/city-tab.jsx";
+import React, {FC, memo} from "react";
+import {CityTab} from "../city-tab/city-tab";
 
-const CitiesTabsList = ({locations = [], setCity, activeCity}) => {
+type Location = {
+  id: string;
+  name: string;
+  location: number[];
+}
+
+type Props = {
+  setCity: (city: string) => void;
+  activeCity: string;
+  locations: Location[]
+}
+
+const CitiesTabsList: FC<Props> = ({locations = [], setCity, activeCity}) => {
   return (
     <div className="cities tabs">
       <section className="locations container">
@@ -26,16 +37,3 @@ const CitiesTabsList = ({locations = [], setCity, activeCity}) => {
 
 const MemoizedCitiesTabsList = memo(CitiesTabsList);
 export {MemoizedCitiesTabsList as CitiesTabsList};
-
-
-CitiesTabsList.propTypes = {
-  locations: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        cityName: PropTypes.string,
-        location: PropTypes.any
-      })
-  ).isRequired,
-  setCity: PropTypes.func.isRequired,
-  activeCity: PropTypes.string.isRequired,
-};
