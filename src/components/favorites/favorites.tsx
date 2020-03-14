@@ -1,9 +1,17 @@
-import React, {memo, useMemo} from "react";
+import React, {FC, memo, useMemo} from "react";
 import PropTypes from "prop-types";
-import {FavoriteLoacation} from "../favorite-location/favorite-location.jsx";
+import {FavoriteLoacation} from "../favorite-location/favorite-location";
 import {EmptyFavorites} from "../empty-favorites/empty-favorites";
+import {FavoriteMap} from "../../utils/utils";
 
-const Favorites = ({favorites = {}, setFavorite = () => {}, getFavoriteAsync = () => {}}) => {
+type Props = {
+  setCity: (T: string) => void;
+  getFavoriteAsync: () => void;
+  setFavorite: (T: string, S: number) => void;
+  favorites: FavoriteMap;
+}
+
+const Favorites: FC<Props> = ({favorites = {}, setFavorite = () => {}, getFavoriteAsync = () => {}}) => {
   const isFavoritesEmpty = useMemo(() => Object.keys(favorites).length > 0, [
     favorites
   ]);
@@ -39,9 +47,3 @@ const Favorites = ({favorites = {}, setFavorite = () => {}, getFavoriteAsync = (
 
 const MemoizedFavorites = memo(Favorites);
 export {MemoizedFavorites as Favorites};
-
-Favorites.propTypes = {
-  favorites: PropTypes.object,
-  setFavorite: PropTypes.func,
-  getFavoriteAsync: PropTypes.func
-};

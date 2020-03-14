@@ -9,7 +9,7 @@ import {Footer} from "../footer/footer";
 import {PropertyContainer} from "../containers/property-container.jsx";
 // import {LoginContainer} from "../containers/login-container.jsx";
 import {SignIn} from "../sign-in/sign-in";
-import FavoritesContainer from "../containers/favorites-container.jsx";
+import {FavoritesContainer} from "../containers/favorites-container";
 import Header from "../containers/header-container.jsx";
 import {history} from "../../utils/history";
 

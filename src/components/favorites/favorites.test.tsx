@@ -1,11 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {BrowserRouter as Router} from "react-router-dom";
-import {Favorites} from "./favorites.jsx";
+import {Favorites} from "./favorites";
+import {ParsedOfferCard} from "../../utils/utils";
 
 const moc = {
   getFavoriteAsync: jest.fn(),
   setFavorite: jest.fn(),
+  setCity: jest.fn(),
   favorites: {
     Paris: [
       {
@@ -26,7 +28,7 @@ const moc = {
         isPremium: true,
         title: `Best place in the World really.Beautiful luxurious apartment at great location`
       }
-    ]
+    ] as unknown as ParsedOfferCard[]
   }
 };
 it(`<Favorites /> should render Favorites.`, () => {

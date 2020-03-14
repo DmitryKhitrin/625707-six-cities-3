@@ -1,8 +1,16 @@
-import React, {memo} from "react";
+import React, {FC, memo} from "react";
 import PropTypes from "prop-types";
 import {PlaceCard} from "../place-card/place-card";
+import {ParsedOfferCard} from "../../utils/utils";
 
-const FavoriteLoacation = ({
+type Props = {
+  setFavorite: (T: string, S: number) => void;
+  favorites: ParsedOfferCard[];
+  city: string;
+  getFavoriteAsync: () => void;
+}
+
+const FavoriteLoacation: FC<Props> = ({
   city,
   favorites,
   setFavorite = () => {},

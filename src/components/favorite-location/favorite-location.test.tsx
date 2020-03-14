@@ -1,7 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {BrowserRouter as Router} from "react-router-dom";
-import {FavoriteLoacation} from "./favorite-location.jsx";
+import {FavoriteLoacation} from "./favorite-location";
+import {ParsedOfferCard} from "../../utils/utils";
 
 const moc = {
   city: `Paris`,
@@ -26,7 +27,7 @@ const moc = {
       isPremium: true,
       title: `Best place in the World really.Beautiful luxurious apartment at great location`
     }
-  ]
+  ] as unknown as ParsedOfferCard[]
 };
 it(`<FavoriteLoacation /> should render FavoriteLoacation.`, () => {
   const tree = renderer
