@@ -1,8 +1,25 @@
 import React, {PureComponent} from "react";
+import {Subtract} from "utility-types";
 
-export const withActiveItem = (Component) => {
-  class WithActiveItem extends PureComponent {
-    constructor(props) {
+type State = {
+  activeItem: string;
+}
+
+type InjectedProps = {
+  activeItem: string;
+  setActiveItem: (T: string) => void;
+  removeActiveItem: () => void;
+}
+
+export const withActiveItem = (Component: any) => {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectedProps>;
+
+  class WithActiveItem extends PureComponent<T, State> {
+    state: State;
+    props: T;
+
+    constructor(props: P) {
       super(props);
 
       this.state = {
@@ -19,7 +36,7 @@ export const withActiveItem = (Component) => {
       });
     }
 
-    _setActiveItem(value) {
+    _setActiveItem(value: string) {
       this.setState({activeItem: value});
     }
 

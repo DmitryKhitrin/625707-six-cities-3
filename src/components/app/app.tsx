@@ -8,6 +8,7 @@ import {MainContainer} from "../containers/main-container";
 import {Footer} from "../footer/footer";
 import {PropertyContainer} from "../containers/property-container";
 import {SignIn} from "../sign-in/sign-in";
+import {LoginContainer} from "../containers/login-container";
 import {FavoritesContainer} from "../containers/favorites-container";
 import {HeaderContainer} from "../containers/header-container";
 import {history} from "../../utils/history";
@@ -24,7 +25,7 @@ const App: FC<Props> = ({isAuthenticated}) => {
       <Switch>
         <Route path="/" component={MainContainer} exact />
         <Route path="/offer/:id" component={PropertyContainer} />
-        <Route path="/login" exact={true} component={SignIn} />
+        <Route path="/login" exact={true} component={LoginContainer} />
         {isAuthenticated ? (
           <Route path="/favorites" component={FavoritesContainer} />
         ) : (

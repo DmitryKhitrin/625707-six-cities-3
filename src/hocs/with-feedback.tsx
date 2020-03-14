@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {Subtract} from "utility-types";
 import {formStatusSelector} from "../redux/property/property-selectors";
 import {sendCommentAsync} from "../redux/property/property-actions";
 
@@ -9,8 +10,21 @@ const COMMENT_PARAM = {
   max: 300,
 };
 
-export const withFeedback = (Component) => {
-  const WithFeedback = (props) => {
+type InjectedProps = {
+  comment: string;
+  rating: number
+  isSubmiteButtonDisabled: boolean
+  setStarsCount: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setCommentText: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onSubmite: (event: React.FormEvent<HTMLFormElement>, id: string) => void;
+}
+
+
+export const withFeedback = (Component: any) => {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectedProps>;
+
+  const WithFeedback = (props: T) => {
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState(``);
 
@@ -22,11 +36,11 @@ export const withFeedback = (Component) => {
       setComment(``);
     };
 
-    const setStarsCount = (evt) => {
+    const setStarsCount = (evt: React.ChangeEvent<HTMLInputElement>) => {
       setRating(Number(evt.target.value));
     };
 
-    const setCommentText = (evt) => {
+    const setCommentText = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
       const commentText = evt.target.value;
       const {max} = COMMENT_PARAM;
       if (commentText.length > max) {
@@ -35,7 +49,7 @@ export const withFeedback = (Component) => {
       setComment(commentText);
     };
 
-    const onSubmitForm = (evt, hotelId) => {
+    const onSubmitForm = (evt: React.FormEvent<HTMLFormElement>, hotelId: string) => {
       evt.preventDefault();
       dispatch(sendCommentAsync(hotelId, rating, comment));
       reset();

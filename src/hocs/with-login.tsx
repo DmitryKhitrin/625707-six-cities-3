@@ -1,13 +1,25 @@
 import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {login} from "../redux/user/user-actions";
-import {setCity} from "../redux/offers/offer-actions";
-// import {RootState} from "../../redux/root-reducer";
+import {Subtract} from "utility-types";
 
-export const withLogin = (Component) => {
+type State = {
+  email: string;
+  password: string;
+}
+
+type InjectedProps = {
+  handleChange: (T: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (T: React.FormEvent<HTMLFormElement>) => void;
+}
+
+export const withLogin = (Component: any) => {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectedProps>;
+
   class WithLogin extends PureComponent {
-    constructor(props) {
+    state: State;
+    props: T;
+
+    constructor(props: T) {
       super(props);
 
       this.state = {
@@ -19,7 +31,7 @@ export const withLogin = (Component) => {
       this._handleChange = this._handleChange.bind(this);
     }
 
-    _handleSubmit(evt) {
+    _handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
       evt.preventDefault();
 
       const {email, password} = this.state;
@@ -28,7 +40,7 @@ export const withLogin = (Component) => {
       onLogin(email, password);
     }
 
-    _handleChange(evt) {
+    _handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
       const {value, name} = evt.target;
 
       this.setState({
@@ -47,25 +59,7 @@ export const withLogin = (Component) => {
     }
   }
 
-  WithLogin.propTypes = {
-    login: PropTypes.func.isRequired
-  };
-
-  const mapStateToProps = ({user}) => {
-    return {
-      isAuthenticated: user.authorizationStatus,
-    };
-  };
-
-  const mapDispatchToProps = {
-    setCity,
-    login,
-  };
-
-  return connect(
-      mapStateToProps,
-      mapDispatchToProps
-  )(WithLogin);
+  return WithLogin;
 
 };
 

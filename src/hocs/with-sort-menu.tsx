@@ -1,9 +1,27 @@
 import React, {PureComponent} from "react";
+import {Subtract} from "utility-types";
 import {sortTypes} from "../utils/sort-types";
 
-export const withSortMenu = (Component) => {
+type InjectedProps = {
+  isMenuOpen: boolean;
+  sortType: string;
+  setSortType: (T: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  toggleSortMenu: () => void;
+}
+
+type LocalState = {
+  sortType: string;
+  isMenuOpen: boolean;
+}
+
+export const withSortMenu = (Component: any) => {
+
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectedProps>;
+
   class WithActiveItem extends PureComponent {
-    constructor(props) {
+    state: LocalState;
+    constructor(props: T) {
       super(props);
       this.state = {
         sortType: sortTypes.POPULAR,
@@ -15,10 +33,10 @@ export const withSortMenu = (Component) => {
     }
 
     componentWillUnmount() {
-      this.setState(this.setState({
+      this.setState({
         sortType: sortTypes.POPULAR,
         isMenuOpen: false
-      }));
+      });
     }
 
     _closeMenu() {
@@ -33,8 +51,8 @@ export const withSortMenu = (Component) => {
       });
     }
 
-    _setSortType(evt) {
-      this.setState({sortType: evt.target.textContent});
+    _setSortType(event: any) {
+      this.setState({sortType: event.target.textContent});
       this._closeMenu();
     }
 
