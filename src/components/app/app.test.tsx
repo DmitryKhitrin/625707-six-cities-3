@@ -13,7 +13,7 @@ describe(`App`, () => {
         .create(
             <Provider store={store}>
               <Router>
-                <App isAuthenticated={false} />
+                <App />
               </Router>
             </Provider>,
         )
