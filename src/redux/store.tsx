@@ -1,7 +1,7 @@
 import {createStore, compose, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
-import {makeApi} from "../api/api.js";
-import {rootReducer} from "./root-reducer.js";
+import {makeApi} from "../api/api";
+import {rootReducer} from "./root-reducer";
 
 const api = makeApi();
 export const store = createStore(

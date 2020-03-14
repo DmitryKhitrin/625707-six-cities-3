@@ -6,7 +6,7 @@ import {
   setCity,
   getFavoriteAsync,
   setFavorite
-} from "../../redux/offers/offer-actions.js";
+} from "../../redux/offers/offer-actions";
 import {Favorites} from "../favorites/favorites.jsx";
 
 const FavoritesContainer = (props) => {

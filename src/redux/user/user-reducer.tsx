@@ -1,4 +1,4 @@
-import {LOG_IN, LOG_OUT, SET_AUTH_ERROR} from "./types.js";
+import {LOG_IN, LOG_OUT, SET_AUTH_ERROR} from "./types";
 import {ParsedLoginParams, UserAction} from "./user-actions";
 
 export type UserState = {

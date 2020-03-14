@@ -10,7 +10,7 @@ export const request = {
   },
   favorites: {
     get: () => `/favorite`,
-    post: (hotelId: string, status: string) => `/favorite/${hotelId}/${status}`,
+    post: (hotelId: string, status: number) => `/favorite/${hotelId}/${status}`,
   },
   comments: {
     get: (hotelId: string) => `/comments/${hotelId}`,

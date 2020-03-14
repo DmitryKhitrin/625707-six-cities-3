@@ -3,19 +3,19 @@ import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
 import {useMountEffect} from "../../hooks/use-mount-effect.js";
 import {useScrollToTop} from "../../hooks/use-scroll-to-top.js";
-import {authSelector} from "../../redux/user/user-selectors.js";
+import {authSelector} from "../../redux/user/user-selectors";
 import {WrappedMain} from "../main/main.jsx";
 import {
   locationsSelector,
   citySelector,
   offersInCitySelector,
-} from "../../redux/offers/offer-selectors.js";
+} from "../../redux/offers/offer-selectors";
 
 import {
   setCity,
   loadOffers,
   setFavorite,
-} from "../../redux/offers/offer-actions.js";
+} from "../../redux/offers/offer-actions";
 
 const MainContainer = (props) => {
   useMountEffect(() => {

@@ -1,22 +1,42 @@
+import {Action} from "redux";
 import {
   SET_CITY,
   SET_OFFERS,
   UPDATE_OFFERS_INFO,
   SET_FAVORITE,
-} from "./types.js";
+} from "./types";
 import {request} from "../../api/config";
-import {offersSelector} from "./offer-selectors.js";
+import {offersSelector} from "./offer-selectors";
+import {
+  parseCities,
+  parseOffer,
+  parseFavorites,
+  OfferCard,
+  ParsedOfferCard,
+  FavoriteMap,
+  ParsedCity
+} from "../../utils/utils";
+import {ThunkAction} from "../../utils/types";
+import {RootState} from "../root-reducer";
 
-import {parseCities, parseOffer, parseFavorites} from "../../utils/utils";
+type SetCity = {
+  type: typeof SET_CITY,
+  payload: string;
+}
 
-export const setCity = (city) => {
+export const setCity = (city: string): SetCity => {
   return {
     type: SET_CITY,
     payload: city,
   };
 };
 
-export const loadOffers = () => (dispatch, getState, api) => {
+export const loadOffers = (): ThunkAction<
+void,
+RootState,
+unknown,
+Action<string>
+> => (dispatch, getState, api) => {
   return api
     .get(request.hotels.get())
     .then((response) => {
@@ -25,7 +45,15 @@ export const loadOffers = () => (dispatch, getState, api) => {
     .catch(() => {});
 };
 
-export const setOffers = (hotels) => {
+type SetOffers = {
+  type: typeof SET_OFFERS;
+  payload: {
+    locations: ParsedCity[];
+    offers: ParsedOfferCard[];
+  }
+}
+
+export const setOffers = (hotels: OfferCard[]): SetOffers => {
   const locations = parseCities(hotels);
   const offers = hotels.map(parseOffer);
   return {
@@ -34,7 +62,15 @@ export const setOffers = (hotels) => {
   };
 };
 
-const updateFavorite = (favorites) => {
+type UpdateFavorite = {
+  type: typeof SET_FAVORITE;
+  payload: {
+      favorites: FavoriteMap
+
+  }
+}
+
+const updateFavorite = (favorites: OfferCard[]): UpdateFavorite => {
   const parsedFavorites = parseFavorites(favorites);
   return {
     type: SET_FAVORITE,
@@ -44,7 +80,14 @@ const updateFavorite = (favorites) => {
   };
 };
 
-export const updateOffer = (newOffer, oldOffers) => {
+type UpdateOffer = {
+  type: typeof UPDATE_OFFERS_INFO;
+  payload: {
+    offers: ParsedOfferCard[]
+  }
+}
+
+export const updateOffer = (newOffer: OfferCard, oldOffers: ParsedOfferCard[]): UpdateOffer => {
   const parsedNewOffer = parseOffer(newOffer);
   const insertIndex = oldOffers.findIndex(
       (item) => item.id === parsedNewOffer.id
@@ -64,7 +107,7 @@ export const updateOffer = (newOffer, oldOffers) => {
   };
 };
 
-export const setFavorite = (hotelId, status) => (
+export const setFavorite = (hotelId: string, status: number): ThunkAction<void, RootState, unknown, Action<string>> => (
     dispatch,
     getState,
     api
@@ -80,7 +123,12 @@ export const setFavorite = (hotelId, status) => (
     .catch(() => {});
 };
 
-export const getFavoriteAsync = () => (dispatch, _getState, api) => {
+export const getFavoriteAsync = (): ThunkAction<
+void,
+RootState,
+unknown,
+Action<string>
+> => (dispatch, getState, api) => {
   return api
     .get(request.favorites.get())
     .then((response) => {
@@ -90,3 +138,5 @@ export const getFavoriteAsync = () => (dispatch, _getState, api) => {
     })
     .catch(() => {});
 };
+
+export type OfferAction = SetCity | SetOffers | UpdateFavorite | UpdateOffer;

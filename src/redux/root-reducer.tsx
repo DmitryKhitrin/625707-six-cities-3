@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import {offersReducer} from "./offers/offer-reducer.js";
+import {offersReducer, OfferState} from "./offers/offer-reducer";
 import {userReducer, UserState} from "./user/user-reducer";
 import {propertyReducer} from './property/property-reducer.js';
 

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {Router, Route, Switch, Redirect} from "react-router-dom";
-import {authSelector} from "../../redux/user/user-selectors.js";
+import {authSelector} from "../../redux/user/user-selectors";
 import {connect} from 'react-redux';
 
 import {MainContainer} from "../containers/main-container.jsx";
@@ -10,7 +10,7 @@ import {PropertyContainer} from "../containers/property-container.jsx";
 import LoginContainer from "../containers/login-container.jsx";
 import FavoritesContainer from "../containers/favorites-container.jsx";
 import Header from "../containers/header-container.jsx";
-import {history} from "../../utils/history.js";
+import {history} from "../../utils/history";
 
 const App = ({isAuthenticated}) => {
   return (
