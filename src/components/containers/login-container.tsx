@@ -5,11 +5,14 @@ import {setCity} from "../../redux/offers/offer-actions";
 import {SignIn} from "../../components/sign-in/sign-in";
 import {authSelector} from "../../redux/user/user-selectors";
 import {RootState} from "../../redux/root-reducer";
+import {withLogin} from "../../hocs/with-login";
 
 type Props = {
   isAuthenticated: boolean;
   setCity: (T: string) => void;
   login: () => void;
+  handleChange: (T: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (T: React.FormEvent<HTMLFormElement>) => void;
 };
 
 const LoginContainer: FC<Props> = (props) => {
@@ -28,5 +31,5 @@ const mapDispatchToProps = {
   login,
 };
 
-const WrappedLoginContainer = memo(connect(mapStateToProps, mapDispatchToProps)(LoginContainer));
+const WrappedLoginContainer = memo(connect(mapStateToProps, mapDispatchToProps)(withLogin(LoginContainer)));
 export {WrappedLoginContainer as LoginContainer};

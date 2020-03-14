@@ -1,6 +1,4 @@
 import React, {FC, memo, useCallback} from "react";
-import PropTypes from "prop-types";
-import {withLogin} from "../../hocs/with-login";
 import {Link} from "react-router-dom";
 
 type Props = {
@@ -68,6 +66,6 @@ const SignIn: FC<Props> = ({setCity, handleChange, handleSubmit}) => {
   );
 };
 
-export const WrappedSignIn = memo(withLogin(SignIn));
+export const WrappedSignIn = memo(SignIn);
 export {WrappedSignIn as SignIn};
 export {SignIn as TestSignIn};
