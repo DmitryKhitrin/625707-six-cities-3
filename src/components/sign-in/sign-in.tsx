@@ -1,9 +1,15 @@
-import React, {memo, useCallback} from "react";
+import React, {FC, memo, useCallback} from "react";
 import PropTypes from "prop-types";
 import {withLogin} from "../../hocs/with-login.jsx";
 import {Link} from "react-router-dom";
 
-const SignIn = ({setCity, handleChange, handleSubmit}) => {
+type Props = {
+  setCity: (T: string) => void;
+  handleChange: (T: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (T: React.FormEvent<HTMLFormElement>) => void
+}
+
+const SignIn: FC<Props> = ({setCity, handleChange, handleSubmit}) => {
   const onSubmit = useCallback((evt) => {
     handleSubmit(evt);
   }, [handleSubmit]);
@@ -62,12 +68,6 @@ const SignIn = ({setCity, handleChange, handleSubmit}) => {
   );
 };
 
-SignIn.propTypes = {
-  handleChange: PropTypes.func,
-  handleSubmit: PropTypes.func,
-  setCity: PropTypes.func,
-};
-
-export const WrappedSignIn = withLogin(memo(SignIn));
+export const WrappedSignIn = memo(withLogin(SignIn));
 export {WrappedSignIn as SignIn};
-export default SignIn;
+export {SignIn as TestSignIn};

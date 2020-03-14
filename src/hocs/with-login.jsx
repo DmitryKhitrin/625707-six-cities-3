@@ -1,5 +1,9 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {login} from "../redux/user/user-actions";
+import {setCity} from "../redux/offers/offer-actions";
+// import {RootState} from "../../redux/root-reducer";
 
 export const withLogin = (Component) => {
   class WithLogin extends PureComponent {
@@ -19,9 +23,9 @@ export const withLogin = (Component) => {
       evt.preventDefault();
 
       const {email, password} = this.state;
-      const {login} = this.props;
+      const {login: onLogin} = this.props;
 
-      login(email, password);
+      onLogin(email, password);
     }
 
     _handleChange(evt) {
@@ -47,7 +51,23 @@ export const withLogin = (Component) => {
     login: PropTypes.func.isRequired
   };
 
-  return WithLogin;
+  const mapStateToProps = ({user}) => {
+    return {
+      isAuthenticated: user.authorizationStatus,
+    };
+  };
+
+  const mapDispatchToProps = {
+    setCity,
+    login,
+  };
+
+  return connect(
+      mapStateToProps,
+      mapDispatchToProps
+  )(WithLogin);
+
 };
+
 
 export default withLogin;

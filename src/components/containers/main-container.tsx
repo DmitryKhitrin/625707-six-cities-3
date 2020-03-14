@@ -1,6 +1,5 @@
-import React from "react";
+import React, {FC, memo} from "react";
 import {connect} from "react-redux";
-import {PropTypes} from "prop-types";
 import {useMountEffect} from "../../hooks/use-mount-effect";
 import {useScrollToTop} from "../../hooks/use-scroll-to-top";
 import {authSelector} from "../../redux/user/user-selectors";
@@ -10,23 +9,34 @@ import {
   citySelector,
   offersInCitySelector,
 } from "../../redux/offers/offer-selectors";
-
 import {
   setCity,
   loadOffers,
   setFavorite,
 } from "../../redux/offers/offer-actions";
+import {RootState} from "../../redux/root-reducer";
+import {ParsedOfferCard, ParsedCity} from "../../utils/utils";
 
-const MainContainer = (props) => {
+type Props = {
+  locations: ParsedCity[];
+  city: string;
+  placeCardsList: ParsedOfferCard[];
+  isAuthenticated: boolean;
+  setCity: (city: string) => void;
+  loadOffers: () => void;
+  setFavorite: (hotelId: string, status: number) => void;
+}
+
+const MainContainer: FC<Props> = (props) => {
   useMountEffect(() => {
     props.loadOffers();
   });
 
   useScrollToTop();
 
-  return <WrappedMain {...props} />;
+  return <Main {...props} />;
 };
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
   locations: locationsSelector(state),
   city: citySelector(state),
   placeCardsList: offersInCitySelector(state),
@@ -39,16 +49,5 @@ const mapDispatchToProps = {
   setFavorite,
 };
 
-
-MainContainer.propTypes = {
-  placeCardsList: PropTypes.array.isRequired,
-  locations: PropTypes.any,
-  setCity: PropTypes.func,
-  city: PropTypes.string,
-  setFavorite: PropTypes.func.isRequired,
-  loadOffers: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-};
-
-const WrappedMainContainer = connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+const WrappedMainContainer = memo(connect(mapStateToProps, mapDispatchToProps)(MainContainer));
 export {WrappedMainContainer as MainContainer};

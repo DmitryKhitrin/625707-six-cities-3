@@ -1,12 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import SignIn from "./sign-in.jsx";
+import {TestSignIn} from "./sign-in";
 import {BrowserRouter as Router} from "react-router-dom";
 it(`<SignIn /> should render SignIn.`, () => {
   const tree = renderer
     .create(
         <Router>
-          <SignIn />
+          <TestSignIn setCity={jest.fn()} handleChange={jest.fn()} handleSubmit={jest.fn()} />
         </Router>
     )
     .toJSON();
