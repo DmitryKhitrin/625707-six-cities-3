@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {PropertiesInsideList} from "./properties-inside-list.jsx";
+import {PropertiesInsideList} from "./properties-inside-list";
 
 const mocData = [`Ванная`, `Камин`, `Стул`, `Стол`, `Ложка`];
 

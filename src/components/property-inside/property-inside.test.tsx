@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {ProppertyInside} from "./property-inside.jsx";
+import {ProppertyInside} from "./property-inside";
 
 const mocData = `Душик`;
 
