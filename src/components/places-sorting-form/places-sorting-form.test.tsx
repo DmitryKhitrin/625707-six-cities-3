@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {PlacesSortingForm} from "./places-sorting-form.jsx";
+import {PlacesSortingForm} from "./places-sorting-form";
 
 describe(`<PlacesSortingForm /> should render PlacesSortingForm.`, () => {
   it(`<PlacesSortingForm /> should render PlacesSortingForm with opened menu.`, () => {

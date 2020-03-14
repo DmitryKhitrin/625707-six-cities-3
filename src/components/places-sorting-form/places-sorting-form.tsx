@@ -1,7 +1,13 @@
-import React, {memo} from "react";
-import {PropTypes} from "prop-types";
+import React, {FC, memo} from "react";
 
-const PlacesSortingForm = ({
+type Props = {
+  sortType: string;
+  setSortType: () => void;
+  toggleSortMenu: () => void;
+  isMenuOpen: boolean;
+}
+
+const PlacesSortingForm: FC<Props> = ({
   sortType = ``,
   setSortType = () => {},
   toggleSortMenu = () => {},
@@ -12,7 +18,7 @@ const PlacesSortingForm = ({
       <span className="places__sorting-caption">Sort by</span>
       <span
         className="places__sorting-type"
-        tabIndex="0"
+        tabIndex={0}
         onClick={toggleSortMenu}
       >
         {sortType}
@@ -29,7 +35,7 @@ const PlacesSortingForm = ({
           className={`places__option ${
             sortType === `Popular` ? `places__option--active` : ``
           }`}
-          tabIndex="0"
+          tabIndex={0}
           onClick={setSortType}
         >
           Popular
@@ -38,7 +44,7 @@ const PlacesSortingForm = ({
           className={`places__option ${
             sortType === `Price: low to high` ? `places__option--active` : ``
           }`}
-          tabIndex="0"
+          tabIndex={0}
           onClick={setSortType}
         >
           Price: low to high
@@ -47,7 +53,7 @@ const PlacesSortingForm = ({
           className={`places__option ${
             sortType === `Price: high to low` ? `places__option--active` : ``
           }`}
-          tabIndex="0"
+          tabIndex={0}
           onClick={setSortType}
         >
           Price: high to low
@@ -56,7 +62,7 @@ const PlacesSortingForm = ({
           className={`places__option ${
             sortType === `Top rated first` ? `places__option--active` : ``
           }`}
-          tabIndex="0"
+          tabIndex={0}
           onClick={setSortType}
         >
           Top rated first
@@ -68,10 +74,3 @@ const PlacesSortingForm = ({
 
 const MemoizedPlacesSortingForm = memo(PlacesSortingForm);
 export {MemoizedPlacesSortingForm as PlacesSortingForm};
-
-PlacesSortingForm.propTypes = {
-  sortType: PropTypes.string.isRequired,
-  setSortType: PropTypes.func.isRequired,
-  toggleSortMenu: PropTypes.func.isRequired,
-  isMenuOpen: PropTypes.bool.isRequired
-};

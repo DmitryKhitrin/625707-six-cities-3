@@ -3,7 +3,7 @@ import {PropTypes} from 'prop-types';
 import {OffersList} from "../offers-list/offers-list";
 import {Map} from "../map/map.jsx";
 import {CitiesTabsList} from "../cities-tabs-list/cities-tabs-list";
-import {PlacesSortingForm} from "../places-sorting-form/places-sorting-form.jsx";
+import {PlacesSortingForm} from "../places-sorting-form/places-sorting-form";
 import {EmptyMain} from "../empty-main/empty-main";
 import {sortOffers} from "../../utils/utils";
 import {withActiveItem} from "../../hocs/with-active-item.jsx";

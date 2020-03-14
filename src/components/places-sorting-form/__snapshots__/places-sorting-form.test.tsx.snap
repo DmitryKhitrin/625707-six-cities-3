@@ -14,7 +14,7 @@ exports[`<PlacesSortingForm /> should render PlacesSortingForm. <PlacesSortingFo
   <span
     className="places__sorting-type"
     onClick={[MockFunction]}
-    tabIndex="0"
+    tabIndex={0}
   >
     
     <svg
@@ -33,28 +33,28 @@ exports[`<PlacesSortingForm /> should render PlacesSortingForm. <PlacesSortingFo
     <li
       className="places__option "
       onClick={[MockFunction]}
-      tabIndex="0"
+      tabIndex={0}
     >
       Popular
     </li>
     <li
       className="places__option "
       onClick={[MockFunction]}
-      tabIndex="0"
+      tabIndex={0}
     >
       Price: low to high
     </li>
     <li
       className="places__option "
       onClick={[MockFunction]}
-      tabIndex="0"
+      tabIndex={0}
     >
       Price: high to low
     </li>
     <li
       className="places__option "
       onClick={[MockFunction]}
-      tabIndex="0"
+      tabIndex={0}
     >
       Top rated first
     </li>
@@ -76,7 +76,7 @@ exports[`<PlacesSortingForm /> should render PlacesSortingForm. <PlacesSortingFo
   <span
     className="places__sorting-type"
     onClick={[MockFunction]}
-    tabIndex="0"
+    tabIndex={0}
   >
     
     <svg
@@ -95,28 +95,28 @@ exports[`<PlacesSortingForm /> should render PlacesSortingForm. <PlacesSortingFo
     <li
       className="places__option "
       onClick={[MockFunction]}
-      tabIndex="0"
+      tabIndex={0}
     >
       Popular
     </li>
     <li
       className="places__option "
       onClick={[MockFunction]}
-      tabIndex="0"
+      tabIndex={0}
     >
       Price: low to high
     </li>
     <li
       className="places__option "
       onClick={[MockFunction]}
-      tabIndex="0"
+      tabIndex={0}
     >
       Price: high to low
     </li>
     <li
       className="places__option "
       onClick={[MockFunction]}
-      tabIndex="0"
+      tabIndex={0}
     >
       Top rated first
     </li>
