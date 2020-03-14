@@ -4,7 +4,7 @@
   "private": true,
   "description": "Личный проект «Шесть городов» от HTML Academy",
   "scripts": {
-    "eslint": "eslint src/**/*.js src/**/*.jsx",
+    "eslint": "eslint src/**/*.js src/**/*.jsx src/**/*.tsx",
     "test": "npm run eslint && npm run test:jest",
     "build": "webpack --mode production",
     "start": "webpack-dev-server",

@@ -1,5 +1,6 @@
 import {userReducer, UserState} from "./user-reducer";
 import {LOG_IN, LOG_OUT, SET_AUTH_ERROR} from "./types";
+import {ParsedLoginParams} from "./user-actions";
 
 describe(`offerReducer`, () => {
   it(`should login.`, () => {
@@ -17,12 +18,12 @@ describe(`offerReducer`, () => {
     const logoutState = {
       authorizationStatus: `NO_AUTH`,
       user: {
-        id: 2,
+        id: null,
         email: ``,
         name: ``,
         avatar: ``,
         isPro: false
-      },
+      } as ParsedLoginParams,
       error: ``
     };
     const state = userReducer({} as UserState, {type: LOG_OUT, payload: `Moscow`});
