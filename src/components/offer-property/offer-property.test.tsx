@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {BrowserRouter as Router} from "react-router-dom";
 import {Provider} from "react-redux";
-import {OfferPropperty} from "./offer-property.jsx";
+import {OfferPropperty} from "./offer-property";
 import {Map} from "../map/map";
 
 import {store} from "../../mocks/mocked-store";

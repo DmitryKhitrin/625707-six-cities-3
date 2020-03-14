@@ -7,4 +7,3 @@ export type ThunkAction<R, S, E, A extends Action> = (
   getState: () => S,
   api: AxiosInstance
 ) => R;
-

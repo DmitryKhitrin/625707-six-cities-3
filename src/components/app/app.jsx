@@ -6,8 +6,7 @@ import {connect} from 'react-redux';
 
 import {MainContainer} from "../containers/main-container";
 import {Footer} from "../footer/footer";
-import {PropertyContainer} from "../containers/property-container.jsx";
-// import {LoginContainer} from "../containers/login-container.jsx";
+import {PropertyContainer} from "../containers/property-container";
 import {SignIn} from "../sign-in/sign-in";
 import {FavoritesContainer} from "../containers/favorites-container";
 import Header from "../containers/header-container.jsx";

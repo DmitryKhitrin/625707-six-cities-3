@@ -1,8 +1,17 @@
-import React, {memo, Fragment, useCallback} from "react";
-import PropTypes from "prop-types";
+import React, {FC, memo, Fragment, useCallback} from "react";
 import {RATING, withFeedback} from "../../hocs/with-feedback.jsx";
 
-const FeedbackFrom = ({
+type Props = {
+  onSubmite: (event: React.FormEvent<HTMLFormElement>, id: string) => void;
+  setCommentText: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  isSubmiteButtonDisabled: boolean;
+  setStarsCount: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  comment: string;
+  rating: number;
+  id: string;
+}
+
+const FeedbackFrom: FC<Props> = ({
   onSubmite = () => {},
   setCommentText = () => {},
   isSubmiteButtonDisabled = true,
@@ -82,16 +91,6 @@ const FeedbackFrom = ({
   );
 };
 
-FeedbackFrom.propTypes = {
-  onSubmite: PropTypes.func.isRequired,
-  setCommentText: PropTypes.func.isRequired,
-  isSubmiteButtonDisabled: PropTypes.bool.isRequired,
-  setStarsCount: PropTypes.func.isRequired,
-  rating: PropTypes.number.isRequired,
-  comment: PropTypes.string,
-  id: PropTypes.string
-};
-
 const WrappedFeedbackForm = withFeedback(memo(FeedbackFrom));
 export {WrappedFeedbackForm as FeedbackFrom};
-export default FeedbackFrom;
+export {FeedbackFrom as TestFeedbackFrom};

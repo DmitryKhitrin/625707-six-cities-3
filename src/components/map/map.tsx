@@ -1,10 +1,10 @@
 import React, {PureComponent} from "react";
 import leaflet from "leaflet";
 import {ParsedOfferCard, ParsedCity} from "../../utils/utils";
-import {any} from "prop-types";
+
 
 type Props = {
-  placeCardsList: ParsedOfferCard[];
+  placeCardsList: Pick<ParsedOfferCard, |`id` | `title` | `location`>[];
   city: ParsedCity;
   height: number;
   activeCard: string;

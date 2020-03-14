@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import {connect} from "react-redux";
-import {PropTypes} from "prop-types";
-import {OfferPropperty} from "../offer-property/offer-property.jsx";
+import {OfferPropperty} from "../offer-property/offer-property";
 import {useScrollToTop} from '../../hooks/use-scroll-to-top';
 import {setFavorite} from "../../redux/offers/offer-actions";
 import {authSelector} from "../../redux/user/user-selectors";
@@ -11,8 +10,32 @@ import {
   getNearbyAsync,
   getChoosedOfferAsync,
 } from '../../redux/property/property-actions';
+import {RootState} from "../../redux/root-reducer";
+import {ParsedOfferCard, ParsedComment} from "../../utils/utils";
 
-const PropertyContainer = ({
+type Match = {
+  params: {
+    id: string;
+  };
+  isExact: boolean;
+  path: string;
+  url: string;
+};
+
+type Props = {
+  setCity: (city: string) => void;
+  getChoosedOfferAsync: (T: string) => void;
+  isAuthenticated: boolean;
+  setFavorite: (T: string, S: number) => void;
+  getNearbyAsync: (T: string) => void;
+  getCommentsAcync: (T: string) => void;
+  reviews: ParsedComment[];
+  nearby: ParsedOfferCard[];
+  currentOffer: ParsedOfferCard;
+  match: Match;
+}
+
+const PropertyContainer: FC<Props> = ({
   match,
   currentOffer,
   getChoosedOfferAsync: getChoosedOffer,
@@ -42,7 +65,7 @@ const PropertyContainer = ({
     />
   );
 };
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
   currentOffer: choosedSelector(state),
   isAuthenticated: authSelector(state),
   reviews: commentsSelector(state),
@@ -54,23 +77,6 @@ const mapDispatchToProps = {
   setFavorite,
   getCommentsAcync,
   getNearbyAsync,
-};
-
-PropertyContainer.propTypes = {
-  setCity: PropTypes.func,
-  getChoosedOfferAsync: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  setFavorite: PropTypes.func.isRequired,
-  getNearbyAsync: PropTypes.func.isRequired,
-  getCommentsAcync: PropTypes.func.isRequired,
-  reviews: PropTypes.array.isRequired,
-  nearby: PropTypes.array,
-  currentOffer: PropTypes.object,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }),
-  }),
 };
 
 const WrappedPropertyContainer = connect(

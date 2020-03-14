@@ -1,23 +1,29 @@
-import React, {useCallback, memo} from 'react';
+import React, {FC, useCallback, memo} from 'react';
 import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom";
 import {ReviewsList} from "../reviews-list/reviews-list";
 import {PropertiesInsideList} from "../properties-inside-list/properties-inside-list";
 import {OffersList} from "../offers-list/offers-list";
 import {Map} from "../map/map";
-import {FeedbackFrom} from "../feedback-form/feedback-form.jsx";
+import {FeedbackFrom} from "../feedback-form/feedback-form";
+import {ParsedOfferCard, ParsedComment} from "../../utils/utils";
 
-const OfferPropperty = ({
+type Props = ParsedOfferCard & {
+  isAuthenticated: boolean;
+  setFavorite: (T: string, S: number) => void;
+  reviews: ParsedComment[];
+  offersList: ParsedOfferCard[];
+}
+
+const OfferPropperty: FC<Props> = ({
   images = [],
   title,
-  offerHeader = ``,
   description = ``,
-  // descriptions = ``,
   isPremium,
-  placeType = ``,
+  type = ``,
   rating = ``,
-  bedroomsCount = ``,
-  maxPeopleCount = 4,
+  bedrooms = ``,
+  maxAdults = 4,
   price = 120,
   goods = [],
   reviews = [],
@@ -64,7 +70,7 @@ const OfferPropperty = ({
           <div className="property__wrapper">
             {premium}
             <div className="property__name-wrapper">
-              <h1 className="property__name">{offerHeader}</h1>
+              <h1 className="property__name">{title}</h1>
               <button
                 className="property__bookmark-button button"
                 type="button"
@@ -89,13 +95,13 @@ const OfferPropperty = ({
             </div>
             <ul className="property__features">
               <li className="property__feature property__feature--entire">
-                {placeType}
+                {type}
               </li>
               <li className="property__feature property__feature--bedrooms">
-                {bedroomsCount}
+                {bedrooms}
               </li>
               <li className="property__feature property__feature--adults">
-                                      Max {maxPeopleCount} adults
+                                      Max {maxAdults} adults
               </li>
             </ul>
             <div className="property__price">
@@ -161,40 +167,3 @@ const OfferPropperty = ({
 const MemoizedOfferPropperty = memo(OfferPropperty);
 export {MemoizedOfferPropperty as OfferPropperty};
 
-OfferPropperty.propTypes = {
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        date: PropTypes.string,
-        comment: PropTypes.string,
-        rating: PropTypes.string,
-        user: PropTypes.object,
-      }),
-  ),
-  id: PropTypes.string,
-  title: PropTypes.string,
-  images: PropTypes.arrayOf(PropTypes.string),
-  setFavorite: PropTypes.func.isRequired,
-  offerHeader: PropTypes.string,
-  descriptions: PropTypes.arrayOf(PropTypes.string),
-  isPremium: PropTypes.bool,
-  placeType: PropTypes.string,
-  rating: PropTypes.string,
-  bedroomsCount: PropTypes.string,
-  maxPeopleCount: PropTypes.number,
-  price: PropTypes.number,
-  goods: PropTypes.arrayOf(PropTypes.string),
-  host: PropTypes.shape({
-    personPhoto: PropTypes.string,
-    personName: PropTypes.string,
-    isSuper: PropTypes.bool,
-  }),
-  isFavorite: PropTypes.bool,
-  offersList: PropTypes.array,
-  isAuthenticated: PropTypes.bool,
-  description: PropTypes.string,
-  city: PropTypes.shape({
-    name: PropTypes.string,
-    location: PropTypes.array,
-  }),
-};
