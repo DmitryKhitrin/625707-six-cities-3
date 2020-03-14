@@ -1,8 +1,8 @@
 import React from "react";
 import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {withSortMenu} from "./with-sort-menu.jsx";
-import {sortTypes} from "../sortTypes.js";
+import {withSortMenu} from "./with-sort-menu";
+import {sortTypes} from "../utils/sort-types";
 
 configure({adapter: new Adapter()});
 

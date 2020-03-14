@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PlacesSortingForm /> should render PlacesSortingForm. <PlacesSortingForm /> should render PlacesSortingForm with closed menu. 1`] = `
+<form
+  action="#"
+  className="places__sorting"
+  method="get"
+>
+  <span
+    className="places__sorting-caption"
+  >
+    Sort by
+  </span>
+  <span
+    className="places__sorting-type"
+    onClick={[MockFunction]}
+    tabIndex={0}
+  >
+    
+    <svg
+      className="places__sorting-arrow"
+      height="4"
+      width="7"
+    >
+      <use
+        xlinkHref="#icon-arrow-select"
+      />
+    </svg>
+  </span>
+  <ul
+    className="places__options places__options--custom "
+  >
+    <li
+      className="places__option "
+      onClick={[MockFunction]}
+      tabIndex={0}
+    >
+      Popular
+    </li>
+    <li
+      className="places__option "
+      onClick={[MockFunction]}
+      tabIndex={0}
+    >
+      Price: low to high
+    </li>
+    <li
+      className="places__option "
+      onClick={[MockFunction]}
+      tabIndex={0}
+    >
+      Price: high to low
+    </li>
+    <li
+      className="places__option "
+      onClick={[MockFunction]}
+      tabIndex={0}
+    >
+      Top rated first
+    </li>
+  </ul>
+</form>
+`;
+
+exports[`<PlacesSortingForm /> should render PlacesSortingForm. <PlacesSortingForm /> should render PlacesSortingForm with opened menu. 1`] = `
+<form
+  action="#"
+  className="places__sorting"
+  method="get"
+>
+  <span
+    className="places__sorting-caption"
+  >
+    Sort by
+  </span>
+  <span
+    className="places__sorting-type"
+    onClick={[MockFunction]}
+    tabIndex={0}
+  >
+    
+    <svg
+      className="places__sorting-arrow"
+      height="4"
+      width="7"
+    >
+      <use
+        xlinkHref="#icon-arrow-select"
+      />
+    </svg>
+  </span>
+  <ul
+    className="places__options places__options--custom places__options--opened"
+  >
+    <li
+      className="places__option "
+      onClick={[MockFunction]}
+      tabIndex={0}
+    >
+      Popular
+    </li>
+    <li
+      className="places__option "
+      onClick={[MockFunction]}
+      tabIndex={0}
+    >
+      Price: low to high
+    </li>
+    <li
+      className="places__option "
+      onClick={[MockFunction]}
+      tabIndex={0}
+    >
+      Price: high to low
+    </li>
+    <li
+      className="places__option "
+      onClick={[MockFunction]}
+      tabIndex={0}
+    >
+      Top rated first
+    </li>
+  </ul>
+</form>
+`;
