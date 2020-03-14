@@ -6,76 +6,52 @@ import {OfferPropperty} from "./offer-property";
 import {Map} from "../map/map";
 
 import {store} from "../../mocks/mocked-store";
+import {ParsedOfferCard} from "../../utils/utils";
 
-const offerProperties = {
-  placePhotosList: [],
-  offerHeader: `Test header`,
-  descriptions: [`This is kind of nice place.`],
+const mocData = {
+  id: `3`,
+  price: 100,
+  previewImage: `img/apartment-02.jpg`,
+  rating: `100%`,
+  type: `Private room`,
   isPremium: true,
-  placeType: `Apartment`,
-  rating: `90`,
-  bedroomsCount: `10`,
-  maxPeopleCount: 100,
-  price: 500,
-  amenitiesList: [],
+  title: `Best place in the World really.Beautiful luxurious apartment at great location`,
+  isFavorite: false,
+  images: [``],
+  bedrooms: 1,
+  maxAdults: 1,
+  goods: [``],
   host: {
     personPhoto: ``,
     personName: ``,
+    id: 1,
+    isPro: false
   },
-  reviews: [
-    {
-      id: `1`,
-      date: `April 2019`,
-      comment: `A quiet cozy and picturesque that The building is green and from 18th century.`,
-      rating: `80%`,
-      personName: `Max`,
-      personPhoto: `img/avatar-max.jpg`
+  location: [52, 2],
+  description: ``,
+  city: {
+    name: `Moscow`,
+    location: [54, 2]
+  }
+} as unknown as ParsedOfferCard;
+
+const offerProperties = {
+  ...mocData,
+  isAuthenticated: false,
+  setFavorite: jest.fn(),
+  reviews: [{
+    comment: `Beaut`,
+    date: `2020-02-14T17:36:30.592Z`,
+    id: `1`,
+    rating: `60%`,
+    user: {
+      personPhoto: `https://htmlacademy-react-3.appspot.com/six-cities/static/avatar/5.jpg`,
+      personName: `Corey`,
+      id: 14,
+      isPro: true,
     }
-  ],
-  offersList: [
-    {
-      id: `5`,
-      price: 80,
-      previewImage: `img/apartment-01.jpg`,
-      rating: `80%`,
-      type: `Apartment`,
-      isPremium: true,
-      title: `Wood and stone place`,
-      location: [52.369553943508, 4.939309666406197],
-      offerCity: {
-        name: `Moscow`,
-        location: [52.3809553943508, 4.939309666406198]
-      }
-    },
-    {
-      id: `3`,
-      price: 132,
-      previewImage: `img/apartment-02.jpg`,
-      rating: `80%`,
-      type: `Apartment`,
-      isPremium: false,
-      title: `Canal View Prinsengracht`,
-      location: [52.3809553943508, 4.939309666406198],
-      offerCity: {
-        name: `Moscow`,
-        location: [52.3809553943508, 4.939309666406198]
-      },
-    },
-    {
-      id: `4`,
-      price: 180,
-      previewImage: `img/apartment-03.jpg`,
-      rating: `100%`,
-      type: `Apartment`,
-      isPremium: true,
-      title: `Nice, cozy, warm big bed apartment`,
-      location: [52.3809553943508, 4.939309666406198],
-      offerCity: {
-        name: `Moscow`,
-        location: [52.3809553943508, 4.939309666406198]
-      }
-    }
-  ]
+  }],
+  offersList: [mocData]
 };
 
 it(`<OfferPropperty /> should render place-card.`, () => {

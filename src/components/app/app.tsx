@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import PropTypes from 'prop-types';
 import {Router, Route, Switch, Redirect} from "react-router-dom";
 import {authSelector} from "../../redux/user/user-selectors";
@@ -9,13 +9,18 @@ import {Footer} from "../footer/footer";
 import {PropertyContainer} from "../containers/property-container";
 import {SignIn} from "../sign-in/sign-in";
 import {FavoritesContainer} from "../containers/favorites-container";
-import Header from "../containers/header-container.jsx";
+import {HeaderContainer} from "../containers/header-container";
 import {history} from "../../utils/history";
+import {RootState} from "../../redux/root-reducer";
 
-const App = ({isAuthenticated}) => {
+type Props = {
+  isAuthenticated: boolean;
+}
+
+const App: FC<Props> = ({isAuthenticated}) => {
   return (
     <Router history={history}>
-      <Header />
+      <HeaderContainer />
       <Switch>
         <Route path="/" component={MainContainer} exact />
         <Route path="/offer/:id" component={PropertyContainer} />
@@ -31,12 +36,7 @@ const App = ({isAuthenticated}) => {
   );
 };
 
-App.propTypes = {
-  isAuthenticated: PropTypes.bool,
-};
-
-
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
   isAuthenticated: authSelector(state),
 });
 

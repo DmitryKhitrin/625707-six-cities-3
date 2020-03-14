@@ -8,7 +8,7 @@ describe(`Header`, () => {
     const tree = renderer
       .create(
           <Router>
-            <TestHeader isAuthenticated={false} user={{}} />
+            <TestHeader isAuthenticated={false} user={{email: ``, avatar: ``}} />
           </Router>
       )
       .toJSON();
