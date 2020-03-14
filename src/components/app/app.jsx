@@ -5,7 +5,7 @@ import {authSelector} from "../../redux/user/user-selectors";
 import {connect} from 'react-redux';
 
 import {MainContainer} from "../containers/main-container.jsx";
-import {Footer} from "../footer/footer.jsx";
+import {Footer} from "../footer/footer";
 import {PropertyContainer} from "../containers/property-container.jsx";
 import LoginContainer from "../containers/login-container.jsx";
 import FavoritesContainer from "../containers/favorites-container.jsx";

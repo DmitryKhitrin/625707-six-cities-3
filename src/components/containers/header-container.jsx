@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 
-import {Header} from "../../components/header/header.jsx";
+import {Header} from "../../components/header/header";
 
 export const HeaderContainer = (props) => {
   return <Header {...props} />;

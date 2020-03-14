@@ -1,8 +1,15 @@
-import React, {memo} from "react";
-import PropTypes from "prop-types";
+import React, {FC, memo} from "react";
 import {Link} from "react-router-dom";
 
-const Header = ({user = {}, isAuthenticated = false}) => {
+type Props = {
+  user: {
+    email: string;
+    avatar: string;
+  }
+  isAuthenticated: boolean;
+}
+
+const Header: FC<Props> = ({user = {}, isAuthenticated = false}) => {
   const {
     email = ``,
     avatar = ``,
@@ -63,11 +70,6 @@ const Header = ({user = {}, isAuthenticated = false}) => {
       </div>
     </header>
   );
-};
-
-Header.propTypes = {
-  user: PropTypes.object,
-  isAuthenticated: PropTypes.bool
 };
 
 const MemoizedHeader = memo(Header);

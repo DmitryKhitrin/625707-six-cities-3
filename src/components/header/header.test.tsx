@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {BrowserRouter as Router} from "react-router-dom";
-import {TestHeader} from "./header.jsx";
+import {TestHeader} from "./header";
 
 describe(`Header`, () => {
   it(`<Header /> should render empty Header.`, () => {
