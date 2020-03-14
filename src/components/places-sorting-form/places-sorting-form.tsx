@@ -2,7 +2,7 @@ import React, {FC, memo} from "react";
 
 type Props = {
   sortType: string;
-  setSortType: () => void;
+  setSortType: (T: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
   toggleSortMenu: () => void;
   isMenuOpen: boolean;
 }

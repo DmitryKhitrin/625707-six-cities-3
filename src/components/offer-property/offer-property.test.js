@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import {OfferPropperty} from "./offer-property.jsx";
 import {Map} from "../map/map";
 
-import {store} from "../../mocks/mocked-store.js";
+import {store} from "../../mocks/mocked-store";
 
 const offerProperties = {
   placePhotosList: [],

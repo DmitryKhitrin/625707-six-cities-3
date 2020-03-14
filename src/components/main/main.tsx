@@ -1,5 +1,4 @@
-import React, {useMemo, memo} from "react";
-import {PropTypes} from 'prop-types';
+import React, {FC, useMemo, memo} from "react";
 import {OffersList} from "../offers-list/offers-list";
 import {Map} from "../map/map";
 import {CitiesTabsList} from "../cities-tabs-list/cities-tabs-list";
@@ -8,8 +7,25 @@ import {EmptyMain} from "../empty-main/empty-main";
 import {sortOffers} from "../../utils/utils";
 import {withActiveItem} from "../../hocs/with-active-item.jsx";
 import {withSortMenu} from "../../hocs/with-sort-menu.jsx";
+import {ParsedOfferCard, ParsedCity} from "../../utils/utils";
 
-const Main = ({
+type Props = {
+  city: string;
+  placeCardsList: ParsedOfferCard[];
+  locations: ParsedCity[];
+  setCity: (T: string) => void;
+  isMenuOpen: boolean;
+  setSortType: (T: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  sortType: string;
+  toggleSortMenu: () => void;
+  setActiveItem: () => void;
+  removeActiveItem: () => void;
+  activeItem: string;
+  setFavorite: () => void;
+  isAuthenticated: boolean;
+}
+
+const Main: FC<Props> = ({
   city,
   placeCardsList = [],
   locations = [],
@@ -90,21 +106,6 @@ const Main = ({
   );
 };
 
-Main.propTypes = {
-  placeCardsList: PropTypes.array.isRequired,
-  locations: PropTypes.any,
-  setCity: PropTypes.func,
-  city: PropTypes.string,
-  activeItem: PropTypes.string.isRequired,
-  setActiveItem: PropTypes.func.isRequired,
-  removeActiveItem: PropTypes.func.isRequired,
-  setSortType: PropTypes.func.isRequired,
-  sortType: PropTypes.string.isRequired,
-  toggleSortMenu: PropTypes.func.isRequired,
-  isMenuOpen: PropTypes.bool.isRequired,
-  setFavorite: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
-};
-
-export const WrappedMain = withSortMenu(withActiveItem(memo(Main)));
-export default Main;
+const WrappedMain = withSortMenu(withActiveItem(memo(Main)));
+export {WrappedMain as Main};
+export {Main as TestMain};
