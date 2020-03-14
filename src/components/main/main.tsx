@@ -5,8 +5,8 @@ import {CitiesTabsList} from "../cities-tabs-list/cities-tabs-list";
 import {PlacesSortingForm} from "../places-sorting-form/places-sorting-form";
 import {EmptyMain} from "../empty-main/empty-main";
 import {sortOffers} from "../../utils/utils";
-import {withActiveItem} from "../../hocs/with-active-item.jsx";
-import {withSortMenu} from "../../hocs/with-sort-menu.jsx";
+import {withActiveItem} from "../../hocs/with-active-item";
+import {withSortMenu} from "../../hocs/with-sort-menu";
 import {ParsedOfferCard, ParsedCity} from "../../utils/utils";
 
 type Props = {

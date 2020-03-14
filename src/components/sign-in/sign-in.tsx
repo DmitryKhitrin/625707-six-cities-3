@@ -1,6 +1,6 @@
 import React, {FC, memo, useCallback} from "react";
 import PropTypes from "prop-types";
-import {withLogin} from "../../hocs/with-login.jsx";
+import {withLogin} from "../../hocs/with-login";
 import {Link} from "react-router-dom";
 
 type Props = {

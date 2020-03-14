@@ -1,5 +1,5 @@
 import React, {FC, memo, Fragment, useCallback} from "react";
-import {RATING, withFeedback} from "../../hocs/with-feedback.jsx";
+import {RATING, withFeedback} from "../../hocs/with-feedback";
 
 type Props = {
   onSubmite: (event: React.FormEvent<HTMLFormElement>, id: string) => void;

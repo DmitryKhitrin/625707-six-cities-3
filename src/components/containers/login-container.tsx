@@ -1,13 +1,13 @@
 import React, {FC, memo} from "react";
 import {connect} from "react-redux";
-import {login} from "../../redux/user/user-actions.js";
-import {setCity} from "../../redux/offers/offer-actions.js";
-import {SignIn} from "../../components/sign-in/sign-in.jsx";
-import {authSelector} from "../../redux/user/user-selectors.js";
-import {RootState} from "../../redux/root-reducer.js";
+import {login} from "../../redux/user/user-actions";
+import {setCity} from "../../redux/offers/offer-actions";
+import {SignIn} from "../../components/sign-in/sign-in";
+import {authSelector} from "../../redux/user/user-selectors";
+import {RootState} from "../../redux/root-reducer";
 
 type Props = {
-  isAuthenticated: string;
+  isAuthenticated: boolean;
   setCity: (T: string) => void;
   login: () => void;
 };
