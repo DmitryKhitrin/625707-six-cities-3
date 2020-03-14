@@ -1,15 +1,19 @@
-import React from "react";
-import {PropTypes} from "prop-types";
-import {ReviewsItem} from "../reviews-item/reviews-item.jsx";
+import React, {FC, memo} from "react";
+import {ReviewsItem} from "../reviews-item/reviews-item";
+import {ParsedComment} from '../../utils/utils';
 
-export const ReviewsList = ({reviews}) => {
+type Props = {
+  reviews: ParsedComment[];
+}
+
+const ReviewsList: FC<Props> = ({reviews}) => {
   if (!reviews || reviews.length < 0) {
     return null;
   }
   return (
     <ul className="reviews__list">
       {reviews
-          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
           .slice(0, 10)
           .map(
               ({
@@ -36,15 +40,5 @@ export const ReviewsList = ({reviews}) => {
   );
 };
 
-ReviewsList.propTypes = {
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        date: PropTypes.string,
-        comment: PropTypes.string,
-        rating: PropTypes.string,
-        personName: PropTypes.string,
-        personPhoto: PropTypes.string
-      })
-  )
-};
+const MemoizedReviewsList = memo(ReviewsList);
+export {MemoizedReviewsList as ReviewsList};

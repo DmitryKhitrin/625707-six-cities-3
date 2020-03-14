@@ -1,7 +1,14 @@
-import React from "react";
-import {PropTypes} from "prop-types";
+import React, {FC, memo} from "react";
 
-export const ReviewsItem = ({
+type Props = {
+  reviewsDate: string;
+  reviewsText: string;
+  reviewsRating: string;
+  reviewsUserName: string;
+  reviewsAvatar: string;
+}
+
+const ReviewsItem: FC<Props> = ({
   reviewsDate,
   reviewsText,
   reviewsRating,
@@ -37,14 +44,7 @@ export const ReviewsItem = ({
       </div>
     </li>
   );
-
 };
 
-ReviewsItem.propTypes = {
-  id: PropTypes.string,
-  date: PropTypes.string,
-  comment: PropTypes.string,
-  rating: PropTypes.string,
-  personName: PropTypes.string,
-  personPhoto: PropTypes.string,
-};
+const MemoizedReviewsItem = memo(ReviewsItem);
+export {MemoizedReviewsItem as ReviewsItem};
