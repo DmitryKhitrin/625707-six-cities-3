@@ -4,11 +4,21 @@ import {
   FINISH_REVIEW_SENDING,
   SET_NEARBY,
   SET_CHOOSED,
-} from './types.js';
+} from './types';
 import {request} from "../../api/config";
-import {parseComment, parseOffer} from '../../utils/utils';
+import {parseComment, parseOffer, ParsedOfferCard, Comment, ParsedComment, OfferCard} from '../../utils/utils';
+import {ThunkAction} from "../../utils/types";
+import {Action} from "redux";
+import {RootState} from "../root-reducer";
 
-const setComments = (comments) => {
+type SetComment = {
+  type: typeof SET_COMMENTS;
+  payload: {
+    comments: ParsedComment[]
+  }
+}
+
+const setComments = (comments: Comment[]): SetComment => {
   const parsedComments = comments.map(parseComment);
   return {
     type: SET_COMMENTS,
@@ -18,20 +28,34 @@ const setComments = (comments) => {
   };
 };
 
-const setStartReviewSending = () => {
+type SetStartReviewSending = {
+  type: typeof START_REVIEW_SENDING;
+}
+
+const setStartReviewSending = (): SetStartReviewSending => {
   return {
     type: START_REVIEW_SENDING
   };
 };
 
-const setFinishReviewSending = () => {
+type SetFinishReviewSending = {
+  type: typeof FINISH_REVIEW_SENDING
+}
+
+const setFinishReviewSending = (): SetFinishReviewSending => {
   return {
     type: FINISH_REVIEW_SENDING
   };
 };
 
+type SetNearby = {
+  type: typeof SET_NEARBY;
+  payload: {
+    nearby: ParsedOfferCard[]
+  }
+}
 
-const setNearby = (nearby) => {
+const setNearby = (nearby: OfferCard[]): SetNearby => {
   const parsedNearby = nearby.map(parseOffer);
   return {
     type: SET_NEARBY,
@@ -41,7 +65,14 @@ const setNearby = (nearby) => {
   };
 };
 
-const setChoosed = (id, offers) => {
+type SetChoosed = {
+  type: typeof SET_CHOOSED;
+  payload: {
+    choosed: ParsedOfferCard | {}
+  }
+}
+
+const setChoosed = (id: string, offers: OfferCard[]): SetChoosed => {
   const choosedOffer = offers.find((item) => item.id === Number(id));
   const parsedOffer = choosedOffer ? parseOffer(choosedOffer) : {};
   return {
@@ -52,7 +83,7 @@ const setChoosed = (id, offers) => {
   };
 };
 
-export const getChoosedOfferAsync = (id) => (dispatch, _getState, api) => {
+export const getChoosedOfferAsync = (id: string): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState, api) => {
   return api
       .get(request.hotels.get())
       .then((response) => {
@@ -61,7 +92,7 @@ export const getChoosedOfferAsync = (id) => (dispatch, _getState, api) => {
       .catch(() => {});
 };
 
-export const getCommentsAcync = (hotelId) => (dispatch, getState, api) => {
+export const getCommentsAcync = (hotelId: string): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState, api) => {
   return api
            .get(request.comments.get(hotelId))
            .then((response) => {
@@ -72,7 +103,7 @@ export const getCommentsAcync = (hotelId) => (dispatch, getState, api) => {
            .catch(() => {});
 };
 
-export const sendCommentAsync = (hotelId, rating, comment) => (
+export const sendCommentAsync = (hotelId: string, rating: number, comment: string): ThunkAction<void, RootState, unknown, Action<string>> => (
     dispatch,
     getState,
     api
@@ -91,7 +122,7 @@ export const sendCommentAsync = (hotelId, rating, comment) => (
     });
 };
 
-export const getNearbyAsync = (hotelId) => (dispatch, getState, api) => {
+export const getNearbyAsync = (hotelId: string): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState, api) => {
   return api
         .get(request.nearby.get(hotelId))
         .then((response) => {
@@ -101,3 +132,5 @@ export const getNearbyAsync = (hotelId) => (dispatch, getState, api) => {
         })
         .catch(() => {});
 };
+
+export type PropertyAction = SetComment | SetStartReviewSending | SetFinishReviewSending | SetNearby | SetChoosed;

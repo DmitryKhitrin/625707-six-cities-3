@@ -1,8 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
-import {useMountEffect} from "../../hooks/use-mount-effect.js";
-import {useScrollToTop} from "../../hooks/use-scroll-to-top.js";
+import {useMountEffect} from "../../hooks/use-mount-effect";
+import {useScrollToTop} from "../../hooks/use-scroll-to-top";
 import {authSelector} from "../../redux/user/user-selectors";
 import {WrappedMain} from "../main/main.jsx";
 import {

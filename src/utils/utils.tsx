@@ -173,7 +173,7 @@ export const sortOffers = (type: string, offersList: ParsedOfferCard[]): ParsedO
   }
 };
 
-type Comment = {
+export type Comment = {
   comment: string;
   date: string;
   id: number;
@@ -181,7 +181,7 @@ type Comment = {
   user: User;
 }
 
-type ParsedComment = {
+export type ParsedComment = {
   comment: string;
   date: string;
   id: string;

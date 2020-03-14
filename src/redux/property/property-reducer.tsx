@@ -4,27 +4,36 @@ import {
   FINISH_REVIEW_SENDING,
   SET_NEARBY,
   SET_CHOOSED,
-} from './types.js';
+} from './types';
+import {PropertyAction} from "./property-actions";
+import {ParsedOfferCard, ParsedComment} from '../../utils/utils';
 
-const initialState = {
+export type PropertyState = {
+  comments: ParsedComment[];
+  isFormSending: boolean;
+  nearby: ParsedOfferCard[];
+  choosed: ParsedOfferCard | {};
+}
+
+const initialState: PropertyState = {
   comments: [],
   isFormSending: false,
   nearby: [],
   choosed: {},
 };
 
-export const propertyReducer = (state = initialState, {type, payload}) => {
-  switch (type) {
+export const propertyReducer = (state = initialState, action: PropertyAction) => {
+  switch (action.type) {
     case SET_COMMENTS:
       return {
         ...state,
-        comments: payload.comments,
+        comments: action.payload.comments,
       };
 
     case SET_NEARBY:
       return {
         ...state,
-        nearby: payload.nearby,
+        nearby: action.payload.nearby,
       };
     case START_REVIEW_SENDING:
       return {
@@ -41,7 +50,7 @@ export const propertyReducer = (state = initialState, {type, payload}) => {
     case SET_CHOOSED:
       return {
         ...state,
-        choosed: payload.choosed,
+        choosed: action.payload.choosed,
       };
 
     default:

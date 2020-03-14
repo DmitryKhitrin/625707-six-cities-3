@@ -2,7 +2,7 @@ import React from "react";
 import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {withFeedback} from "./with-feedback.jsx";
-import {commentsSelector, formStatusSelector} from '../redux/property/property-selectors.js';
+import {commentsSelector, formStatusSelector} from '../redux/property/property-selectors';
 
 configure({adapter: new Adapter()});
 

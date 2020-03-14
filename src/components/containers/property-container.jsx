@@ -2,15 +2,15 @@ import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
 import {OfferPropperty} from "../offer-property/offer-property.jsx";
-import {useScrollToTop} from '../../hooks/use-scroll-to-top.js';
+import {useScrollToTop} from '../../hooks/use-scroll-to-top';
 import {setFavorite} from "../../redux/offers/offer-actions";
 import {authSelector} from "../../redux/user/user-selectors";
-import {commentsSelector, choosedSelector, nearbySelector} from "../../redux/property/property-selectors.js";
+import {commentsSelector, choosedSelector, nearbySelector} from "../../redux/property/property-selectors";
 import {
   getCommentsAcync,
   getNearbyAsync,
   getChoosedOfferAsync,
-} from '../../redux/property/property-actions.js';
+} from '../../redux/property/property-actions';
 
 const PropertyContainer = ({
   match,

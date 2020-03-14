@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {formStatusSelector} from '../redux/property/property-selectors.js';
-import {sendCommentAsync} from '../redux/property/property-actions.js';
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {formStatusSelector} from "../redux/property/property-selectors";
+import {sendCommentAsync} from "../redux/property/property-actions";
 
 export const RATING = [1, 2, 3, 4, 5];
 const COMMENT_PARAM = {

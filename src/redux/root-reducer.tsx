@@ -1,11 +1,12 @@
 import {combineReducers} from "redux";
 import {offersReducer, OfferState} from "./offers/offer-reducer";
 import {userReducer, UserState} from "./user/user-reducer";
-import {propertyReducer} from './property/property-reducer.js';
+import {propertyReducer, PropertyState} from './property/property-reducer';
 
 export type RootState = {
-  offer: OfferState
-  user: UserState
+  offer: OfferState;
+  user: UserState;
+  property: PropertyState;
 }
 
 export const rootReducer = () =>
