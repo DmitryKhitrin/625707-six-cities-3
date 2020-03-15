@@ -12,7 +12,7 @@ export type Props = {
   onMouseEnter?: (id: string) => void;
   onMouseLeave?: () => void;
   isFavorite: boolean;
-  setFavorite: () => void;
+  onFavoriteClick: () => void;
 }
 
 const PlaceCard: FC<Props> = ({
@@ -25,7 +25,7 @@ const PlaceCard: FC<Props> = ({
   onMouseEnter = () => {},
   onMouseLeave = () => {},
   isFavorite,
-  setFavorite = () => {},
+  onFavoriteClick = () => {},
   id,
 }) => {
   const premiumNameplate = isPremium ? (
@@ -67,7 +67,7 @@ const PlaceCard: FC<Props> = ({
               isFavorite ? `--active` : ``
             } button`}
             type="button"
-            onClick={setFavorite}
+            onClick={onFavoriteClick}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark" />

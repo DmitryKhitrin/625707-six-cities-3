@@ -23,7 +23,7 @@ describe(`<PlaceCard /> tests.`, () => {
           onMouseEnter={onMouseEnter}
           onMouseLeave={() => {}}
           isFavorite={false}
-          setFavorite={() => {}}
+          onFavoriteClick={() => {}}
         />
     );
 

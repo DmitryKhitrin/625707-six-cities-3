@@ -27,11 +27,11 @@ const FavoriteLoacation: FC<Props> = ({
       <div className="favorites__places">
         {favorites.map((card, i) => {
           const {id, isFavorite} = card;
-          const onFavClick = () => {
+          const onFavoriteClick = () => {
             setFavorite(id, Number(!isFavorite));
             getFavoriteAsync();
           };
-          return <PlaceCard key={id} {...card} setFavorite={onFavClick} />;
+          return <PlaceCard key={id} {...card} onFavoriteClick={onFavoriteClick} />;
         })}
       </div>
     </>

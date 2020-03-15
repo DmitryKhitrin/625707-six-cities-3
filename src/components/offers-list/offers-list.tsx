@@ -32,7 +32,7 @@ const OffersList: FC<Props> = ({
             isPremium,
             isFavorite
           }) => {
-            const onFavClick = () =>
+            const onFavoriteClick = () =>
               isAuthenticated ? setFavorite(id, Number(!isFavorite)) : history.push(`/login`);
             return (
               <div key={id}>
@@ -47,7 +47,7 @@ const OffersList: FC<Props> = ({
                   onMouseEnter={onMouseEnter}
                   onMouseLeave={onMouseLeave}
                   isFavorite={isFavorite}
-                  setFavorite={onFavClick}
+                  onFavoriteClick={onFavoriteClick}
                 />
               </div>
             );

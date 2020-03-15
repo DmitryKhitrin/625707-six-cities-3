@@ -14,7 +14,7 @@ const mockedCard = {
   onMouseLeave: () => {},
   onMouseEnter: () => {},
   isFavorite: false,
-  setFavorite: () => {}
+  onFavoriteClick: () => {}
 };
 
 const onHeaderClick = () => {};

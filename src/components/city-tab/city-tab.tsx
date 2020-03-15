@@ -7,11 +7,11 @@ type Props = {
 }
 
 const CityTab: FC<Props> = ({cityName, setCity, isActive}) => {
-  const onClick = useCallback(() => {
+  const handleClick = useCallback(() => {
     setCity(cityName);
   }, [cityName, setCity]);
   return (
-    <li className="locations__item" onClick={onClick}>
+    <li className="locations__item" onClick={handleClick}>
       <a
         className={`locations__item-link tabs__item ${
           isActive ? `tabs__item--active` : ``
