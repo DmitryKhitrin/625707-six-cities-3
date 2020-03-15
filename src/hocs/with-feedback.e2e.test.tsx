@@ -2,7 +2,6 @@ import React from "react";
 import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {withFeedback} from "./with-feedback";
-import {commentsSelector, formStatusSelector} from '../redux/property/property-selectors';
 
 configure({adapter: new Adapter()});
 
@@ -18,16 +17,12 @@ const WithFeedback = withFeedback(TestComponent);
 
 describe(`withLogin`, () => {
   it(`TestComponent should setCommentText password.`, () => {
-    formStatusSelector.mockReturnValue(false);
-    commentsSelector.mockReturnValue(``);
     const component = shallow(<WithFeedback />);
     component.props().setCommentText({target: {value: `Hello world!`}});
     expect(component.props().comment).toEqual(`Hello world!`);
   });
 
   it(`TestComponent should setStarsCount email.`, () => {
-    formStatusSelector.mockReturnValue(false);
-    commentsSelector.mockReturnValue(``);
     const component = shallow(<WithFeedback />);
     component
       .props()

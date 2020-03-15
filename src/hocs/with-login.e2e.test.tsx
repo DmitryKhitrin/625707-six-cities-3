@@ -15,7 +15,8 @@ describe(`withLogin`, () => {
     component
        .props()
        .handleChange({target: {value: `123`, name: `password`}});
-    expect(component.state().password).toEqual(`123`);
+    const value: any = component.state();
+    expect(value.password).toEqual(`123`);
   });
 
   it(`TestComponent should handleChange email.`, () => {
@@ -23,6 +24,7 @@ describe(`withLogin`, () => {
     component
       .props()
       .handleChange({target: {value: `login`, name: `email`}});
-    expect(component.state().email).toEqual(`login`);
+    const value: any = component.state();
+    expect(value.email).toEqual(`login`);
   });
 });

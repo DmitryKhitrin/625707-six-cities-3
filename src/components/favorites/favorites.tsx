@@ -25,7 +25,7 @@ const Favorites: FC<Props> = ({favorites = {}, setFavorite = () => {}, getFavori
               {Object.keys(favorites).map((city, i) => {
                 const favoritesForCity = favorites[city];
                 return (
-                  <li className="favorites__locations-items" key={i}>
+                  <li className="favorites__locations-items" key={city}>
                     <FavoriteLoacation
                       city={city}
                       favorites={favoritesForCity}
