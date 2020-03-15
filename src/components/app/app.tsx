@@ -23,7 +23,7 @@ const App: FC<Props> = ({isAuthenticated}) => {
       <Switch>
         <Route path="/" component={MainContainer} exact />
         <Route path="/offer/:id" component={PropertyContainer} />
-        {isAuthenticated ? (
+        {!isAuthenticated ? (
           <Route path="/login" exact={true} component={LoginContainer} />
         ) : (
           <Redirect to="/" />
