@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import {Subtract} from "utility-types";
-import {sortTypes} from "../utils/sort-types";
+import {SortTypes} from "../utils/sort-types";
 
 type InjectedProps = {
   isMenuOpen: boolean;
@@ -24,7 +24,7 @@ export const withSortMenu = (Component: any) => {
     constructor(props: T) {
       super(props);
       this.state = {
-        sortType: sortTypes.POPULAR,
+        sortType: SortTypes.POPULAR,
         isMenuOpen: false
       };
       this._setSortType = this._setSortType.bind(this);
@@ -34,7 +34,7 @@ export const withSortMenu = (Component: any) => {
 
     componentWillUnmount() {
       this.setState({
-        sortType: sortTypes.POPULAR,
+        sortType: SortTypes.POPULAR,
         isMenuOpen: false
       });
     }
