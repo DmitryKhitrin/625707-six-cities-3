@@ -32,7 +32,7 @@ const FavoriteLoacation: FC<Props> = ({
             setFavorite(id, Number(!isFavorite));
             getFavoriteAsync();
           };
-          return <PlaceCard key={i} {...card} setFavorite={onFavClick} />;
+          return <PlaceCard key={id} {...card} setFavorite={onFavClick} />;
         })}
       </div>
     </>
