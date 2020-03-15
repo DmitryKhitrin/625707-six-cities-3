@@ -183,7 +183,7 @@ export type Comment = {
 
 export type ParsedComment = {
   comment: string;
-  date: string;
+  date: number;
   id: string;
   rating: string;
   user: ParsedUser;
@@ -197,9 +197,11 @@ export const parseComment = ({
   user,
 }: Comment): ParsedComment => ({
   comment,
-  date,
+  date: parseDate(date),
   id: String(id),
   rating: parseRating(rating),
   user: parseUser(user)
 });
+
+const parseDate = (date: string) => new Date(date).getTime();
 

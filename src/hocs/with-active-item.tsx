@@ -30,17 +30,17 @@ export const withActiveItem = (Component: any) => {
       this._removeActiveItem = this._removeActiveItem.bind(this);
     }
 
-    componentWillUnmount() {
-      this.setState({
-        activeItem: ``
-      });
-    }
-
     _setActiveItem(value: string) {
       this.setState({activeItem: value});
     }
 
     _removeActiveItem() {
+      this.setState({
+        activeItem: ``
+      });
+    }
+
+    componentWillUnmount() {
       this.setState({
         activeItem: ``
       });

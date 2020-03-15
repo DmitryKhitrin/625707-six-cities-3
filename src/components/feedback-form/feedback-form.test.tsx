@@ -7,7 +7,7 @@ it(`<FeedbackForm /> should render FeedbackForm.`, () => {
   const tree = renderer
     .create(
         <TestFeedbackFrom
-          onSubmite={stub}
+          onSubmit={stub}
           setCommentText={stub}
           isSubmiteButtonDisabled={true}
           setStarsCount={stub}

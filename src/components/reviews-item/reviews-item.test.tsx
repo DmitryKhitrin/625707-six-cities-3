@@ -4,7 +4,7 @@ import {ReviewsItem} from "./reviews-item";
 
 const mocData = {
   id: `1`,
-  reviewsDate: `November 21`,
+  reviewsDate: 123213123,
   reviewsText: `Somw new Text`,
   reviewsRating: `20%`,
   reviewsUserName: `Igor`,

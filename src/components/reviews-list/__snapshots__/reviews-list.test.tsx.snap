@@ -59,7 +59,7 @@ exports[`<ReviewsList /> should render ReviewsList. 1`] = `
         className="reviews__time"
         dateTime="2019-04-24"
       >
-        string
+        Invalid date
       </time>
     </div>
   </li>

@@ -4,7 +4,7 @@ type Props = {
   property: string;
 }
 
-export const ProppertyInside: FC<Props> = ({
+export const PropertyInside: FC<Props> = ({
   property = ``,
 }) => {
   return (

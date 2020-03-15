@@ -1,5 +1,4 @@
 import React, {FC, useCallback, memo} from 'react';
-import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom";
 import {ReviewsList} from "../reviews-list/reviews-list";
 import {PropertiesInsideList} from "../properties-inside-list/properties-inside-list";

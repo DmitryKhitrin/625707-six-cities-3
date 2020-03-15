@@ -1,5 +1,4 @@
 import React, {FC, memo} from "react";
-import PropTypes from "prop-types";
 import {PlaceCard} from "../place-card/place-card";
 import {ParsedOfferCard} from "../../utils/utils";
 
@@ -39,12 +38,5 @@ const FavoriteLoacation: FC<Props> = ({
   );
 };
 
-const MemoizedFavoriteLoacation = memo(FavoriteLoacation);
-export {MemoizedFavoriteLoacation as FavoriteLoacation};
-
-FavoriteLoacation.propTypes = {
-  favorites: PropTypes.array,
-  city: PropTypes.string,
-  setFavorite: PropTypes.func,
-  getFavoriteAsync: PropTypes.func
-};
+const MemoizedFavoriteLocation = memo(FavoriteLoacation);
+export {MemoizedFavoriteLocation as FavoriteLoacation};

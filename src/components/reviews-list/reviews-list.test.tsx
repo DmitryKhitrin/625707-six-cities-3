@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import {ReviewsList} from "./reviews-list";
 const mocData = [{
   comment: `string`,
-  date: `string`,
+  date: 2,
   id: `string`,
   rating: `string`,
   user: {
