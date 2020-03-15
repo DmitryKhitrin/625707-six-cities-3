@@ -83,7 +83,7 @@ const setChoosed = (id: string, offers: OfferCard[]): SetChoosed => {
   };
 };
 
-export const getChoosedOfferAsync = (id: string): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState, api) => {
+export const getChosenOfferAsync = (id: string): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState, api) => {
   return api
       .get(request.hotels.get())
       .then((response) => {
@@ -92,7 +92,7 @@ export const getChoosedOfferAsync = (id: string): ThunkAction<void, RootState, u
       .catch(() => {});
 };
 
-export const getCommentsAcync = (hotelId: string): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState, api) => {
+export const getCommentsAsync = (hotelId: string): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState, api) => {
   return api
            .get(request.comments.get(hotelId))
            .then((response) => {

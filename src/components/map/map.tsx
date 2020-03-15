@@ -87,7 +87,6 @@ export class Map extends PureComponent<Props> {
       this._map.setView(location, this._zoom);
       this._addMarkers();
     }
-
   }
 
   render() {

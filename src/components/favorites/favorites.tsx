@@ -1,5 +1,4 @@
 import React, {FC, memo, useMemo} from "react";
-import PropTypes from "prop-types";
 import {FavoriteLoacation} from "../favorite-location/favorite-location";
 import {EmptyFavorites} from "../empty-favorites/empty-favorites";
 import {FavoriteMap} from "../../utils/utils";

@@ -2,7 +2,7 @@ import React from "react";
 import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {withSortMenu} from "./with-sort-menu";
-import {sortTypes} from "../utils/sort-types";
+import {SORT_TYPES} from "../utils/sort-types";
 
 configure({adapter: new Adapter()});
 
@@ -14,5 +14,5 @@ it(`TestComponent should have right props from withSortMenu.`, () => {
   expect(component.props().isMenuOpen).toEqual(false);
   component.props().toggleSortMenu();
   expect(component.props().isMenuOpen).toEqual(true);
-  expect(component.props().sortType).toEqual(sortTypes.POPULAR);
+  expect(component.props().sortType).toEqual(SORT_TYPES.POPULAR);
 });

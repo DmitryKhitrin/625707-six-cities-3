@@ -41,7 +41,7 @@ const offerProperties = {
   setFavorite: jest.fn(),
   reviews: [{
     comment: `Beaut`,
-    date: `2020-02-14T17:36:30.592Z`,
+    date: 2,
     id: `1`,
     rating: `60%`,
     user: {

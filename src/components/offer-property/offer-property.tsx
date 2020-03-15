@@ -1,5 +1,4 @@
 import React, {FC, useCallback, memo} from 'react';
-import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom";
 import {ReviewsList} from "../reviews-list/reviews-list";
 import {PropertiesInsideList} from "../properties-inside-list/properties-inside-list";
@@ -39,7 +38,7 @@ const OfferPropperty: FC<Props> = ({
   const {name, location} = city;
   const history = useHistory();
 
-  const onFavoriteClick = useCallback(
+  const handleFavoriteClick = useCallback(
       () => (isAuthenticated ? setFavorite(id, Number(!isFavorite)) : history.push(`/login`)),
       [setFavorite, isAuthenticated, id, isFavorite, history],
   );
@@ -74,7 +73,7 @@ const OfferPropperty: FC<Props> = ({
               <button
                 className="property__bookmark-button button"
                 type="button"
-                onClick={onFavoriteClick}
+                onClick={handleFavoriteClick}
               >
                 <svg
                   className="property__bookmark-icon"

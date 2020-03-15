@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ProppertyInside /> should render main. 1`] = `
+exports[`<PropertyInside /> should render main. 1`] = `
 <li
   className="property__inside-item"
 >

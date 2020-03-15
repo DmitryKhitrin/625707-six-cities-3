@@ -16,7 +16,7 @@ type InjectedProps = {
   isSubmiteButtonDisabled: boolean
   setStarsCount: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setCommentText: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onSubmite: (event: React.FormEvent<HTMLFormElement>, id: string) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>, id: string) => void;
 }
 
 
@@ -68,7 +68,7 @@ export const withFeedback = (Component: any) => {
         isSubmiteButtonDisabled={isSubmiteButtonDisabled}
         setStarsCount={setStarsCount}
         setCommentText={setCommentText}
-        onSubmite={onSubmitForm}
+        onSubmit={onSubmitForm}
       />
     );
   };

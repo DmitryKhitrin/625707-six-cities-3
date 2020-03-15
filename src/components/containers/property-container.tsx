@@ -6,9 +6,9 @@ import {setFavorite} from "../../redux/offers/offer-actions";
 import {authSelector} from "../../redux/user/user-selectors";
 import {commentsSelector, choosedSelector, nearbySelector} from "../../redux/property/property-selectors";
 import {
-  getCommentsAcync,
+  getCommentsAsync,
   getNearbyAsync,
-  getChoosedOfferAsync,
+  getChosenOfferAsync,
 } from '../../redux/property/property-actions';
 import {RootState} from "../../redux/root-reducer";
 import {ParsedOfferCard, ParsedComment} from "../../utils/utils";
@@ -24,11 +24,11 @@ type Match = {
 
 type Props = {
   setCity: (city: string) => void;
-  getChoosedOfferAsync: (T: string) => void;
+  getChosenOfferAsync: (T: string) => void;
   isAuthenticated: boolean;
   setFavorite: (T: string, S: number) => void;
   getNearbyAsync: (T: string) => void;
-  getCommentsAcync: (T: string) => void;
+  getCommentsAsync: (T: string) => void;
   reviews: ParsedComment[];
   nearby: ParsedOfferCard[];
   currentOffer: ParsedOfferCard;
@@ -38,8 +38,8 @@ type Props = {
 const PropertyContainer: FC<Props> = ({
   match,
   currentOffer,
-  getChoosedOfferAsync: getChoosedOffer,
-  getCommentsAcync: getComments,
+  getChosenOfferAsync: getChoosedOffer,
+  getCommentsAsync: getComments,
   isAuthenticated,
   setFavorite: setFavoriteCard,
   reviews,
@@ -73,9 +73,9 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-  getChoosedOfferAsync,
+  getChosenOfferAsync,
   setFavorite,
-  getCommentsAcync,
+  getCommentsAsync,
   getNearbyAsync,
 };
 

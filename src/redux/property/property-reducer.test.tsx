@@ -1,6 +1,11 @@
 import {propertyReducer, PropertyState} from './property-reducer';
-import {ParsedOfferCard, ParsedComment} from '../../utils/utils';
-import {SET_COMMENTS} from "./types";
+import {
+  SET_COMMENTS,
+  START_REVIEW_SENDING,
+  FINISH_REVIEW_SENDING,
+  SET_NEARBY,
+  SET_CHOOSED,
+} from './types';
 
 describe(`choosedReducer`, () => {
   it(`should SET_COMMENTS.`, () => {
@@ -11,7 +16,7 @@ describe(`choosedReducer`, () => {
           payload: {
             comments: [{
               comment: ``,
-              date: ``,
+              date: 2,
               id: ``,
               rating: ``,
               user: {
@@ -26,7 +31,7 @@ describe(`choosedReducer`, () => {
     );
     expect(state).toEqual({comments: [{
       comment: ``,
-      date: ``,
+      date: 2,
       id: ``,
       rating: ``,
       user: {
@@ -36,5 +41,139 @@ describe(`choosedReducer`, () => {
         isPro: false,
       },
     }]});
+  });
+
+  it(`should START_REVIEW_SENDING.`, () => {
+    const state = propertyReducer(
+        {} as PropertyState,
+        {
+          type: START_REVIEW_SENDING,
+        },
+    );
+    expect(state).toEqual({isFormSending: true});
+  });
+
+  it(`should FINISH_REVIEW_SENDING.`, () => {
+    const state = propertyReducer(
+        {} as PropertyState,
+        {
+          type: FINISH_REVIEW_SENDING,
+        },
+    );
+    expect(state).toEqual({isFormSending: false});
+  });
+
+  it(`should SET_NEARBY.`, () => {
+    const state = propertyReducer(
+        {} as PropertyState,
+        {
+          type: SET_NEARBY,
+          payload: {
+            nearby: [{
+              previewImage: ``,
+              images: [``],
+              title: ``,
+              isFavorite: false,
+              isPremium: false,
+              rating: ``,
+              type: ``,
+              bedrooms: 1,
+              maxAdults: 1,
+              price: 1,
+              goods: [``],
+              host: {
+                personPhoto: ``,
+                personName: ``,
+                id: 1,
+                isPro: false,
+              },
+              location: [1, 2],
+              description: ``,
+              id: ``,
+              city: {name: `Moscow`, location: [1, 2]},
+            }]
+          },
+        },
+    );
+    expect(state).toEqual({nearby: [{
+      previewImage: ``,
+      images: [``],
+      title: ``,
+      isFavorite: false,
+      isPremium: false,
+      rating: ``,
+      type: ``,
+      bedrooms: 1,
+      maxAdults: 1,
+      price: 1,
+      goods: [``],
+      host: {
+        personPhoto: ``,
+        personName: ``,
+        id: 1,
+        isPro: false,
+      },
+      location: [1, 2],
+      description: ``,
+      id: ``,
+      city: {name: `Moscow`, location: [1, 2]},
+    }]});
+  });
+
+  it(`should SET_CHOOSED.`, () => {
+    const state = propertyReducer(
+        {} as PropertyState,
+        {
+          type: SET_CHOOSED,
+          payload: {
+            choosed: {
+              previewImage: ``,
+              images: [``],
+              title: ``,
+              isFavorite: false,
+              isPremium: false,
+              rating: ``,
+              type: ``,
+              bedrooms: 1,
+              maxAdults: 1,
+              price: 1,
+              goods: [``],
+              host: {
+                personPhoto: ``,
+                personName: ``,
+                id: 1,
+                isPro: false,
+              },
+              location: [1, 2],
+              description: ``,
+              id: ``,
+              city: {name: `Moscow`, location: [1, 2]},
+            },
+          },
+        },
+    );
+    expect(state).toEqual({choosed: {
+      previewImage: ``,
+      images: [``],
+      title: ``,
+      isFavorite: false,
+      isPremium: false,
+      rating: ``,
+      type: ``,
+      bedrooms: 1,
+      maxAdults: 1,
+      price: 1,
+      goods: [``],
+      host: {
+        personPhoto: ``,
+        personName: ``,
+        id: 1,
+        isPro: false,
+      },
+      location: [1, 2],
+      description: ``,
+      id: ``,
+      city: {name: `Moscow`, location: [1, 2]},
+    }});
   });
 });

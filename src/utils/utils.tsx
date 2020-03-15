@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import {sortTypes} from "./sort-types";
+import {SORT_TYPES} from "./sort-types";
 
 export type Location = {
   latitude: number;
@@ -160,11 +160,11 @@ const rateToNumber = (rate: string): number => (Number(rate.replace(`%`, ``)));
 
 export const sortOffers = (type: string, offersList: ParsedOfferCard[]): ParsedOfferCard[] => {
   switch (type) {
-    case sortTypes.LOW_TO_HIGHT:
+    case SORT_TYPES.LOW_TO_HIGHT:
       return [...offersList].sort((a, b) => a.price - b.price);
-    case sortTypes.HIGHT_TO_LOW:
+    case SORT_TYPES.HIGHT_TO_LOW:
       return [...offersList].sort((a, b) => b.price - a.price);
-    case sortTypes.TOP_RATED:
+    case SORT_TYPES.TOP_RATED:
       return [...offersList].sort(
           (a, b) => rateToNumber(b.rating) - rateToNumber(a.rating)
       );
@@ -183,7 +183,7 @@ export type Comment = {
 
 export type ParsedComment = {
   comment: string;
-  date: string;
+  date: number;
   id: string;
   rating: string;
   user: ParsedUser;
@@ -197,9 +197,11 @@ export const parseComment = ({
   user,
 }: Comment): ParsedComment => ({
   comment,
-  date,
+  date: parseDate(date),
   id: String(id),
   rating: parseRating(rating),
   user: parseUser(user)
 });
+
+const parseDate = (date: string) => new Date(date).getTime();
 

@@ -2,7 +2,7 @@ import React, {FC, memo, Fragment, useCallback} from "react";
 import {RATING, withFeedback} from "../../hocs/with-feedback";
 
 type Props = {
-  onSubmite: (event: React.FormEvent<HTMLFormElement>, id: string) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>, id: string) => void;
   setCommentText: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   isSubmiteButtonDisabled: boolean;
   setStarsCount: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -12,7 +12,7 @@ type Props = {
 }
 
 const FeedbackFrom: FC<Props> = ({
-  onSubmite = () => {},
+  onSubmit = () => {},
   setCommentText = () => {},
   isSubmiteButtonDisabled = true,
   setStarsCount = () => {},
@@ -23,9 +23,9 @@ const FeedbackFrom: FC<Props> = ({
 
   const onSubmiteClick = useCallback(
       (evt) => {
-        onSubmite(evt, id);
+        onSubmit(evt, id);
       },
-      [onSubmite, id]
+      [onSubmit, id]
   );
 
   return (

@@ -1,7 +1,8 @@
 import React, {FC, memo} from "react";
+import moment from "moment";
 
 type Props = {
-  reviewsDate: string;
+  reviewsDate: number;
   reviewsText: string;
   reviewsRating: string;
   reviewsUserName: string;
@@ -39,7 +40,7 @@ const ReviewsItem: FC<Props> = ({
         </div>
         <p className="reviews__text">{reviewsText}</p>
         <time className="reviews__time" dateTime="2019-04-24">
-          {reviewsDate}
+          {moment(new Date(reviewsDate)).format(`MMMM YYYY`)}
         </time>
       </div>
     </li>

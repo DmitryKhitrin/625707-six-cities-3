@@ -13,7 +13,7 @@ const ReviewsList: FC<Props> = ({reviews}) => {
   return (
     <ul className="reviews__list">
       {reviews
-          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          .sort((a, b) => b.date - a.date)
           .slice(0, 10)
           .map(
               ({
