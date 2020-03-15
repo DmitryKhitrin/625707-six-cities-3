@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import {SortTypes} from "./sort-types";
+import {SORT_TYPES} from "./sort-types";
 
 export type Location = {
   latitude: number;
@@ -160,11 +160,11 @@ const rateToNumber = (rate: string): number => (Number(rate.replace(`%`, ``)));
 
 export const sortOffers = (type: string, offersList: ParsedOfferCard[]): ParsedOfferCard[] => {
   switch (type) {
-    case SortTypes.LOW_TO_HIGHT:
+    case SORT_TYPES.LOW_TO_HIGHT:
       return [...offersList].sort((a, b) => a.price - b.price);
-    case SortTypes.HIGHT_TO_LOW:
+    case SORT_TYPES.HIGHT_TO_LOW:
       return [...offersList].sort((a, b) => b.price - a.price);
-    case SortTypes.TOP_RATED:
+    case SORT_TYPES.TOP_RATED:
       return [...offersList].sort(
           (a, b) => rateToNumber(b.rating) - rateToNumber(a.rating)
       );
