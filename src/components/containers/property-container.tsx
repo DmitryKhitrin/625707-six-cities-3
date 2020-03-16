@@ -4,7 +4,7 @@ import {OfferPropperty} from "../offer-property/offer-property";
 import {useScrollToTop} from '../../hooks/use-scroll-to-top';
 import {setFavorite} from "../../redux/offers/offer-actions";
 import {authSelector} from "../../redux/user/user-selectors";
-import {commentsSelector, choosedSelector, nearbySelector} from "../../redux/property/property-selectors";
+import {commentsSelector, choosedSelector, nearbySelector, errorSelector} from "../../redux/property/property-selectors";
 import {
   getCommentsAsync,
   getNearbyAsync,
@@ -33,6 +33,7 @@ type Props = {
   nearby: ParsedOfferCard[];
   currentOffer: ParsedOfferCard;
   match: Match;
+  formError: boolean;
 }
 
 const PropertyContainer: FC<Props> = ({
@@ -45,6 +46,7 @@ const PropertyContainer: FC<Props> = ({
   reviews,
   nearby,
   getNearbyAsync: getNearby,
+  formError,
 }) => {
   const {id} = match.params;
   useScrollToTop();
@@ -62,6 +64,7 @@ const PropertyContainer: FC<Props> = ({
       setFavorite={setFavoriteCard}
       reviews={reviews}
       offersList={nearby}
+      formError={formError}
     />
   );
 };
@@ -70,6 +73,7 @@ const mapStateToProps = (state: RootState) => ({
   isAuthenticated: authSelector(state),
   reviews: commentsSelector(state),
   nearby: nearbySelector(state),
+  formError: errorSelector(state),
 });
 
 const mapDispatchToProps = {

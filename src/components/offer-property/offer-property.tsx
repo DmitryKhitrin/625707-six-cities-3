@@ -12,6 +12,7 @@ type Props = ParsedOfferCard & {
   setFavorite: (T: string, S: number) => void;
   reviews: ParsedComment[];
   offersList: ParsedOfferCard[];
+  formError?: boolean
 }
 
 const OfferPropperty: FC<Props> = ({
@@ -33,6 +34,7 @@ const OfferPropperty: FC<Props> = ({
   isFavorite,
   setFavorite,
   id,
+  formError,
 }) => {
   const {personPhoto = ``, personName = ``} = host;
   const {name, location} = city;
@@ -132,7 +134,7 @@ const OfferPropperty: FC<Props> = ({
                 <span className="reviews__amount">{reviews.length}</span>
               </h2>
               <ReviewsList reviews={reviews} />
-              {isAuthenticated ? <FeedbackFrom id={id} /> : null}
+              {isAuthenticated ? <FeedbackFrom id={id} formError={formError}/> : null}
             </section>
           </div>
         </div>

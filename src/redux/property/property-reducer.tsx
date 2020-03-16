@@ -4,6 +4,8 @@ import {
   FINISH_REVIEW_SENDING,
   SET_NEARBY,
   SET_CHOOSED,
+  SET_FORM_ERROR,
+  CLEAR_FORM_ERROR,
 } from './types';
 import {PropertyAction} from "./property-actions";
 import {ParsedOfferCard, ParsedComment} from '../../utils/utils';
@@ -13,6 +15,7 @@ export type PropertyState = {
   isFormSending: boolean;
   nearby: ParsedOfferCard[];
   choosed: ParsedOfferCard | {};
+  formError: boolean;
 }
 
 const initialState: PropertyState = {
@@ -20,6 +23,7 @@ const initialState: PropertyState = {
   isFormSending: false,
   nearby: [],
   choosed: {},
+  formError: false,
 };
 
 export const propertyReducer = (state = initialState, action: PropertyAction) => {
@@ -51,6 +55,18 @@ export const propertyReducer = (state = initialState, action: PropertyAction) =>
       return {
         ...state,
         choosed: action.payload.choosed,
+      };
+
+    case SET_FORM_ERROR:
+      return {
+        ...state,
+        formError: true,
+      };
+
+    case CLEAR_FORM_ERROR:
+      return {
+        ...state,
+        formError: false,
       };
 
     default:
