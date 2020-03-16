@@ -15,17 +15,11 @@ import {RootState} from "../root-reducer";
 
 type SetFormError = {
   type: typeof SET_FORM_ERROR,
-  payload: {
-    error: string;
-  }
 }
 
 const setFormError = (error: string) => {
   return {
     type: SET_FORM_ERROR,
-    payload: {
-      error,
-    }
   };
 };
 

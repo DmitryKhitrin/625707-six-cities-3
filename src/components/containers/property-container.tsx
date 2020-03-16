@@ -33,7 +33,7 @@ type Props = {
   nearby: ParsedOfferCard[];
   currentOffer: ParsedOfferCard;
   match: Match;
-  formError: string;
+  formError: boolean;
 }
 
 const PropertyContainer: FC<Props> = ({

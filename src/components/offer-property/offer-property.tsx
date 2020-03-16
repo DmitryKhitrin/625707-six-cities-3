@@ -12,7 +12,7 @@ type Props = ParsedOfferCard & {
   setFavorite: (T: string, S: number) => void;
   reviews: ParsedComment[];
   offersList: ParsedOfferCard[];
-  formError?: string
+  formError?: boolean
 }
 
 const OfferPropperty: FC<Props> = ({

@@ -9,7 +9,7 @@ type Props = {
   comment: string;
   rating: number;
   id: string;
-  formError?: string;
+  formError?: boolean;
 }
 
 const FeedbackFrom: FC<Props> = ({

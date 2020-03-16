@@ -16,24 +16,21 @@ describe(`choosedReducer`, () => {
         {} as PropertyState,
         {
           type: SET_FORM_ERROR,
-          payload: {
-            error: `some error`
-          }
         },
     );
-    expect(state).toEqual({formError: `some error`});
+    expect(state).toEqual({formError: true});
   });
 
   it(`should CLEAR_FORM_ERROR.`, () => {
     const state = propertyReducer(
         {
-          formError: `some error`
+          formError: true
         } as PropertyState,
         {
           type: CLEAR_FORM_ERROR,
         },
     );
-    expect(state).toEqual({formError: ``});
+    expect(state).toEqual({formError: false});
   });
 
   it(`should SET_COMMENTS.`, () => {

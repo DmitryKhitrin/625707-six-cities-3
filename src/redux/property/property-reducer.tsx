@@ -15,7 +15,7 @@ export type PropertyState = {
   isFormSending: boolean;
   nearby: ParsedOfferCard[];
   choosed: ParsedOfferCard | {};
-  formError: string;
+  formError: boolean;
 }
 
 const initialState: PropertyState = {
@@ -23,7 +23,7 @@ const initialState: PropertyState = {
   isFormSending: false,
   nearby: [],
   choosed: {},
-  formError: ``,
+  formError: false,
 };
 
 export const propertyReducer = (state = initialState, action: PropertyAction) => {
@@ -60,13 +60,13 @@ export const propertyReducer = (state = initialState, action: PropertyAction) =>
     case SET_FORM_ERROR:
       return {
         ...state,
-        formError: action.payload.error,
+        formError: true,
       };
 
     case CLEAR_FORM_ERROR:
       return {
         ...state,
-        formError: ``,
+        formError: false,
       };
 
     default:
