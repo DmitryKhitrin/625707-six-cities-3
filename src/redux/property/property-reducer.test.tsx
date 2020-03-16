@@ -5,9 +5,37 @@ import {
   FINISH_REVIEW_SENDING,
   SET_NEARBY,
   SET_CHOOSED,
+  SET_FORM_ERROR,
+  CLEAR_FORM_ERROR,
 } from './types';
 
 describe(`choosedReducer`, () => {
+
+  it(`should SET_FORM_ERROR.`, () => {
+    const state = propertyReducer(
+        {} as PropertyState,
+        {
+          type: SET_FORM_ERROR,
+          payload: {
+            error: `some error`
+          }
+        },
+    );
+    expect(state).toEqual({formError: `some error`});
+  });
+
+  it(`should CLEAR_FORM_ERROR.`, () => {
+    const state = propertyReducer(
+        {
+          formError: `some error`
+        } as PropertyState,
+        {
+          type: CLEAR_FORM_ERROR,
+        },
+    );
+    expect(state).toEqual({formError: ``});
+  });
+
   it(`should SET_COMMENTS.`, () => {
     const state = propertyReducer(
         {} as PropertyState,

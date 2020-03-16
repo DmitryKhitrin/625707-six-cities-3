@@ -1,5 +1,4 @@
 import axios from "axios";
-import {history} from "../utils/history";
 
 export const makeApi = () => {
   const api = axios.create({
@@ -13,9 +12,6 @@ export const makeApi = () => {
       },
       (error) => {
         const {status} = error.response;
-        if (error && status === 401 || status === 400) {
-          history.push(`/login`);
-        }
         return Promise.reject(error);
       }
   );

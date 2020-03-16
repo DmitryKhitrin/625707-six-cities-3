@@ -4,12 +4,40 @@ import {
   FINISH_REVIEW_SENDING,
   SET_NEARBY,
   SET_CHOOSED,
+  SET_FORM_ERROR,
+  CLEAR_FORM_ERROR,
 } from './types';
 import {request} from "../../api/config";
 import {parseComment, parseOffer, ParsedOfferCard, Comment, ParsedComment, OfferCard} from '../../utils/utils';
 import {ThunkAction} from "../../utils/types";
 import {Action} from "redux";
 import {RootState} from "../root-reducer";
+
+type SetFormError = {
+  type: typeof SET_FORM_ERROR,
+  payload: {
+    error: string;
+  }
+}
+
+const setFormError = (error: string) => {
+  return {
+    type: SET_FORM_ERROR,
+    payload: {
+      error,
+    }
+  };
+};
+
+type ClearFormError = {
+  type: typeof CLEAR_FORM_ERROR,
+}
+
+const clearFormError = () => {
+  return {
+    type: CLEAR_FORM_ERROR,
+  };
+};
 
 type SetComment = {
   type: typeof SET_COMMENTS;
@@ -113,12 +141,14 @@ export const sendCommentAsync = (hotelId: string, rating: number, comment: strin
     .post(request.comments.post(hotelId), {rating, comment})
     .then((response) => {
       if (response.data) {
+        dispatch(clearFormError());
         dispatch(setComments(response.data));
         dispatch(setFinishReviewSending());
       }
     })
-    .catch(() => {
+    .catch((error) => {
       dispatch(setFinishReviewSending());
+      dispatch(setFormError(String(error.code)));
     });
 };
 
@@ -133,4 +163,4 @@ export const getNearbyAsync = (hotelId: string): ThunkAction<void, RootState, un
         .catch(() => {});
 };
 
-export type PropertyAction = SetComment | SetStartReviewSending | SetFinishReviewSending | SetNearby | SetChoosed;
+export type PropertyAction = SetComment | SetStartReviewSending | SetFinishReviewSending | SetNearby | SetChoosed | SetFormError | ClearFormError;

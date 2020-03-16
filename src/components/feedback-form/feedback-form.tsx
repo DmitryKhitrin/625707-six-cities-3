@@ -9,6 +9,7 @@ type Props = {
   comment: string;
   rating: number;
   id: string;
+  formError?: string;
 }
 
 const FeedbackFrom: FC<Props> = ({
@@ -19,6 +20,7 @@ const FeedbackFrom: FC<Props> = ({
   comment,
   rating,
   id,
+  formError,
 }) => {
 
   const onSubmiteClick = useCallback(
@@ -72,6 +74,12 @@ const FeedbackFrom: FC<Props> = ({
         value={comment}
         onChange={setCommentText}
       />
+      {formError && (
+        <span className={`form__error error`}>
+          При отправке формы возникла ошибка. Пожалуйста, попробуйте
+          позже.
+        </span>
+      )}
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set{` `}
