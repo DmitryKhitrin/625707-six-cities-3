@@ -4,6 +4,7 @@ import {request} from "../../api/config";
 import {RootState} from "../root-reducer";
 import {ThunkAction} from "../../utils/types";
 import {Action} from "redux";
+import {history} from "../../utils/history";
 
 type LoginParams = {
   id: number;
@@ -73,7 +74,7 @@ export const setAuthError = (error: string) => {
   };
 };
 
-export const login = (email: string, password: string, history: any): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState, api): Promise<void> => {
+export const login = (email: string, password: string): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState, api): Promise<void> => {
   return api
     .post(request.login.get(), {email, password})
     .then((response) => {

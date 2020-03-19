@@ -1,4 +1,5 @@
 import axios from "axios";
+import {history} from "../utils/history";
 
 export const makeApi = () => {
   const api = axios.create({
