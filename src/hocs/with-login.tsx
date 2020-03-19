@@ -35,9 +35,9 @@ export const withLogin = (Component: any) => {
       evt.preventDefault();
 
       const {email, password} = this.state;
-      const {login: onLogin, history} = this.props;
+      const {login: onLogin} = this.props;
 
-      onLogin(email, password, history);
+      onLogin(email, password);
     }
 
     _handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
