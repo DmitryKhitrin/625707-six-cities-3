@@ -15,10 +15,19 @@ type Props = {
   handleSubmit: (T: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const LoginContainer: FC<Props> = (props) => {
-  return <SignIn {...props} />;
+const LoginContainer: FC<Props> = ({
+  setCity: onSetCity,
+  handleChange,
+  handleSubmit,
+}) => {
+  return (
+    <SignIn
+      onSetCity={onSetCity}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+    />
+  );
 };
-
 
 const mapStateToProps = (state: RootState) => {
   return {
@@ -31,5 +40,7 @@ const mapDispatchToProps = {
   login,
 };
 
-const WrappedLoginContainer = memo(connect(mapStateToProps, mapDispatchToProps)(withLogin(LoginContainer)));
+const WrappedLoginContainer = memo(
+    connect(mapStateToProps, mapDispatchToProps)(withLogin(LoginContainer)),
+);
 export {WrappedLoginContainer as LoginContainer};

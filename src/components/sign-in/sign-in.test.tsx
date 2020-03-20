@@ -6,7 +6,7 @@ it(`<SignIn /> should render SignIn.`, () => {
   const tree = renderer
     .create(
         <Router>
-          <TestSignIn setCity={jest.fn()} handleChange={jest.fn()} handleSubmit={jest.fn()} />
+          <TestSignIn onSetCity={jest.fn()} handleChange={jest.fn()} handleSubmit={jest.fn()} />
         </Router>
     )
     .toJSON();

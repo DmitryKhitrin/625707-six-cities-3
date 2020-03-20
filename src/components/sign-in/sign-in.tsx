@@ -2,12 +2,12 @@ import React, {FC, memo, useCallback} from "react";
 import {Link} from "react-router-dom";
 
 type Props = {
-  setCity: (T: string) => void;
+  onSetCity: (T: string) => void;
   handleChange: (T: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (T: React.FormEvent<HTMLFormElement>) => void
 }
 
-const SignIn: FC<Props> = ({setCity, handleChange, handleSubmit}) => {
+const SignIn: FC<Props> = ({onSetCity, handleChange, handleSubmit}) => {
   const onSubmit = useCallback((evt) => {
     handleSubmit(evt);
   }, [handleSubmit]);
@@ -55,7 +55,7 @@ const SignIn: FC<Props> = ({setCity, handleChange, handleSubmit}) => {
             <Link
               to="./"
               className="locations__item-link"
-              onClick={() => setCity(`Amsterdam`)}
+              onClick={() => onSetCity(`Amsterdam`)}
             >
               <span>{`Amsterdam`}</span>
             </Link>
