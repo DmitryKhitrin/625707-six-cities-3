@@ -1,4 +1,4 @@
-import React, {FC, ElementType} from 'react';
+import React, {FC} from 'react';
 import {Route, Redirect} from 'react-router-dom';
 
 type Props = {
