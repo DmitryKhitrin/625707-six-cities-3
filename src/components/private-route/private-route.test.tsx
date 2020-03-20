@@ -25,7 +25,7 @@ describe(`<PrivateRoute />`, () => {
         </BrowserRouter>
     );
 
-    expect(tree.getDOMNode()).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   it(`should render null.`, () => {
@@ -39,7 +39,6 @@ describe(`<PrivateRoute />`, () => {
           />
         </BrowserRouter>
     );
-
-    expect(tree.getDOMNode()).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 });

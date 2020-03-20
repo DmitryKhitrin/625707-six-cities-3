@@ -1,9 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PrivateRoute /> should render Component. 1`] = `
-<div>
-  Hello
-</div>
-`;
+exports[`<PrivateRoute /> should render Component. 1`] = `ReactWrapper {}`;
 
-exports[`<PrivateRoute /> should render null. 1`] = `null`;
+exports[`<PrivateRoute /> should render null. 1`] = `ReactWrapper {}`;
