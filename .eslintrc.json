@@ -6,7 +6,7 @@
     "jest": true
   },
   "extends": ["htmlacademy/es6", "plugin:react/recommended"],
-  "plugins": ["react",  "react-hooks", "@typescript-eslint"],
+  "plugins": ["react",  "react-hooks", "@typescript-eslint", "eslint-plugin-react"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
