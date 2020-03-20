@@ -21,6 +21,23 @@ export class Map extends PureComponent<Props> {
   _markersLayer: leaflet.LayerGroup<any> = {} as leaflet.LayerGroup<any>;
   _activeCard = ``;
 
+  componentDidMount() {
+    this._initCities();
+  }
+
+  componentDidUpdate() {
+    const {name, location} = this.props.city;
+    if (name && location.length) {
+      this._markersLayer.clearLayers();
+      this._map.setView(location, this._zoom);
+      this._addMarkers();
+    }
+  }
+
+  render() {
+    return <div id="map" style={{height: this.props.height}} />;
+  }
+
   _getIcon() {
     return leaflet.icon({
       iconUrl: `img/pin.svg`,
@@ -74,22 +91,5 @@ export class Map extends PureComponent<Props> {
     }
 
     );
-  }
-
-  componentDidMount() {
-    this._initCities();
-  }
-
-  componentDidUpdate() {
-    const {name, location} = this.props.city;
-    if (name && location.length) {
-      this._markersLayer.clearLayers();
-      this._map.setView(location, this._zoom);
-      this._addMarkers();
-    }
-  }
-
-  render() {
-    return <div id="map" style={{height: this.props.height}} />;
   }
 }

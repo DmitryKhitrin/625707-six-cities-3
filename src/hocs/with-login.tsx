@@ -31,6 +31,16 @@ export const withLogin = (Component: any) => {
       this._handleChange = this._handleChange.bind(this);
     }
 
+    render() {
+      return (
+        <Component
+          {...this.props}
+          handleChange={this._handleChange}
+          handleSubmit={this._handleSubmit}
+        />
+      );
+    }
+
     _handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
       evt.preventDefault();
 
@@ -46,16 +56,6 @@ export const withLogin = (Component: any) => {
       this.setState({
         [name]: value
       });
-    }
-
-    render() {
-      return (
-        <Component
-          {...this.props}
-          handleChange={this._handleChange}
-          handleSubmit={this._handleSubmit}
-        />
-      );
     }
   }
 

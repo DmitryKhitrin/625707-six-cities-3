@@ -39,6 +39,20 @@ export const withSortMenu = (Component: any) => {
       });
     }
 
+    render() {
+      const {isMenuOpen, sortType} = this.state;
+
+      return (
+        <Component
+          {...this.props}
+          isMenuOpen={isMenuOpen}
+          sortType={sortType}
+          setSortType={this._setSortType}
+          toggleSortMenu={this._toggleSortMenu}
+        />
+      );
+    }
+
     _closeMenu() {
       this.setState({
         isMenuOpen: false
@@ -54,20 +68,6 @@ export const withSortMenu = (Component: any) => {
     _setSortType(event: any) {
       this.setState({sortType: event.target.textContent});
       this._closeMenu();
-    }
-
-    render() {
-      const {isMenuOpen, sortType} = this.state;
-
-      return (
-        <Component
-          {...this.props}
-          isMenuOpen={isMenuOpen}
-          sortType={sortType}
-          setSortType={this._setSortType}
-          toggleSortMenu={this._toggleSortMenu}
-        />
-      );
     }
   }
 
