@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {Router, Route, Switch, Redirect} from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 
 import {MainContainer} from "../containers/main-container";
 import {Footer} from "../footer/footer";
