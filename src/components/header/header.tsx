@@ -59,7 +59,7 @@ const Header: FC<Props> = ({user = {}, isAuthenticated = false}) => {
                       }}
                     />
                     <span className="header__user-name user__name">
-                      {email}
+                      {`asdasdasdasd`}
                     </span>
                   </Link>
                 )}

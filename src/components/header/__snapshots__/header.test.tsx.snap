@@ -53,7 +53,7 @@ exports[`Header <Header /> should render Header. 1`] = `
               <span
                 className="header__user-name user__name"
               >
-                asd@mail.ru
+                asdasdasdasd
               </span>
             </a>
           </li>
