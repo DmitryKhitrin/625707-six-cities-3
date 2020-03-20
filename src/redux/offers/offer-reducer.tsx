@@ -16,7 +16,7 @@ export type OfferState = {
 
 const initialState: OfferState = {
   locations: [],
-  city: `Paris`,
+  city: `Hamburg`,
   offers: [],
   favorites: {}
 };
