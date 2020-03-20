@@ -7,10 +7,10 @@ describe(`<PlacesSortingForm /> should render PlacesSortingForm.`, () => {
     const tree = renderer
       .create(
           <PlacesSortingForm
-            setSortType={jest.fn()}
+            onSetSortType={jest.fn()}
             sortType={``}
             isMenuOpen={true}
-            toggleSortMenu={jest.fn()}
+            onToggleSortMenu={jest.fn()}
           />
       )
       .toJSON();
@@ -21,10 +21,10 @@ describe(`<PlacesSortingForm /> should render PlacesSortingForm.`, () => {
     const tree = renderer
       .create(
           <PlacesSortingForm
-            setSortType={jest.fn()}
+            onSetSortType={jest.fn()}
             sortType={``}
             isMenuOpen={false}
-            toggleSortMenu={jest.fn()}
+            onToggleSortMenu={jest.fn()}
           />
       )
       .toJSON();

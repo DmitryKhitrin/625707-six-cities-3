@@ -15,9 +15,9 @@ type Props = {
   locations: ParsedCity[];
   setCity: (T: string) => void;
   isMenuOpen: boolean;
-  setSortType: (T: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  onSetSortType: (T: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
   sortType: string;
-  toggleSortMenu: () => void;
+  onToggleSortMenu: () => void;
   setActiveItem: () => void;
   removeActiveItem: () => void;
   activeItem: string;
@@ -31,9 +31,9 @@ const Main: FC<Props> = ({
   locations = [],
   setCity,
   isMenuOpen = false,
-  setSortType = () => {},
+  onSetSortType = () => {},
   sortType,
-  toggleSortMenu = () => {},
+  onToggleSortMenu = () => {},
   setActiveItem = () => {},
   removeActiveItem = () => {},
   activeItem,
@@ -67,10 +67,10 @@ const Main: FC<Props> = ({
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{`${sortedPlaceCardsList.length} places to stay in ${city}`}</b>
                 <PlacesSortingForm
-                  setSortType={setSortType}
+                  onSetSortType={onSetSortType}
                   sortType={sortType}
                   isMenuOpen={isMenuOpen}
-                  toggleSortMenu={toggleSortMenu}
+                  onToggleSortMenu={onToggleSortMenu}
                 />
                 {placeCardsList.length === 0 ? (
                   `No places to stay available`

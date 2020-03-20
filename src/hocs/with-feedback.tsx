@@ -14,8 +14,8 @@ type InjectedProps = {
   comment: string;
   rating: number
   isSubmiteButtonDisabled: boolean
-  setStarsCount: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  setCommentText: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onSetStarsCount: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSetCommentText: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onSubmit: (event: React.FormEvent<HTMLFormElement>, id: string) => void;
 }
 
@@ -40,7 +40,7 @@ export const withFeedback = (Component: any) => {
       setRating(Number(evt.target.value));
     };
 
-    const setCommentText = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleSetCommentText = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
       const commentText = evt.target.value;
       const {max} = COMMENT_PARAM;
       if (commentText.length > max) {
@@ -49,7 +49,7 @@ export const withFeedback = (Component: any) => {
       setComment(commentText);
     };
 
-    const onSubmitForm = (evt: React.FormEvent<HTMLFormElement>, hotelId: string) => {
+    const handleSubmitForm = (evt: React.FormEvent<HTMLFormElement>, hotelId: string) => {
       evt.preventDefault();
       dispatch(sendCommentAsync(hotelId, rating, comment));
       reset();
@@ -66,9 +66,9 @@ export const withFeedback = (Component: any) => {
         comment={comment}
         rating={rating}
         isSubmiteButtonDisabled={isSubmiteButtonDisabled}
-        setStarsCount={setStarsCount}
-        setCommentText={setCommentText}
-        onSubmit={onSubmitForm}
+        onSetStarsCount={setStarsCount}
+        onSetCommentText={handleSetCommentText}
+        onSubmit={handleSubmitForm}
       />
     );
   };

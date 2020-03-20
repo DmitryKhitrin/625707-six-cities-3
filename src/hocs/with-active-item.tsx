@@ -26,8 +26,8 @@ export const withActiveItem = (Component: any) => {
         activeItem: ``
       };
 
-      this._setActiveItem = this._setActiveItem.bind(this);
-      this._removeActiveItem = this._removeActiveItem.bind(this);
+      this._handleSetActiveItem = this._handleSetActiveItem.bind(this);
+      this._handleRemoveActiveItem = this._handleRemoveActiveItem.bind(this);
     }
 
     componentWillUnmount() {
@@ -43,17 +43,17 @@ export const withActiveItem = (Component: any) => {
         <Component
           {...this.props}
           activeItem={activeItem}
-          setActiveItem={this._setActiveItem}
-          removeActiveItem={this._removeActiveItem}
+          setActiveItem={this._handleSetActiveItem}
+          removeActiveItem={this._handleRemoveActiveItem}
         />
       );
     }
 
-    _setActiveItem(value: string) {
+    _handleSetActiveItem(value: string) {
       this.setState({activeItem: value});
     }
 
-    _removeActiveItem() {
+    _handleRemoveActiveItem() {
       this.setState({
         activeItem: ``
       });

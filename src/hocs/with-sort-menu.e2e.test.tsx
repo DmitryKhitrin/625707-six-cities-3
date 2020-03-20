@@ -12,7 +12,7 @@ const WithActiveItem = withSortMenu(TestComponent);
 it(`TestComponent should have right props from withSortMenu.`, () => {
   const component = shallow(<WithActiveItem />);
   expect(component.props().isMenuOpen).toEqual(false);
-  component.props().toggleSortMenu();
+  component.props().onToggleSortMenu();
   expect(component.props().isMenuOpen).toEqual(true);
   expect(component.props().sortType).toEqual(SORT_TYPES.POPULAR);
 });

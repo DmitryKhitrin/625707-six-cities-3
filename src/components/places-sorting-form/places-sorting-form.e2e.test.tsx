@@ -9,36 +9,36 @@ Enzyme.configure({
 
 describe(`<PlacesSortingForm /> tests.`, () => {
   it(`Should sort span click one time`, () => {
-    const toggleSortMenu = jest.fn();
+    const onToggleSortMenu = jest.fn();
 
     const placesSortingForm = shallow(
         <PlacesSortingForm
-          setSortType={jest.fn()}
+          onSetSortType={jest.fn()}
           sortType={``}
           isMenuOpen={false}
-          toggleSortMenu={toggleSortMenu}
+          onToggleSortMenu={onToggleSortMenu}
         />
     );
 
     const list = placesSortingForm.find(`.places__sorting-type`);
     list.simulate(`click`);
-    expect(toggleSortMenu.mock.calls.length).toBe(1);
+    expect(onToggleSortMenu.mock.calls.length).toBe(1);
   });
 
   it(`Should sort item click four times`, () => {
-    const setSortType = jest.fn();
+    const onSetSortType = jest.fn();
 
     const placesSortingForm = shallow(
         <PlacesSortingForm
-          setSortType={setSortType}
+          onSetSortType={onSetSortType}
           sortType={``}
           isMenuOpen={false}
-          toggleSortMenu={jest.fn()}
+          onToggleSortMenu={jest.fn()}
         />
     );
 
     const list = placesSortingForm.find(`.places__option`);
     list.forEach((item) => item.simulate(`click`));
-    expect(setSortType.mock.calls.length).toBe(4);
+    expect(onSetSortType.mock.calls.length).toBe(4);
   });
 });

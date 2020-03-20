@@ -2,15 +2,15 @@ import React, {FC, memo} from "react";
 
 type Props = {
   sortType: string;
-  setSortType: (T: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
-  toggleSortMenu: () => void;
+  onSetSortType: (T: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  onToggleSortMenu: () => void;
   isMenuOpen: boolean;
 }
 
 const PlacesSortingForm: FC<Props> = ({
   sortType = ``,
-  setSortType = () => {},
-  toggleSortMenu = () => {},
+  onSetSortType = () => {},
+  onToggleSortMenu = () => {},
   isMenuOpen = true,
 }) => {
   return (
@@ -19,7 +19,7 @@ const PlacesSortingForm: FC<Props> = ({
       <span
         className="places__sorting-type"
         tabIndex={0}
-        onClick={toggleSortMenu}
+        onClick={onToggleSortMenu}
       >
         {sortType}
         <svg className="places__sorting-arrow" width="7" height="4">
@@ -36,7 +36,7 @@ const PlacesSortingForm: FC<Props> = ({
             sortType === `Popular` ? `places__option--active` : ``
           }`}
           tabIndex={0}
-          onClick={setSortType}
+          onClick={onSetSortType}
         >
           Popular
         </li>
@@ -45,7 +45,7 @@ const PlacesSortingForm: FC<Props> = ({
             sortType === `Price: low to high` ? `places__option--active` : ``
           }`}
           tabIndex={0}
-          onClick={setSortType}
+          onClick={onSetSortType}
         >
           Price: low to high
         </li>
@@ -54,7 +54,7 @@ const PlacesSortingForm: FC<Props> = ({
             sortType === `Price: high to low` ? `places__option--active` : ``
           }`}
           tabIndex={0}
-          onClick={setSortType}
+          onClick={onSetSortType}
         >
           Price: high to low
         </li>
@@ -63,7 +63,7 @@ const PlacesSortingForm: FC<Props> = ({
             sortType === `Top rated first` ? `places__option--active` : ``
           }`}
           tabIndex={0}
-          onClick={setSortType}
+          onClick={onSetSortType}
         >
           Top rated first
         </li>

@@ -15,10 +15,10 @@ jest.mock(`../redux/property/property-selectors`);
 const TestComponent = () => <div>Somw text.</div>;
 const WithFeedback = withFeedback(TestComponent);
 
-describe(`withLogin`, () => {
+describe(`withFeedback`, () => {
   it(`TestComponent should setCommentText password.`, () => {
     const component = shallow(<WithFeedback />);
-    component.props().setCommentText({target: {value: `Hello world!`}});
+    component.props().onSetCommentText({target: {value: `Hello world!`}});
     expect(component.props().comment).toEqual(`Hello world!`);
   });
 
@@ -26,7 +26,7 @@ describe(`withLogin`, () => {
     const component = shallow(<WithFeedback />);
     component
       .props()
-      .setStarsCount({target: {value: 4}});
+      .onSetStarsCount({target: {value: 4}});
     expect(component.props().rating).toEqual(4);
   });
 });

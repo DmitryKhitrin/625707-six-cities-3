@@ -5,8 +5,8 @@ import {SORT_TYPES} from "../utils/sort-types";
 type InjectedProps = {
   isMenuOpen: boolean;
   sortType: string;
-  setSortType: (T: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
-  toggleSortMenu: () => void;
+  onSetSortType: (T: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  onToggleSortMenu: () => void;
 }
 
 type LocalState = {
@@ -27,9 +27,9 @@ export const withSortMenu = (Component: any) => {
         sortType: SORT_TYPES.POPULAR,
         isMenuOpen: false
       };
-      this._setSortType = this._setSortType.bind(this);
-      this._toggleSortMenu = this._toggleSortMenu.bind(this);
-      this._closeMenu = this._closeMenu.bind(this);
+      this._handleSetSortType = this._handleSetSortType.bind(this);
+      this._handleToggleSortMenu = this._handleToggleSortMenu.bind(this);
+      this._handleCloseMenu = this._handleCloseMenu.bind(this);
     }
 
     componentWillUnmount() {
@@ -47,27 +47,27 @@ export const withSortMenu = (Component: any) => {
           {...this.props}
           isMenuOpen={isMenuOpen}
           sortType={sortType}
-          setSortType={this._setSortType}
-          toggleSortMenu={this._toggleSortMenu}
+          onSetSortType={this._handleSetSortType}
+          onToggleSortMenu={this._handleToggleSortMenu}
         />
       );
     }
 
-    _closeMenu() {
+    _handleCloseMenu() {
       this.setState({
         isMenuOpen: false
       });
     }
 
-    _toggleSortMenu() {
+    _handleToggleSortMenu() {
       this.setState({
         isMenuOpen: !this.state.isMenuOpen
       });
     }
 
-    _setSortType(event: any) {
+    _handleSetSortType(event: any) {
       this.setState({sortType: event.target.textContent});
-      this._closeMenu();
+      this._handleCloseMenu();
     }
   }
 

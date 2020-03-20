@@ -3,9 +3,9 @@ import {RATING, withFeedback} from "../../hocs/with-feedback";
 
 type Props = {
   onSubmit: (event: React.FormEvent<HTMLFormElement>, id: string) => void;
-  setCommentText: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onSetCommentText: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   isSubmiteButtonDisabled: boolean;
-  setStarsCount: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSetStarsCount: (event: React.ChangeEvent<HTMLInputElement>) => void;
   comment: string;
   rating: number;
   id: string;
@@ -14,9 +14,9 @@ type Props = {
 
 const FeedbackFrom: FC<Props> = ({
   onSubmit = () => {},
-  setCommentText = () => {},
+  onSetCommentText = () => {},
   isSubmiteButtonDisabled = true,
-  setStarsCount = () => {},
+  onSetStarsCount = () => {},
   comment,
   rating,
   id,
@@ -51,7 +51,7 @@ const FeedbackFrom: FC<Props> = ({
                 value={count}
                 id={`${count}-stars`}
                 type="radio"
-                onChange={setStarsCount}
+                onChange={onSetStarsCount}
                 checked={count === rating}
               />
               <label
@@ -72,7 +72,7 @@ const FeedbackFrom: FC<Props> = ({
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={comment}
-        onChange={setCommentText}
+        onChange={onSetCommentText}
       />
       {formError && (
         <span className={`form__error error`}>

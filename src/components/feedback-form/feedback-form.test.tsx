@@ -8,9 +8,9 @@ it(`<FeedbackForm /> should render FeedbackForm.`, () => {
     .create(
         <TestFeedbackFrom
           onSubmit={stub}
-          setCommentText={stub}
+          onSetCommentText={stub}
           isSubmiteButtonDisabled={true}
-          setStarsCount={stub}
+          onSetStarsCount={stub}
           rating={3}
           comment={``}
           id={``}
