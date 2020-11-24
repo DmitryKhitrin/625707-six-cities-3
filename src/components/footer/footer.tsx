@@ -1,7 +1,7 @@
-import React, {FC} from "react";
+import React, {FC, memo} from "react";
 import {Link} from "react-router-dom";
 
-export const Footer: FC = () => {
+export const Footer: FC = memo(() => {
   return (
     <footer className="footer container">
       <Link to="/" className="footer__logo-link">
@@ -15,4 +15,4 @@ export const Footer: FC = () => {
       </Link>
     </footer>
   );
-};
+});
